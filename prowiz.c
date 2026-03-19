@@ -3244,11 +3244,7 @@ int main(int ac, char **av)
   }
 
   free(in_data);
-  if (Script_Mode == GOOD)
-  {
-    printf("{\"module_found\": %s}\n", Module_Found == GOOD ? "true" : "false");
-  }
-  else
+  if (Script_Mode != GOOD)
   {
     printf("\n");
     printf(" 1997-2016 (c) Sylvain \"Asle\" Chipaux (asle@free.fr)\n\n");
