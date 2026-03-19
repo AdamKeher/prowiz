@@ -67,7 +67,7 @@ void Rip_KRIS ( void )
   OutputSize = PW_k + PW_WholeSampleSize;
   
   CONVERT = GOOD;
-  Save_Rip ( "KRIS Tracker module", KRIS_tracker );
+  Save_Rip ( "KRIS Tracker MOD", KRIS_tracker );
   
   if ( Save_Status == GOOD )
     PW_i += 954;  /* 953 should do but call it "just to be sure" :) */

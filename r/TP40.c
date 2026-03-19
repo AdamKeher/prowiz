@@ -96,7 +96,7 @@ void Rip_P40A ( void )
   OutputSize = PW_l + PW_o + (PW_n*2) + 4;
 
   CONVERT = GOOD;
-  Save_Rip ( "The Player 4.0A module", P40A );
+  Save_Rip ( "The Player 4.0A MOD", P40A );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 1 should do but call it "just to be sure" :) */
@@ -130,7 +130,7 @@ void Rip_P40B ( void )
   OutputSize = PW_l + PW_o + (PW_n*2) + 4;
 
   CONVERT = GOOD;
-  Save_Rip ( "The Player 4.0B module", P40B );
+  Save_Rip ( "The Player 4.0B MOD", P40B );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 1 should do but call it "just to be sure" :) */

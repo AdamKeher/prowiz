@@ -181,7 +181,7 @@ void Rip_NewtronOld ( void )
   OutputSize = PW_k + PW_WholeSampleSize + (PW_m*1024);
 
   CONVERT = GOOD;
-  Save_Rip ( "Newtron module Old", NewtronOld );
+  Save_Rip ( "Newtron MOD Old", NewtronOld );
   
   if ( Save_Status == GOOD )
     PW_i += 11;

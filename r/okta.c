@@ -128,7 +128,7 @@ void Rip_Okta ( void )
     OutputSize = Where - PW_Start_Address;
   
     CONVERT = BAD;
-    Save_Rip ( "Oktalizer module", Oktalizer );
+    Save_Rip ( "Oktalizer MOD", Oktalizer );
     
     if ( Save_Status == GOOD )
       PW_i += 1;

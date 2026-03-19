@@ -93,7 +93,7 @@ void Rip_STRUGGLE ( void )
   OutputSize = 0x100 + PW_WholeSampleSize + (PW_n*768);
 
   CONVERT = GOOD;
-  Save_Rip ( "Struggle game module", STRUGGLE );
+  Save_Rip ( "Struggle game MOD", STRUGGLE );
   
   if ( Save_Status == GOOD )
     PW_i += 3;

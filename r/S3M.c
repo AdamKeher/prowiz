@@ -123,7 +123,7 @@ void Rip_S3M ( void )
          ,whole_head_size, PW_j, (PW_k*2), (PW_l*2));
 
   CONVERT = BAD;
-  Save_Rip ( "ScreamTracker III module", S3M );
+  Save_Rip ( "ScreamTracker III MOD", S3M );
   
   if ( Save_Status == GOOD )
     PW_i += 1;

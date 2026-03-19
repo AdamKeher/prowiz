@@ -47,7 +47,7 @@ void Rip_HRT ( void )
   /*  printf ( "\b\b\b\b\b\b\b\bHORNET packed module found at %ld !. its size is : %ld\n" , PW_Start_Address , OutputSize );*/
 
   CONVERT = GOOD;
-  Save_Rip ( "HORNET packed module", Hornet_packer );
+  Save_Rip ( "HORNET packed MOD", Hornet_packer );
   
   if ( Save_Status == GOOD )
     PW_i += 1084;

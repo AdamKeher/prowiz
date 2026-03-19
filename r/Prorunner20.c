@@ -49,7 +49,7 @@ void Rip_PRUN2 ( void )
   OutputSize = PW_j + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "Prorunner 2 module", ProRunner_v2 );
+  Save_Rip ( "Prorunner 2 MOD", ProRunner_v2 );
   
   if ( Save_Status == GOOD )
     PW_i += 2;  /* -1 should do but call it "just to be sure" :) */

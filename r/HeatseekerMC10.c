@@ -155,7 +155,7 @@ void Rip_HEATSEEKER ( void )
   /*  printf ( "\b\b\b\b\b\b\b\bHeatseeker module found at %ld !. its size is : %ld\n" , PW_Start_Address , OutputSize );*/
 
   CONVERT = GOOD;
-  Save_Rip ( "Heatseeker module", Heatseeker );
+  Save_Rip ( "Heatseeker MOD", Heatseeker );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 4);  /* 3 should do but call it "just to be sure" :) */

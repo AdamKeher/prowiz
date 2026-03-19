@@ -155,7 +155,7 @@ void Rip_PP30 ( void )
   OutputSize = PW_WholeSampleSize + PW_k + PW_l + 766;
 
   CONVERT = GOOD;
-  Save_Rip ( "ProPacker v3.0 module", Propacker_30 );
+  Save_Rip ( "ProPacker v3.0 MOD", Propacker_30 );
   
   if ( Save_Status == GOOD )
     PW_i += 4;  /* 3 should do but call it "just to be sure" :) */

@@ -63,7 +63,7 @@ void Rip_PM10c ( void )
   OutputSize = 4456 + PW_j + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "Promizer 1.0c module", Promizer_10c );
+  Save_Rip ( "Promizer 1.0c MOD", Promizer_10c );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 1 should do but call it "just to be sure" :) */

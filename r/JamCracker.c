@@ -100,7 +100,7 @@ void Rip_JamCracker ( void )
   OutputSize += PW_WholeSampleSize + PW_k + PW_o;
 
   CONVERT = BAD;
-  Save_Rip ( "JamCracker / Pro module", JamCracker );
+  Save_Rip ( "JamCracker / Pro MOD", JamCracker );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 0 should do but call it "just to be sure" :) */

@@ -60,7 +60,7 @@ void Rip_AC1D ( void )
   OutputSize = PW_WholeSampleSize + PW_k;
 
   CONVERT = GOOD;
-  Save_Rip ( "AC1D Packed module", AC1D_packer );
+  Save_Rip ( "AC1D Packed MOD", AC1D_packer );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 4);  /* 3 should do but call it "just to be sure" :) */

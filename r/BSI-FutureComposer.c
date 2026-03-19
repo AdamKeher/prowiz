@@ -54,7 +54,7 @@ void Rip_BSIFutureComposer ( void )
   OutputSize = PW_WholeSampleSize + 18428;
 
   CONVERT = BAD;
-  Save_Rip ( "BSI Future Composer module", BSIFC );
+  Save_Rip ( "BSI Future Composer MOD", BSIFC );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 0 should do but call it "just to be sure" :) */

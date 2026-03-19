@@ -101,9 +101,9 @@ void Rip_THX ( void )
   CONVERT = BAD;
 
   if (in_data[PW_Start_Address] == 'T')
-    Save_Rip ( "AHX v1/v2 module", AHX );
+    Save_Rip ( "AHX v1/v2 MOD", AHX );
   if (in_data[PW_Start_Address] == 'H')
-    Save_Rip ( "Hively Tracker module", HVL );
+    Save_Rip ( "Hively Tracker MOD", HVL );
   
   
   if ( Save_Status == GOOD )

@@ -76,7 +76,7 @@ void Rip_FC14 ( void )
   OutputSize = PW_l + (PW_k*2);
 
   CONVERT = BAD;
-  Save_Rip ( "Future Composer 1.4 module", FC14 );
+  Save_Rip ( "Future Composer 1.4 MOD", FC14 );
   
   if ( Save_Status == GOOD )
     PW_i += 4; /* after FC14 tag */

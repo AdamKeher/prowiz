@@ -64,7 +64,7 @@ void Rip_PM18a ( void )
   OutputSize = 4460 + PW_j + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "Promizer 1.8a module", Promizer_18a );
+  Save_Rip ( "Promizer 1.8a MOD", Promizer_18a );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 1 should do but call it "just to be sure" :) */

@@ -361,7 +361,7 @@ void Rip_SA ( void )
   OutputSize = PW_n;
 
   CONVERT = BAD;
-  Save_Rip ( "Sonic Arranger module", SA );
+  Save_Rip ( "Sonic Arranger MOD", SA );
   
   if ( Save_Status == GOOD )
     PW_i += 1;

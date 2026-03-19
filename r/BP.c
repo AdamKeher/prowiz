@@ -67,7 +67,7 @@ void Rip_BP ( void )
   OutputSize += ((PW_j*48) + (PW_l*16) + 512);
 
   CONVERT = BAD;
-  Save_Rip ( "Sound Monitor v2 / v3 module", SoundMonitor );
+  Save_Rip ( "Sound Monitor v2 / v3 MOD", SoundMonitor );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 27);  /* 26 should do but call it "just to be sure" :) */

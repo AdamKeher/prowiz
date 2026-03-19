@@ -49,7 +49,7 @@ void Rip_AMF ( void )
   OutputSize = PW_WholeSampleSize + PW_l;
 
   CONVERT = GOOD;
-  Save_Rip ( "Eureka Packed module", Eureka_packer );
+  Save_Rip ( "Eureka Packed MOD", Eureka_packer );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 46);  /* 45 should do but call it "just to be sure" :) */

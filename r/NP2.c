@@ -168,7 +168,7 @@ void Rip_Noisepacker2 ( void )
   /*  printf ( "\b\b\b\b\b\b\b\bNoisePacker v2 module found at %ld !. its size is : %ld\n" , PW_Start_Address , OutputSize );*/
 
   CONVERT = GOOD;
-  Save_Rip ( "NoisePacker v2 module", Noisepacker2 );
+  Save_Rip ( "NoisePacker v2 MOD", Noisepacker2 );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 16);  /* 15 should do but call it "just to be sure" :) */

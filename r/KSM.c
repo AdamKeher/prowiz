@@ -68,7 +68,7 @@ void Rip_KSM ( void )
   OutputSize = ((PW_j+1)*192) + PW_WholeSampleSize + 1536;
 
   CONVERT = GOOD;
-  Save_Rip ( "Kefrens Sound Machine module", KSM );
+  Save_Rip ( "Kefrens Sound Machine MOD", KSM );
   
   if ( Save_Status == GOOD )
     PW_i += 2;  /* -1 should do but call it "just to be sure" :) */

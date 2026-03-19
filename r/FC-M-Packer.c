@@ -50,7 +50,7 @@ void Rip_FC_M ( void )
   /*  printf ( "\b\b\b\b\b\b\b\bFC-M packed module found at %ld !. its size is : %ld\n" , PW_Start_Address , OutputSize );*/
 
   CONVERT = GOOD;
-  Save_Rip ( "FC-M packed module", FC_M_packer );
+  Save_Rip ( "FC-M packed MOD", FC_M_packer );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 1);  /* 0 should do but call it "just to be sure" :) */

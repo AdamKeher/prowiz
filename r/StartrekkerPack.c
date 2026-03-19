@@ -188,7 +188,7 @@ void Rip_STARPACK ( void )
   OutputSize = PW_WholeSampleSize + PW_k + 0x314;
 
   CONVERT = GOOD;
-  Save_Rip ( "StarTrekker Packer module", Star_pack );
+  Save_Rip ( "StarTrekker Packer MOD", Star_pack );
   
   if ( Save_Status == GOOD )
     PW_i += 24;  /* 23 after 1st vol */

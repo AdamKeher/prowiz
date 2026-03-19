@@ -60,7 +60,7 @@ void Rip_Fuzzac ( void )
   OutputSize = PW_WholeSampleSize + (PW_j*16) + (PW_k*256) + 2118 + 4;
 
   CONVERT = GOOD;
-  Save_Rip ( "Fuzzac packer module", Fuzzac );
+  Save_Rip ( "Fuzzac packer MOD", Fuzzac );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* -1 should do but call it "just to be sure" :) */

@@ -205,7 +205,7 @@ void Rip_MP_noID ( void )
     OutputSize += 4;
 
   CONVERT = GOOD;
-  Save_Rip ( "Module Protector Packed music", Module_protector );
+  Save_Rip ( "MOD Protector Packed music", Module_protector );
   
   if ( Save_Status == GOOD )
     PW_i += 0x57E;
@@ -239,7 +239,7 @@ void Rip_MP_withID ( void )
     OutputSize += 4;
 
   CONVERT = GOOD;
-  Save_Rip ( "Module Protector Packed music", Module_protector );
+  Save_Rip ( "MOD Protector Packed music", Module_protector );
   
   if ( Save_Status == GOOD )
     PW_i += 3;  /* 4 should do but call it "just to be sure" :) */
@@ -335,7 +335,7 @@ void Depack_MP ( void )
   /* sample data */
   fwrite ( &in_data[Where] , WholeSampleSize , 1 , out );
 
-  Crap ( " Module Protector " , BAD , BAD , out );
+  Crap ( " MOD Protector " , BAD , BAD , out );
 
   fflush ( out );
   fclose ( out );

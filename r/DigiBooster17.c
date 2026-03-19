@@ -83,7 +83,7 @@ void Rip_DigiBooster17 ( void )
   OutputSize = PW_WholeSampleSize + PW_k;
 
   CONVERT = BAD;
-  Save_Rip ( "DigiBooster 1.7 module", DigiBooster );
+  Save_Rip ( "DigiBooster 1.7 MOD", DigiBooster );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 0 should do but call it "just to be sure" :) */

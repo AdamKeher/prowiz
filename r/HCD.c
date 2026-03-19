@@ -68,7 +68,7 @@ void Rip_HCD ( void )
   OutputSize = (PW_k*1024) + 1084 + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "HCD-Protector module", HCD );
+  Save_Rip ( "HCD-Protector MOD", HCD );
   
   if ( Save_Status == GOOD )
     PW_i += 1;

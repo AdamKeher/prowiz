@@ -41,7 +41,7 @@ void Rip_WN ( void )
   OutputSize = PW_WholeSampleSize + (PW_j*1024) + 1084;
 
   CONVERT = GOOD;
-  Save_Rip ( "Wanton Packer module", Wanton_packer );
+  Save_Rip ( "Wanton Packer MOD", Wanton_packer );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 1082);  /* 1081 should do but call it "just to be sure" :) */

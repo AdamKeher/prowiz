@@ -107,7 +107,7 @@ void Rip_FuchsTracker ( void )
   OutputSize = PW_m + PW_k + 204;
 
   CONVERT = GOOD;
-  Save_Rip ( "Fuchs Tracker module", FuchsTracker );
+  Save_Rip ( "Fuchs Tracker MOD", FuchsTracker );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 195);  /* 192 should do but call it "just to be sure" :) */

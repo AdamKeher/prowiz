@@ -91,7 +91,7 @@ void Rip_BNR ( void )
   OutputSize = PW_WholeSampleSize + (PW_k*1024) + 1084;
 
   CONVERT = GOOD;
-  Save_Rip ( "Binary Packer module", BNR );
+  Save_Rip ( "Binary Packer MOD", BNR );
   
   if ( Save_Status == GOOD )
     PW_i += 1;

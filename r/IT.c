@@ -174,7 +174,7 @@ shall have to be handled, some day */
   }
   else
   {
-    Save_Rip ( "Impulse Tracker module", ImpulseTracker );
+    Save_Rip ( "Impulse Tracker MOD", ImpulseTracker );
   }
   
   if ( Save_Status == GOOD )

@@ -149,7 +149,7 @@ void Rip_SIDMON1 ( void )
   OutputSize = PW_n - PW_Start_Address;
 
   CONVERT = BAD;
-  Save_Rip ( "Sidmon v1 module", Sidmon1 );
+  Save_Rip ( "Sidmon v1 MOD", Sidmon1 );
   
   if ( Save_Status == GOOD )
     PW_i += 1;

@@ -187,7 +187,7 @@ void Rip_Noisepacker3 ( void )
   /*  printf ( "\b\b\b\b\b\b\b\bNoisePacker v3 module found at %ld !. its size is : %ld\n" , PW_Start_Address , OutputSize );*/
 
   CONVERT = GOOD;
-  Save_Rip ( "NoisePacker v3 module", Noisepacker3 );
+  Save_Rip ( "NoisePacker v3 MOD", Noisepacker3 );
   
   if ( Save_Status == GOOD )
     PW_i += 16;  /* 15 should do but call it "just to be sure" :) */

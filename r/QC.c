@@ -53,7 +53,7 @@ void Rip_QuadraComposer ( void )
   OutputSize = PW_l + 8;
 
   CONVERT = GOOD;
-  Save_Rip ( "Quadra Composer module", QuadraComposer );
+  Save_Rip ( "Quadra Composer MOD", QuadraComposer );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 9);  /* 8 should do but call it "just to be sure" :) */

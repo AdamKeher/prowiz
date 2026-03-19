@@ -77,7 +77,7 @@ void Rip_FC13 ( void )
   OutputSize = PW_WholeSampleSize + PW_m;
 
   CONVERT = BAD;
-  Save_Rip ( "Future Composer 1.3 module", FC13 );
+  Save_Rip ( "Future Composer 1.3 MOD", FC13 );
   
   if ( Save_Status == GOOD )
     PW_i += 4; /* after SMOD tag */

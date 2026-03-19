@@ -202,7 +202,7 @@ void Rip_TheDarkDemon ( void )
   OutputSize = PW_WholeSampleSize + 564;
 
   CONVERT = GOOD;
-  Save_Rip ( "The Dark Demon module", TDD );
+  Save_Rip ( "The Dark Demon MOD", TDD );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 140);  /* 137 should do but call it "just to be sure" :) */

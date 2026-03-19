@@ -140,7 +140,7 @@ void Rip_SoundFX13 ( void )
 
   CONVERT = BAD;
 
-  Save_Rip ( "Sound FX 1.3 module", SoundFX );
+  Save_Rip ( "Sound FX 1.3 MOD", SoundFX );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 0x40);  /* 0x3C should do but call it "just to be sure" :) */

@@ -161,7 +161,7 @@ void Rip_SoundTracker ( void )
   OutputSize = PW_WholeSampleSize + (PW_k*1024) + 600;
 
   CONVERT = BAD;
-  Save_Rip ( "SoundTracker module", SoundTracker );
+  Save_Rip ( "SoundTracker MOD", SoundTracker );
   
   if ( Save_Status == GOOD )
     PW_i += 46;  /* after 1st volume */

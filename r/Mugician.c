@@ -102,7 +102,7 @@ void Rip_MUGICIAN ( void )
   OutputSize += (PW_l * 8);
 
   CONVERT = BAD;
-  Save_Rip ( "Digital Mugician 1/2 module", dmu );
+  Save_Rip ( "Digital Mugician 1/2 MOD", dmu );
   
   if ( Save_Status == GOOD )
     PW_i += 24; /* after the ID */

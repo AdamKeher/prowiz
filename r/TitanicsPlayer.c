@@ -139,7 +139,7 @@ void Rip_TitanicsPlayer ( void )
   OutputSize = PW_n + (((in_data[PW_Start_Address+PW_j*12+4]*256)+in_data[PW_Start_Address+PW_j*12+5])*2);
 
   CONVERT = GOOD;
-  Save_Rip ( "Titanics Player module", TitanicsPlayer );
+  Save_Rip ( "Titanics Player MOD", TitanicsPlayer );
   
   if ( Save_Status == GOOD )
     PW_i += 180;  /* after smp desc */

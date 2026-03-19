@@ -62,7 +62,7 @@ void Rip_StoneArtsPlayer ( void )
   OutputSize = (PW_l*1024) + 1084 + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "Stone Arts Player module", StoneArtsPlayer );
+  Save_Rip ( "Stone Arts Player MOD", StoneArtsPlayer );
   
   if ( Save_Status == GOOD )
     PW_i += 1082; /* 1080 could be enough */

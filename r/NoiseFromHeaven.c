@@ -103,7 +103,7 @@ void Rip_NFH ( void )
   OutName[3] = Extensions[ProRunner_v1][2];*/
 
   CONVERT = GOOD;
-  Save_Rip ( "Noise From Heaven module", NoiseFromHeaven );
+  Save_Rip ( "Noise From Heaven MOD", NoiseFromHeaven );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 1083); /* 1080 could be enough */

@@ -68,7 +68,7 @@ void Rip_GnuPlayer ( void )
   OutputSize = PW_j;
 
   CONVERT = GOOD;
-  Save_Rip ( "GnuPlayer module", GnuPlayer );
+  Save_Rip ( "GnuPlayer MOD", GnuPlayer );
   
   if ( Save_Status == GOOD )
     PW_i += 0x96;

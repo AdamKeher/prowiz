@@ -164,7 +164,7 @@ void Rip_UNIC2 ( void )
   OutputSize = PW_WholeSampleSize + (PW_k*768) + 1060;
 
   CONVERT = GOOD;
-  Save_Rip ( "UNIC tracker v2 module", UNIC_v2 );
+  Save_Rip ( "UNIC tracker v2 MOD", UNIC_v2 );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 26);  /* 25 should do but call it "just to be sure" :) */

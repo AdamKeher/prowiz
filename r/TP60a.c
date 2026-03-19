@@ -403,7 +403,7 @@ void Rip_P60A ( void )
   OutputSize = PW_j + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "The Player 6.0A module", P60A );
+  Save_Rip ( "The Player 6.0A MOD", P60A );
   
   if ( Save_Status == GOOD )
     PW_i += 8;  /* 7 should do but call it "just to be sure" :) */

@@ -51,7 +51,7 @@ void Rip_STK26 ( void )
   CONVERT = GOOD;
   if ( in_data[PW_Start_Address+1464] == 'M' )
   {
-    Save_Rip ( "Sountracker 2.6 module", STK26 );
+    Save_Rip ( "Sountracker 2.6 MOD", STK26 );
   }
   else
   {

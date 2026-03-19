@@ -62,7 +62,7 @@ void Rip_PRUN1 ( void )
   OutputSize = (PW_l*1024) + 1084 + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "Prorunner 1 module", ProRunner_v1 );
+  Save_Rip ( "Prorunner 1 MOD", ProRunner_v1 );
   
   if ( Save_Status == GOOD )
     PW_i += 1; /* 1080 could be enough */

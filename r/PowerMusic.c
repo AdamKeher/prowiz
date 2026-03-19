@@ -57,7 +57,7 @@ void Rip_PM ( void )
   OutputSize = PW_k + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "Power Music module", Power_Music );
+  Save_Rip ( "Power Music MOD", Power_Music );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 1083);  /* 1080 should do but call it "just to be sure" :) */

@@ -44,7 +44,7 @@ void Rip_PERFSONG ( void )
   OutputSize = PW_j;
 
   CONVERT = GOOD;
-  Save_Rip ( "Perfect Song module", PerfSong );
+  Save_Rip ( "Perfect Song MOD", PerfSong );
   
   if ( Save_Status == GOOD )
     PW_i += 1;

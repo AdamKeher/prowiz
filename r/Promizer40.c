@@ -67,7 +67,7 @@ void Rip_PM40 ( void )
   OutputSize = PW_WholeSampleSize + PW_l + 4;
 
   CONVERT = GOOD;
-  Save_Rip ( "Promizer 4.0 module", PM40 );
+  Save_Rip ( "Promizer 4.0 MOD", PM40 );
   
   if ( Save_Status == GOOD )
     PW_i += 2;  /* 1 should do but call it "just to be sure" :) */

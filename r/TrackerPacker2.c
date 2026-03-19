@@ -173,7 +173,7 @@ void Rip_TP2 ( void )
   OutputSize += PW_WholeSampleSize + PW_l;
 
   CONVERT = GOOD;
-  Save_Rip ( "Tracker Packer v2 module", TP2 );
+  Save_Rip ( "Tracker Packer v2 MOD", TP2 );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 1); /* 0 could be enough */

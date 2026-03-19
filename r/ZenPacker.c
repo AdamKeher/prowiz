@@ -124,7 +124,7 @@ void Rip_ZEN ( void )
   OutputSize = PW_WholeSampleSize + PW_n;
 
   CONVERT = GOOD;
-  Save_Rip ( "ZEN Packer module", ZEN );
+  Save_Rip ( "ZEN Packer MOD", ZEN );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 10);  /* 9 should do but call it "just to be sure" :) */

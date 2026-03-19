@@ -118,7 +118,7 @@ void Rip_XANN ( void )
   OutputSize = PW_WholeSampleSize + 1084 + (PW_k*1024);
 
   CONVERT = GOOD;
-  Save_Rip ( "Xann Packer module", XANN_packer );
+  Save_Rip ( "Xann Packer MOD", XANN_packer );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 4);  /* 3 should do but call it "just to be sure" :) */

@@ -57,7 +57,7 @@ void Rip_SKYT ( void )
   OutputSize = (PW_l*256) + 262 + PW_WholeSampleSize + (PW_j*8);
 
   CONVERT = GOOD;
-  Save_Rip ( "SKYT Packed module", SKYT_packer );
+  Save_Rip ( "SKYT Packed MOD", SKYT_packer );
   
   if ( Save_Status == GOOD )
     PW_i += 257;

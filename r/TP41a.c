@@ -109,7 +109,7 @@ void Rip_P41A ( void )
   OutputSize = PW_l + PW_o + (PW_n*2) + 4;
 
   CONVERT = GOOD;
-  Save_Rip ( "The Player 4.1A module", P41A );
+  Save_Rip ( "The Player 4.1A MOD", P41A );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 2);  /* 1 should do but call it "just to be sure" :) */

@@ -97,7 +97,7 @@ void Rip_TMK ( void )
   OutputSize = PW_WholeSampleSize + PW_n + PW_l + PW_o - PW_Start_Address;
 
   CONVERT = GOOD;
-  Save_Rip ( "TMK module", TMK );
+  Save_Rip ( "TMK MOD", TMK );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 1);  /* 0 should do but call it "just to be sure" :) */

@@ -94,7 +94,7 @@ void Rip_MOSH ( void )
   OutputSize = (PW_k*1024) + 382 + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "MOSH packed module", MOSH );
+  Save_Rip ( "MOSH packed MOD", MOSH );
   
   if ( Save_Status == GOOD )
     PW_i += 379; /* after the 'M' of M.K. */

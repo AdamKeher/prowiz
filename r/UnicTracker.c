@@ -454,7 +454,7 @@ void Rip_UNIC_withID ( void )
   OutputSize = PW_WholeSampleSize + (PW_k*768) + 1084;
 
   CONVERT = GOOD;
-  Save_Rip ( "UNIC tracker v1 module", UNIC_v1 );
+  Save_Rip ( "UNIC tracker v1 MOD", UNIC_v1 );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 1081);  /* 1080 should do but call it "just to be sure" :) */
@@ -468,7 +468,7 @@ void Rip_UNIC_noID ( void )
   OutputSize = PW_WholeSampleSize + (PW_k*768) + 1080;
 
   CONVERT = GOOD;
-  Save_Rip ( "UNIC tracker v1 module", UNIC_v1 );
+  Save_Rip ( "UNIC tracker v1 MOD", UNIC_v1 );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 46);  /* 45 should do but call it "just to be sure" :) */

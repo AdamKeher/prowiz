@@ -46,7 +46,7 @@ void Rip_PM20 ( void )
   OutputSize = PW_WholeSampleSize + 5198 + PW_j;
 
   CONVERT = GOOD;
-  Save_Rip ( "Promizer 2.0 module", Promizer_20 );
+  Save_Rip ( "Promizer 2.0 MOD", Promizer_20 );
   
   if ( Save_Status == GOOD )
     PW_i += 2;  /* 1 should do but call it "just to be sure" :) */

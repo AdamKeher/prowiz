@@ -254,7 +254,7 @@ void Rip_P50A ( void )
   OutputSize = PW_j + PW_WholeSampleSize;
 
   CONVERT = GOOD;
-  Save_Rip ( "The Player 5.0A module", P50A );
+  Save_Rip ( "The Player 5.0A MOD", P50A );
   
   if ( Save_Status == GOOD )
     PW_i += (OutputSize - 8);  /* 7 should do but call it "just to be sure" :) */

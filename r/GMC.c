@@ -178,7 +178,7 @@ void Rip_GMC ( void )
   OutputSize = PW_WholeSampleSize + (PW_l*1024) + 444;
 
   CONVERT = GOOD;
-  Save_Rip ( "Game Music Creator module", GMC );
+  Save_Rip ( "Game Music Creator MOD", GMC );
   
   if ( Save_Status == GOOD )
     PW_i += 444; /* after header */
