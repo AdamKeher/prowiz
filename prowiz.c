@@ -35,11 +35,16 @@ int main ( int ac , char **av )
   }
 
   if ( strstr(av[1], "r") != NULL && strstr(av[1], "d") != NULL ) {
+    Do_Rip = GOOD;
+    Do_Depack = GOOD;
     Do_Data_Mode = GOOD;
     Do_Module_Mode = GOOD;
   } else if ( strstr(av[1], "r") != NULL ) {
+    Do_Rip = GOOD;
+    Do_Depack = GOOD;
     Do_Module_Mode = GOOD;
   } else if ( strstr(av[1], "d") != NULL ) {
+    Do_Rip = GOOD;
     Do_Data_Mode = GOOD;
   }
 

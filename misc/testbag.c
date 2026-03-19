@@ -23,7 +23,7 @@ int16_t test_smps ( int32_t smpsiz, int32_t lstart, int32_t lsiz, uint8_t vol, u
     return BAD;
   if ( (lstart != 0) && ( lsiz < 2 ) )
     return BAD;
-  if ( ((lstart != 0) || (lsiz > 2)) && (smpsiz = 0) )
+  if ( ((lstart != 0) || (lsiz > 2)) && (smpsiz == 0) )
     return BAD;
   if ( (vol > 0x40) || (fine > 0x0f) )
     return BAD;

@@ -411,6 +411,8 @@ extern uint8_t CONVERT;
 extern uint8_t Amiga_EXE_Header;
 extern uint8_t Do_Data_Mode;
 extern uint8_t Do_Module_Mode;
+extern uint8_t Do_Rip;
+extern uint8_t Do_Depack;
 extern uint8_t Script_Mode;
 extern uint8_t Module_Found;
 extern uint8_t Current_Is_Module;

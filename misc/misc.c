@@ -262,17 +262,18 @@ void Support_Types_FileDefault ( void )
 void Save_Rip ( char * format_to_save, int FMT_EXT )
 {
   Save_Status = BAD;
-  if ( Script_Mode == GOOD ) {
-    if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
-    printf ( "{\"id\": \"%s\", \"offset\": %d, \"size\": %u, \"module_found\": %s}\n", format_to_save , PW_Start_Address , OutputSize, Current_Is_Module == GOOD ? "true" : "false" );
-  } else {
-    printf ( "%s found at %d !. its size is : %u\n", format_to_save , PW_Start_Address , OutputSize );
-  }
 
   if ( (Current_Is_Module == GOOD && Do_Module_Mode != GOOD) ||
        (Current_Is_Module == BAD && Do_Data_Mode != GOOD) ) {
     Save_Status = GOOD;
     return;
+  }
+
+  if ( Script_Mode == GOOD ) {
+    if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
+    printf ( "{\"id\": \"%s\", \"offset\": %d, \"size\": %u, \"module_found\": %s}\n", format_to_save , PW_Start_Address , OutputSize, Current_Is_Module == GOOD ? "true" : "false" );
+  } else {
+    printf ( "%s found at %d !. its size is : %u\n", format_to_save , PW_Start_Address , OutputSize );
   }
 
   if ( (PW_Start_Address + (int32_t)OutputSize) > PW_in_size )
@@ -313,17 +314,18 @@ void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Blo
 {
   uint8_t ending[4] = {0x00,0x00,0x03,0xf2};
   Save_Status = BAD;
-  if ( Script_Mode == GOOD ) {
-    if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
-    printf ( "{\"id\": \"%s\", \"offset\": %d, \"size\": %u, \"module_found\": %s}\n", format_to_save , PW_Start_Address , OutputSize, Current_Is_Module == GOOD ? "true" : "false" );
-  } else {
-    printf ( "%s found at %d !. its size is : %u\n", format_to_save , PW_Start_Address , OutputSize );
-  }
 
   if ( (Current_Is_Module == GOOD && Do_Module_Mode != GOOD) ||
        (Current_Is_Module == BAD && Do_Data_Mode != GOOD) ) {
     Save_Status = GOOD;
     return;
+  }
+
+  if ( Script_Mode == GOOD ) {
+    if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
+    printf ( "{\"id\": \"%s\", \"offset\": %d, \"size\": %u, \"module_found\": %s}\n", format_to_save , PW_Start_Address , OutputSize, Current_Is_Module == GOOD ? "true" : "false" );
+  } else {
+    printf ( "%s found at %d !. its size is : %u\n", format_to_save , PW_Start_Address , OutputSize );
   }
 
   if ( (PW_Start_Address + (int32_t)OutputSize) > PW_in_size )
