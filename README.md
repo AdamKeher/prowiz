@@ -1,6 +1,6 @@
 # Pro-Wizard
 
-Version: v1.70b based on v1.70a
+Version: v1.70c based on v1.70a
 
 Pro-Wizard is a tool designed to identify, rip, and depack various Amiga music module formats and data-crunched files. Originally based on the famous Pro-Wizard 2 for Amiga, this version brings its capabilities to modern systems, allowing for the recovery of music from packed executables and data blocks.
 

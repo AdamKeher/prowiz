@@ -14,7 +14,7 @@ int main(int ac, char **av)
 
   if (ac < 3)
   {
-    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
+    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
     fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
     fprintf(stderr, "Flags:\n");
     fprintf(stderr, "  -r   : Rip Mode (Identify and depack modules to .mod)\n");
@@ -42,31 +42,45 @@ int main(int ac, char **av)
       }
       continue;
     }
-    
+
     if (av[PW_j][0] == '-')
     {
-       if (strstr(av[PW_j], "j") != NULL) Script_Mode = GOOD;
-       if (strstr(av[PW_j], "s") != NULL) { Scan_Only = GOOD; Do_Depack = BAD; }
-       if (strstr(av[PW_j], "r") != NULL) { Do_Rip = GOOD; Do_Depack = GOOD; Do_Module_Mode = GOOD; }
-       if (strstr(av[PW_j], "d") != NULL) { Do_Rip = GOOD; Do_Data_Mode = GOOD; }
-       continue;
+      if (strstr(av[PW_j], "j") != NULL)
+        Script_Mode = GOOD;
+      if (strstr(av[PW_j], "s") != NULL)
+      {
+        Scan_Only = GOOD;
+        Do_Depack = BAD;
+      }
+      if (strstr(av[PW_j], "r") != NULL)
+      {
+        Do_Rip = GOOD;
+        Do_Depack = GOOD;
+        Do_Module_Mode = GOOD;
+      }
+      if (strstr(av[PW_j], "d") != NULL)
+      {
+        Do_Rip = GOOD;
+        Do_Data_Mode = GOOD;
+      }
+      continue;
     }
 
     /* Positional arguments */
     if (positional_arg_count == 0)
     {
-       input_file = av[PW_j];
+      input_file = av[PW_j];
     }
     else if (positional_arg_count == 1)
     {
-       strcpy(User_OutName, av[PW_j]);
+      strcpy(User_OutName, av[PW_j]);
     }
     positional_arg_count++;
   }
 
   if (input_file == NULL)
   {
-    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
+    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
     fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
     fprintf(stderr, "Flags:\n");
     fprintf(stderr, "  -r   : Rip Mode (Identify and depack modules to .mod)\n");
@@ -86,7 +100,7 @@ int main(int ac, char **av)
 
   if (Scan_Only == BAD && positional_arg_count < 2)
   {
-    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
+    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
     fprintf(stderr, "Missing output file !\n");
     fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
     exit(0);
