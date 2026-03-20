@@ -11,7 +11,7 @@
 
 void DisplayBanner(FILE *out)
 {
-  fprintf(out, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
+  fprintf(out, "-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
 }
 
 void DisplayUsage(char *name, char *errorMessage)
