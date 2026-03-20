@@ -12,7 +12,7 @@
 int main(int ac, char **av)
 {
 
-  if (ac < 4)
+  if (ac < 3)
   {
     fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
     fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
@@ -21,6 +21,7 @@ int main(int ac, char **av)
     fprintf(stderr, "  -d   : Data Mode (Identify and rebuild executables for data crunchers)\n");
     fprintf(stderr, "  -rd  : Both modes\n");
     fprintf(stderr, "  -j   : JSON mode (clean stdout, machine readable JSON)\n");
+    fprintf(stderr, "  -s   : Scan only (Identify but don't write anything)\n");
     fprintf(stderr, "Check the documentation for more info !\n");
     exit(0);
   }
@@ -28,6 +29,20 @@ int main(int ac, char **av)
   if (strstr(av[1], "j") != NULL)
   {
     Script_Mode = GOOD;
+  }
+
+  if (strstr(av[1], "s") != NULL)
+  {
+    Scan_Only = GOOD;
+    Do_Depack = BAD;
+  }
+
+  if (Scan_Only == BAD && ac < 4)
+  {
+    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
+    fprintf(stderr, "Missing output file !\n");
+    fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
+    exit(0);
   }
 
   if (Script_Mode != GOOD)
@@ -48,13 +63,33 @@ int main(int ac, char **av)
     Do_Depack = GOOD;
     Do_Module_Mode = GOOD;
   }
-  else if (strstr(av[1], "d") != NULL)
+  if (strstr(av[1], "d") != NULL)
   {
     Do_Rip = GOOD;
     Do_Data_Mode = GOOD;
   }
 
-  strcpy(User_OutName, av[3]);
+  if (strstr(av[1], "s") != NULL)
+  {
+    Scan_Only = GOOD;
+    Do_Depack = BAD;
+  }
+
+  if (Scan_Only == GOOD && Do_Rip == BAD && Do_Data_Mode == BAD)
+  {
+    /* if only -s is specified, assume we want to rip modules at least */
+    Do_Rip = GOOD;
+    Do_Module_Mode = GOOD;
+  }
+
+  if (ac >= 4)
+  {
+    strcpy(User_OutName, av[3]);
+  }
+  else
+  {
+    User_OutName[0] = '\0';
+  }
 
   PW_in = fopen(av[2], "rb");
   if (PW_in == NULL)

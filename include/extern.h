@@ -409,6 +409,7 @@ extern uint32_t PW_WholeSampleSize;
 extern char Extensions[_KNOWN_FORMATS+1][33];
 extern uint8_t CONVERT;
 extern uint8_t Amiga_EXE_Header;
+extern uint8_t Scan_Only;
 extern uint8_t Do_Data_Mode;
 extern uint8_t Do_Module_Mode;
 extern uint8_t Do_Rip;

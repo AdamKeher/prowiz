@@ -286,6 +286,12 @@ void Save_Rip ( char * format_to_save, int FMT_EXT )
   }
   BZERO ( OutName_final, sizeof OutName_final);
   strcpy ( OutName_final , User_OutName );
+
+  if ( Scan_Only == GOOD ) {
+    Save_Status = GOOD;
+    return;
+  }
+
   if ( Script_Mode != GOOD )
     printf ( "  saving in file \"%s\" ... " , OutName_final );
   Cpt_Filename += 1;
@@ -338,6 +344,13 @@ void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Blo
   }
   BZERO (OutName_final, sizeof OutName_final);
   strcpy ( OutName_final , User_OutName );
+
+  if ( Scan_Only == GOOD ) {
+    Amiga_EXE_Header = GOOD;
+    Save_Status = GOOD;
+    return;
+  }
+
   if ( Script_Mode != GOOD )
     printf ( "  saving in file \"%s\" ... " , OutName_final );
   Cpt_Filename += 1;
@@ -518,6 +531,19 @@ FILE * PW_fopen (char *filename, char fopenargs[3] )
 {
   FILE *local_out;
   char *actual_filename = filename;
+
+  if (Scan_Only == GOOD && strchr(fopenargs, 'w') != NULL)
+  {
+    /* return a valid pointer that won't cause crashes but won't write to a real file */
+    /* stderr is generally safe to "write" to and ignore if needed, 
+       or we could use a dummy handle if we want to be absolutely sure.
+       However, most depackers call fwrite/fclose on this. */
+#ifdef WIN32
+    return fopen("NUL", fopenargs);
+#else
+    return fopen("/dev/null", fopenargs);
+#endif
+  }
 
   /* If we are opening for writing, use User_OutName instead of the suggested filename */
   if ( strchr(fopenargs, 'w') != NULL )

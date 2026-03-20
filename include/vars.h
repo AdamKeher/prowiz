@@ -23,6 +23,7 @@ uint32_t  PW_WholeSampleSize=0;
 char      Extensions[_KNOWN_FORMATS+1][33];
 uint8_t   CONVERT = BAD;
 uint8_t   Amiga_EXE_Header = GOOD;
+uint8_t   Scan_Only = BAD;
 uint8_t   Do_Data_Mode = BAD;
 uint8_t   Do_Module_Mode = BAD;
 uint8_t   Do_Rip = BAD;
