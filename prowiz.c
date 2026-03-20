@@ -22,57 +22,74 @@ int main(int ac, char **av)
     fprintf(stderr, "  -rd  : Both modes\n");
     fprintf(stderr, "  -j   : JSON mode (clean stdout, machine readable JSON)\n");
     fprintf(stderr, "  -s   : Scan only (Identify but don't write anything)\n");
+    fprintf(stderr, "  -f <index> : specify which found module to write (default 0)\n");
     fprintf(stderr, "Check the documentation for more info !\n");
     exit(0);
   }
 
-  if (strstr(av[1], "j") != NULL)
+  int positional_arg_count = 0;
+  char *input_file = NULL;
+
+  for (PW_j = 1; PW_j < ac; PW_j++)
   {
-    Script_Mode = GOOD;
+    if (strcmp(av[PW_j], "-f") == 0)
+    {
+      if (PW_j + 1 < ac)
+      {
+        Requested_Index = atoi(av[PW_j + 1]);
+        Filter_By_Index = GOOD;
+        PW_j++; /* skip index */
+      }
+      continue;
+    }
+    
+    if (av[PW_j][0] == '-')
+    {
+       if (strstr(av[PW_j], "j") != NULL) Script_Mode = GOOD;
+       if (strstr(av[PW_j], "s") != NULL) { Scan_Only = GOOD; Do_Depack = BAD; }
+       if (strstr(av[PW_j], "r") != NULL) { Do_Rip = GOOD; Do_Depack = GOOD; Do_Module_Mode = GOOD; }
+       if (strstr(av[PW_j], "d") != NULL) { Do_Rip = GOOD; Do_Data_Mode = GOOD; }
+       continue;
+    }
+
+    /* Positional arguments */
+    if (positional_arg_count == 0)
+    {
+       input_file = av[PW_j];
+    }
+    else if (positional_arg_count == 1)
+    {
+       strcpy(User_OutName, av[PW_j]);
+    }
+    positional_arg_count++;
   }
 
-  if (strstr(av[1], "s") != NULL)
+  if (input_file == NULL)
   {
-    Scan_Only = GOOD;
+    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
+    fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
+    fprintf(stderr, "Flags:\n");
+    fprintf(stderr, "  -r   : Rip Mode (Identify and depack modules to .mod)\n");
+    fprintf(stderr, "  -d   : Data Mode (Identify and rebuild executables for data crunchers)\n");
+    fprintf(stderr, "  -rd  : Both modes\n");
+    fprintf(stderr, "  -j   : JSON mode (clean stdout, machine readable JSON)\n");
+    fprintf(stderr, "  -s   : Scan only (Identify but don't write anything)\n");
+    fprintf(stderr, "  -f <index> : specify which found module to write (default 0)\n");
+    fprintf(stderr, "Check the documentation for more info !\n");
+    exit(0);
+  }
+
+  if (Scan_Only == GOOD)
+  {
     Do_Depack = BAD;
   }
 
-  if (Scan_Only == BAD && ac < 4)
+  if (Scan_Only == BAD && positional_arg_count < 2)
   {
     fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
     fprintf(stderr, "Missing output file !\n");
     fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
     exit(0);
-  }
-
-  if (Script_Mode != GOOD)
-  {
-    printf("\n\n-<([ Pro-Wizard v1.70b (demoscene.au modified) ])>-\n\n");
-  }
-
-  if (strstr(av[1], "r") != NULL && strstr(av[1], "d") != NULL)
-  {
-    Do_Rip = GOOD;
-    Do_Depack = GOOD;
-    Do_Data_Mode = GOOD;
-    Do_Module_Mode = GOOD;
-  }
-  else if (strstr(av[1], "r") != NULL)
-  {
-    Do_Rip = GOOD;
-    Do_Depack = GOOD;
-    Do_Module_Mode = GOOD;
-  }
-  if (strstr(av[1], "d") != NULL)
-  {
-    Do_Rip = GOOD;
-    Do_Data_Mode = GOOD;
-  }
-
-  if (strstr(av[1], "s") != NULL)
-  {
-    Scan_Only = GOOD;
-    Do_Depack = BAD;
   }
 
   if (Scan_Only == GOOD && Do_Rip == BAD && Do_Data_Mode == BAD)
@@ -82,19 +99,15 @@ int main(int ac, char **av)
     Do_Module_Mode = GOOD;
   }
 
-  if (ac >= 4)
-  {
-    strcpy(User_OutName, av[3]);
-  }
-  else
+  if (positional_arg_count < 2)
   {
     User_OutName[0] = '\0';
   }
 
-  PW_in = fopen(av[2], "rb");
+  PW_in = fopen(input_file, "rb");
   if (PW_in == NULL)
   {
-    fprintf(stderr, "cant find \"%s\" !\n", av[2]);
+    fprintf(stderr, "cant find \"%s\" !\n", input_file);
     exit(0);
   }
 
@@ -102,7 +115,7 @@ int main(int ac, char **av)
   Support_Types();
 
   /* get input file size */
-  PW_in_size = PWGetFileSize(av[2]);
+  PW_in_size = PWGetFileSize(input_file);
   fseek(PW_in, 0, 0); /* probably useless */
   if (Script_Mode != GOOD)
   {
@@ -128,6 +141,12 @@ int main(int ac, char **av)
   /********************************************************************/
   /**************************   SEARCH   ******************************/
   /********************************************************************/
+  Current_Found_Index = 0;
+  First_JSON_Entry = GOOD;
+  if (Script_Mode == GOOD)
+  {
+    printf("{\n  \"results\": [\n");
+  }
   for (PW_i = 0; PW_i < (PW_in_size - MINIMAL_FILE_LENGHT); PW_i += 1)
   {
     Current_Is_Module = GOOD;
@@ -3276,6 +3295,11 @@ int main(int ac, char **av)
       break;
 
     } /* end of switch */
+  }
+
+  if (Script_Mode == GOOD)
+  {
+    printf("\n  ]\n}\n");
   }
 
   free(in_data);

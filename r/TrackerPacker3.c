@@ -403,6 +403,7 @@ void Depack_TP3 ( void )
   fflush ( out );
   fclose ( out );
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

@@ -329,6 +329,7 @@ void Depack_PP21 ( void )
   /*fflush (info);
   fclose (info);*/
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

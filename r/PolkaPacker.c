@@ -195,6 +195,7 @@ void Depack_Polka ( void )
 
   fclose ( out );
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

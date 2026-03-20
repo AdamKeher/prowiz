@@ -310,6 +310,7 @@ void Depack_TitanicsPlayer ( void )
   fflush ( out );
   fclose ( out );
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

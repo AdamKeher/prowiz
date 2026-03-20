@@ -346,9 +346,9 @@ void Depack_SoundFX13 ( void )
   fclose ( in );
   fclose ( out );
 
-  printf ( "done\n"
+  if ( Script_Mode != GOOD ) { printf ( "done\n"
            "  WARNING: This is only an under development converter !\n"
-           "           output could sound strange...\n" );
+           "           output could sound strange...\n" ); }
   return; /* useless ... but */
 
 }

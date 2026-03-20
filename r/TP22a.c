@@ -307,6 +307,7 @@ void Depack_P22 ( void )
   fclose ( out );
   /*  fclose ( debug );*/
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

@@ -262,6 +262,7 @@ void Support_Types_FileDefault ( void )
 void Save_Rip ( char * format_to_save, int FMT_EXT )
 {
   Save_Status = BAD;
+  CONVERT = BAD;
 
   if ( (Current_Is_Module == GOOD && Do_Module_Mode != GOOD) ||
        (Current_Is_Module == BAD && Do_Data_Mode != GOOD) ) {
@@ -270,10 +271,27 @@ void Save_Rip ( char * format_to_save, int FMT_EXT )
   }
 
   if ( Script_Mode == GOOD ) {
-    if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
-    printf ( "{\"id\": \"%s\", \"offset\": %d, \"size\": %u, \"module_found\": %s}\n", format_to_save , PW_Start_Address , OutputSize, Current_Is_Module == GOOD ? "true" : "false" );
+    if ( Filter_By_Index == BAD || Current_Found_Index == Requested_Index ) {
+      if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
+      if ( First_JSON_Entry == GOOD ) {
+        First_JSON_Entry = BAD;
+      } else {
+        printf ( ",\n" );
+      }
+      printf ( "    {\n"
+               "      \"id\": \"%s\",\n"
+               "      \"offset\": %d,\n"
+               "      \"size\": %u,\n"
+               "      \"index\": %d,\n" ,
+               format_to_save , PW_Start_Address , OutputSize, Current_Found_Index );
+      if ( Scan_Only == BAD )
+        printf ( "      \"filename\": \"%s\",\n", User_OutName );
+      printf ( "      \"module_found\": %s\n"
+               "    }",
+               Current_Is_Module == GOOD ? "true" : "false" );
+    }
   } else {
-    printf ( "%s found at %d !. its size is : %u\n", format_to_save , PW_Start_Address , OutputSize );
+    printf ( "[%d] %s found at %d !. its size is : %u\n", Current_Found_Index, format_to_save , PW_Start_Address , OutputSize );
   }
 
   if ( (PW_Start_Address + (int32_t)OutputSize) > PW_in_size )
@@ -282,15 +300,25 @@ void Save_Rip ( char * format_to_save, int FMT_EXT )
       printf ( "!!! Truncated, missing (%u byte(s) !)\n"
                , (PW_Start_Address+OutputSize)-PW_in_size );
     PW_i += 2 ;
+    Current_Found_Index++;
     return;
   }
   BZERO ( OutName_final, sizeof OutName_final);
   strcpy ( OutName_final , User_OutName );
 
-  if ( Scan_Only == GOOD ) {
-    Save_Status = GOOD;
+  if ( Current_Found_Index != Requested_Index ) {
+    Save_Status = BAD;
+    Current_Found_Index++;
     return;
   }
+
+  if ( Scan_Only == GOOD ) {
+    Save_Status = GOOD;
+    Current_Found_Index++;
+    return;
+  }
+
+  Current_Found_Index++;
 
   if ( Script_Mode != GOOD )
     printf ( "  saving in file \"%s\" ... " , OutName_final );
@@ -320,6 +348,7 @@ void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Blo
 {
   uint8_t ending[4] = {0x00,0x00,0x03,0xf2};
   Save_Status = BAD;
+  CONVERT = BAD;
 
   if ( (Current_Is_Module == GOOD && Do_Module_Mode != GOOD) ||
        (Current_Is_Module == BAD && Do_Data_Mode != GOOD) ) {
@@ -328,10 +357,27 @@ void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Blo
   }
 
   if ( Script_Mode == GOOD ) {
-    if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
-    printf ( "{\"id\": \"%s\", \"offset\": %d, \"size\": %u, \"module_found\": %s}\n", format_to_save , PW_Start_Address , OutputSize, Current_Is_Module == GOOD ? "true" : "false" );
+    if ( Filter_By_Index == BAD || Current_Found_Index == Requested_Index ) {
+      if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
+      if ( First_JSON_Entry == GOOD ) {
+        First_JSON_Entry = BAD;
+      } else {
+        printf ( ",\n" );
+      }
+      printf ( "    {\n"
+               "      \"id\": \"%s\",\n"
+               "      \"offset\": %d,\n"
+               "      \"size\": %u,\n"
+               "      \"index\": %d,\n" ,
+               format_to_save , PW_Start_Address , OutputSize, Current_Found_Index );
+      if ( Scan_Only == BAD )
+        printf ( "      \"filename\": \"%s\",\n", User_OutName );
+      printf ( "      \"module_found\": %s\n"
+               "    }",
+               Current_Is_Module == GOOD ? "true" : "false" );
+    }
   } else {
-    printf ( "%s found at %d !. its size is : %u\n", format_to_save , PW_Start_Address , OutputSize );
+    printf ( "[%d] %s found at %d !. its size is : %u\n", Current_Found_Index, format_to_save , PW_Start_Address , OutputSize );
   }
 
   if ( (PW_Start_Address + (int32_t)OutputSize) > PW_in_size )
@@ -340,16 +386,27 @@ void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Blo
       printf ( "!!! Truncated, missing (%u byte(s) !)\n"
                , (PW_Start_Address+OutputSize)-PW_in_size );
     PW_i += 2 ;
+    Current_Found_Index++;
     return;
   }
   BZERO (OutName_final, sizeof OutName_final);
   strcpy ( OutName_final , User_OutName );
 
+  if ( Current_Found_Index != Requested_Index ) {
+    Amiga_EXE_Header = GOOD;
+    Save_Status = BAD;
+    Current_Found_Index++;
+    return;
+  }
+
   if ( Scan_Only == GOOD ) {
     Amiga_EXE_Header = GOOD;
     Save_Status = GOOD;
+    Current_Found_Index++;
     return;
   }
+
+  Current_Found_Index++;
 
   if ( Script_Mode != GOOD )
     printf ( "  saving in file \"%s\" ... " , OutName_final );
@@ -664,3 +721,4 @@ void Rip_DietDataPacker ( void )
   if ( Save_Status == GOOD )
     PW_i += 1;
 }
+

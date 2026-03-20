@@ -423,6 +423,7 @@ void Depack_Noisepacker3 ( void )
 /*  fclose (DEBUG);*/
   fclose ( out );
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

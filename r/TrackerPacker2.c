@@ -410,6 +410,7 @@ void Depack_TP2 ( void )
   fclose ( out );
   /*fclose ( info );*/
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

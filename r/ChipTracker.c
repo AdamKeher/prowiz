@@ -303,7 +303,8 @@ void Depack_KRIS ( void )
   fclose ( out );
   /*fclose ( debug );*/
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+
 

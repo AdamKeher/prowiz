@@ -333,6 +333,7 @@ void Depack_PM18a ( void )
   fclose ( out );
   /*fclose (info);*/
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+

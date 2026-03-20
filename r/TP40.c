@@ -509,6 +509,7 @@ for ( i=0 ; i<PatPos*4 ; i++ )
   fflush ( out );
   fclose ( out );
 
-  printf ( "done\n" );
+  if ( Script_Mode != GOOD ) { printf ( "done\n" ); }
   return; /* useless ... but */
 }
+
