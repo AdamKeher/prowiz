@@ -9,21 +9,40 @@
 #include "extern.h"
 #include "vars.h"
 
+void DisplayBanner(FILE *out)
+{
+  fprintf(out, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
+}
+
+void DisplayUsage(char *name, char *errorMessage)
+{
+  DisplayBanner(stderr);
+  if (errorMessage != NULL)
+  {
+    fprintf(stderr, "%s\n\n", errorMessage);
+  }
+  fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", name);
+  fprintf(stderr, "Flags:\n");
+  fprintf(stderr, "  -r   : Rip Mode (Identify and depack modules to .mod)\n");
+  fprintf(stderr, "  -d   : Data Mode (Identify and rebuild executables for data crunchers)\n");
+  fprintf(stderr, "  -rd  : Both modes\n");
+  fprintf(stderr, "  -j   : JSON mode (clean stdout, machine readable JSON)\n");
+  fprintf(stderr, "  -s   : Scan only (Identify but don't write anything)\n");
+  fprintf(stderr, "  -f <index> : specify which found module to write (default 0)\n");
+  fprintf(stderr, "\nCheck the documentation for more info !\n");
+}
+
+void DisplayFooter(void)
+{
+  printf("\n 1997-2016 (c) Sylvain \"Asle\" Chipaux (asle@free.fr)\n\n");
+}
+
 int main(int ac, char **av)
 {
 
   if (ac < 3)
   {
-    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
-    fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
-    fprintf(stderr, "Flags:\n");
-    fprintf(stderr, "  -r   : Rip Mode (Identify and depack modules to .mod)\n");
-    fprintf(stderr, "  -d   : Data Mode (Identify and rebuild executables for data crunchers)\n");
-    fprintf(stderr, "  -rd  : Both modes\n");
-    fprintf(stderr, "  -j   : JSON mode (clean stdout, machine readable JSON)\n");
-    fprintf(stderr, "  -s   : Scan only (Identify but don't write anything)\n");
-    fprintf(stderr, "  -f <index> : specify which found module to write (default 0)\n");
-    fprintf(stderr, "Check the documentation for more info !\n");
+    DisplayUsage(av[0], NULL);
     exit(0);
   }
 
@@ -80,16 +99,7 @@ int main(int ac, char **av)
 
   if (input_file == NULL)
   {
-    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
-    fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
-    fprintf(stderr, "Flags:\n");
-    fprintf(stderr, "  -r   : Rip Mode (Identify and depack modules to .mod)\n");
-    fprintf(stderr, "  -d   : Data Mode (Identify and rebuild executables for data crunchers)\n");
-    fprintf(stderr, "  -rd  : Both modes\n");
-    fprintf(stderr, "  -j   : JSON mode (clean stdout, machine readable JSON)\n");
-    fprintf(stderr, "  -s   : Scan only (Identify but don't write anything)\n");
-    fprintf(stderr, "  -f <index> : specify which found module to write (default 0)\n");
-    fprintf(stderr, "Check the documentation for more info !\n");
+    DisplayUsage(av[0], NULL);
     exit(0);
   }
 
@@ -100,9 +110,7 @@ int main(int ac, char **av)
 
   if (Scan_Only == BAD && positional_arg_count < 2)
   {
-    fprintf(stderr, "\n\n-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
-    fprintf(stderr, "Missing output file !\n");
-    fprintf(stderr, "Usage: %s <flag> <input file> <output file>\n", av[0]);
+    DisplayUsage(av[0], "Missing output file !");
     exit(0);
   }
 
@@ -116,6 +124,11 @@ int main(int ac, char **av)
   if (positional_arg_count < 2)
   {
     User_OutName[0] = '\0';
+  }
+
+  if (Script_Mode != GOOD)
+  {
+    DisplayBanner(stdout);
   }
 
   PW_in = fopen(input_file, "rb");
@@ -3319,8 +3332,7 @@ int main(int ac, char **av)
   free(in_data);
   if (Script_Mode != GOOD)
   {
-    printf("\n");
-    printf(" 1997-2016 (c) Sylvain \"Asle\" Chipaux (asle@free.fr)\n\n");
+    DisplayFooter();
   }
   exit(0);
 }
