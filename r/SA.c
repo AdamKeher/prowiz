@@ -21,7 +21,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+10] != 'B' ) ||
        (in_data[PW_Start_Address+11] != 'L' ) )
   {
-    printf ( "#1 Start:%d - expecting STBL hunk\n" , PW_Start_Address );
+    printf ( "#1 Start:%lld - expecting STBL hunk\n" , (long long)PW_Start_Address );
     return BAD;
   }
 
@@ -42,7 +42,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+30] != 'T' ) ||
        (in_data[PW_Start_Address+31] != 'B' ) )
   {
-    printf ( "#1,2 Start:%d - expecting OVTB hunk\n" , PW_Start_Address );
+    printf ( "#1,2 Start:%lld - expecting OVTB hunk\n" , (long long)PW_Start_Address );
     return BAD;
   }
 
@@ -65,7 +65,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+PW_n+2] != 'B' ) ||
        (in_data[PW_Start_Address+PW_n+3] != 'L' ) )
   {
-    printf ( "#2 Start:%d - expecting NTBL hunk\n" , PW_Start_Address );
+    printf ( "#2 Start:%lld - expecting NTBL hunk\n" , (long long)PW_Start_Address );
     return BAD;
   }
 
@@ -76,7 +76,7 @@ int16_t	 testSAhunk ( void )
   /* file size */
   if ( (PW_in_size - PW_Start_Address - PW_n) < (PW_m + 16) )
   {
-    printf ( "#2,1 (start:%d) (size:%d)\n" , PW_Start_Address , PW_in_size-PW_Start_Address-PW_n);
+    printf ( "#2,1 (start:%lld) (size:%lld)\n" , (long long)PW_Start_Address , (long long)PW_in_size-PW_Start_Address-PW_n);
     return BAD;
   }
 
@@ -88,7 +88,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+PW_n+2] != 'S' ) ||
        (in_data[PW_Start_Address+PW_n+3] != 'T' ) )
   {
-    printf ( "#3 Start:%d - expecting INST hunk\n" , PW_Start_Address );
+    printf ( "#3 Start:%lld - expecting INST hunk\n" , (long long)PW_Start_Address );
     return BAD;
   }
 
@@ -99,7 +99,7 @@ int16_t	 testSAhunk ( void )
   /* file size */
   if ( (PW_in_size - PW_Start_Address - PW_n) < (PW_m + 16) )
   {
-    printf ( "#3,1 (start:%d) (size:%d)\n" , PW_Start_Address , PW_in_size-PW_Start_Address-PW_n);
+    printf ( "#3,1 (start:%lld) (size:%lld)\n" , (long long)PW_Start_Address , (long long)PW_in_size-PW_Start_Address-PW_n);
     return BAD;
   }
 
@@ -111,7 +111,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+PW_n+2] != '8' ) ||
        (in_data[PW_Start_Address+PW_n+3] != 'B' ) )
   {
-    printf ( "#4 Start:%d - expecting SD8B hunk\n" , PW_Start_Address );
+    printf ( "#4 Start:%lld - expecting SD8B hunk\n" , (long long)PW_Start_Address );
     return BAD;
   }
 
@@ -128,7 +128,7 @@ int16_t	 testSAhunk ( void )
     {
       PW_j = (in_data[PW_Start_Address+PW_n+PW_l+(PW_o*4)+10]*256 + in_data[PW_Start_Address+PW_n+PW_l+(PW_o*4)+11]);
       PW_k += PW_j;
-      /*printf ("(at:%d)(PW_j=%d)\n",PW_Start_Address+PW_n+PW_l+(PW_o*4)+10,PW_j);*/
+      /*printf ("(at:%lld)(PW_j=%lld)\n",PW_Start_Address+PW_n+PW_l+(PW_o*4)+10,PW_j);*/
     }
     PW_l += (PW_m * 4);
     PW_m = PW_l + PW_k;
@@ -137,7 +137,7 @@ int16_t	 testSAhunk ( void )
   /* file size */
   if ( (PW_in_size - PW_Start_Address - PW_n) < (PW_m + 16) )
   {
-    printf ( "#4,1 (start:%d) (size:%d)\n" , PW_Start_Address , PW_in_size-PW_Start_Address-PW_n);
+    printf ( "#4,1 (start:%lld) (size:%lld)\n" , (long long)PW_Start_Address , (long long)PW_in_size-PW_Start_Address-PW_n);
     return BAD;
   }
 
@@ -150,7 +150,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+PW_n+2] != 'W' ) ||
        (in_data[PW_Start_Address+PW_n+3] != 'T' ) )
   {
-    printf ( "#5 Start:%d (at %d) (PW_l:%d) - expecting SYWT hunk\n" , PW_Start_Address, PW_Start_Address + PW_n,PW_l );
+    printf ( "#5 Start:%lld (at %lld) (PW_l:%u) - expecting SYWT hunk\n" , (long long)PW_Start_Address, (long long)(PW_Start_Address + PW_n),PW_l );
     return BAD;
   }
 
@@ -161,7 +161,7 @@ int16_t	 testSAhunk ( void )
   /* file size */
   if ( (PW_in_size - PW_Start_Address - PW_n) < (PW_m + 16) )
   {
-    printf ( "#5,1 (start:%d) (size:%d)\n" , PW_Start_Address , PW_in_size-PW_Start_Address-PW_n);
+    printf ( "#5,1 (start:%lld) (size:%lld)\n" , (long long)PW_Start_Address , (long long)PW_in_size-PW_Start_Address-PW_n);
     return BAD;
   }
 
@@ -173,7 +173,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+PW_n+2] != 'A' ) ||
        (in_data[PW_Start_Address+PW_n+3] != 'R' ) )
   {
-    printf ( "#6 Start:%d (at %d) - expecting SYAR hunk\n" , PW_Start_Address, PW_Start_Address + PW_n );
+    printf ( "#6 Start:%lld (at %lld) - expecting SYAR hunk\n" , (long long)PW_Start_Address, PW_Start_Address + PW_n );
     return BAD;
   }
 
@@ -184,7 +184,7 @@ int16_t	 testSAhunk ( void )
   /* file size */
   if ( (PW_in_size - PW_Start_Address - PW_n) < (PW_m + 16) )
   {
-    printf ( "#6,1 (start:%d) (size:%d)\n" , PW_Start_Address , PW_in_size-PW_Start_Address-PW_n);
+    printf ( "#6,1 (start:%lld) (size:%lld)\n" , (long long)PW_Start_Address , (long long)PW_in_size-PW_Start_Address-PW_n);
     return BAD;
   }
 
@@ -196,7 +196,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+PW_n+2] != 'A' ) ||
        (in_data[PW_Start_Address+PW_n+3] != 'F' ) )
   {
-    printf ( "#7 Start:%d (at %d) - expecting SYAF hunk\n" , PW_Start_Address, PW_Start_Address + PW_n  );
+    printf ( "#7 Start:%lld (at %lld) - expecting SYAF hunk\n" , (long long)PW_Start_Address, PW_Start_Address + PW_n  );
     return BAD;
   }
 
@@ -208,7 +208,7 @@ int16_t	 testSAhunk ( void )
   /* file size */
   if ( (PW_in_size - PW_Start_Address - PW_n) < (PW_m + 16) )
   {
-    printf ( "#7,1 (start:%d) (size:%d)\n" , PW_Start_Address , PW_in_size-PW_Start_Address-PW_n);
+    printf ( "#7,1 (start:%lld) (size:%lld)\n" , (long long)PW_Start_Address , (long long)PW_in_size-PW_Start_Address-PW_n);
     return BAD;
   }
 
@@ -220,7 +220,7 @@ int16_t	 testSAhunk ( void )
        (in_data[PW_Start_Address+PW_n+2] != 'A' ) ||
        (in_data[PW_Start_Address+PW_n+3] != 'T' ) )
   {
-    printf ( "#8 Start:%d - expecting EDATV1.1 hunk\n" , PW_Start_Address );
+    printf ( "#8 Start:%lld - expecting EDATV1.1 hunk\n" , (long long)PW_Start_Address );
     return BAD;
   }
 
@@ -245,14 +245,14 @@ int16_t	testSA ( void )
   PW_n = 3;
   if ( in_data[PW_Start_Address+PW_n] >0x7f )
   {
-    /*printf ( "#1 Start:%d - jump too far\n" , PW_Start_Address );*/
+    /*printf ( "#1 Start:%lld - jump too far\n" , (long long)PW_Start_Address );*/
     return BAD;
   }
 
   /* file size */
   if ( (PW_Start_Address + in_data[PW_Start_Address+PW_n]) > PW_in_size )
   {
-    /*printf ( "#1,1 (start:%d) (jump:%d)\n" , PW_Start_Address , in_data[PW_Start_Address+PW_n]);*/
+    /*printf ( "#1,1 (start:%lld) (jump:%lld)\n" , (long long)PW_Start_Address , in_data[PW_Start_Address+PW_n]);*/
     return BAD;
   }
 
@@ -265,10 +265,10 @@ int16_t	testSA ( void )
   /* file size */
   if ( (PW_Start_Address + PW_n) > PW_in_size )
   {
-    printf ( "#1,3 (start:%d) (jump:%d)\n" , PW_Start_Address , PW_Start_Address + PW_n);
+    printf ( "#1,3 (start:%lld) (jump:%lld)\n" , (long long)PW_Start_Address , PW_Start_Address + PW_n);
     return BAD;
   }
-printf ("testSA(%x) - jump to %x\n",PW_Start_Address,PW_n);
+printf ("testSA(%llx) - jump to %x\n",(long long)PW_Start_Address,PW_n);
 
 /************* try to detect the next 'Nu' ni the next 100h bytes ****************/
   for (PW_j=0; PW_j<0x100; PW_j++)
@@ -279,29 +279,29 @@ printf ("testSA(%x) - jump to %x\n",PW_Start_Address,PW_n);
   }
   if (PW_j == 0x100)
   {
-    printf ( "#2 Start:%d - no 'Nu' found\n" , PW_Start_Address );
+    printf ( "#2 Start:%lld - no 'Nu' found\n" , (long long)PW_Start_Address );
     return BAD;
   }
-printf ("testSA(%x) - 'Nu' at %x\n",PW_Start_Address,PW_j);
+printf ("testSA(%llx) - 'Nu' at %x",(long long)PW_Start_Address,PW_j);
 
 /************* try to detect the next usable dword ****************/
   PW_n += (PW_j + 2);
   if ((in_data[PW_Start_Address + PW_n+3] == 0x00) &&
       (in_data[PW_Start_Address + PW_n+5] == 0x00) )
   {
-    printf ( "#3 Start:%d (at %x) - consecutive 0x00 found\n" , PW_Start_Address, PW_n+PW_Start_Address );
+    printf ( "#3 Start:%lld (at %llx) - consecutive 0x00 found\n" , (long long)PW_Start_Address, (long long)(PW_n+PW_Start_Address) );
     return BAD;
   }
   if (in_data[PW_Start_Address + PW_n+5] != 0x00)
     PW_n += 2;
-printf ("testSA(%x) - first dword at %x\n",PW_Start_Address,PW_n);
+printf ("testSA(%llx) - first dword at %x",(long long)PW_Start_Address,PW_n);
     
 /************* real music data start here ****************/
 
   /* file size */
   if ( (PW_Start_Address + PW_n + 32) > PW_in_size )
   {
-    printf ( "#4 (start:%d) (size:%d)\n" , PW_Start_Address , PW_Start_Address + PW_n + 32);
+    printf ( "#4 (start:%lld) (size:%lld)\n" , (long long)PW_Start_Address , PW_Start_Address + PW_n + 32);
     return BAD;
   }
 
@@ -310,12 +310,12 @@ printf ("testSA(%x) - first dword at %x\n",PW_Start_Address,PW_n);
   PW_j = (( in_data[PW_Start_Address+PW_n+30]*256)+
             in_data[PW_Start_Address+PW_n+31] );
   PW_n += PW_j; /* this includes the 32 bytes of addresses */
-printf ("testSA(%x) - S8BD hunk at %x\n",PW_Start_Address,PW_n);
+printf ("testSA(%llx) - S8BD hunk at %x",(long long)PW_Start_Address,PW_n);
 
   /* nbr 8b samples */
   PW_m = (( in_data[PW_Start_Address+PW_n+2]*256)+
             in_data[PW_Start_Address+PW_n+3] );
-printf ("testSA(%x) - nbr 8b data %x\n",PW_Start_Address,PW_m);
+printf ("testSA(%llx) - nbr 8b data %x\n",(long long)PW_Start_Address,PW_m);
   PW_n += 4;
 /*printf ("at %x (PW_m:%x)\n",PW_n+PW_Start_Address,PW_m);fflush (stdout);*/
 
@@ -326,7 +326,7 @@ printf ("testSA(%x) - nbr 8b data %x\n",PW_Start_Address,PW_m);
     for (PW_o=0; PW_o<PW_m; PW_o++)
     {
       PW_j = (in_data[PW_Start_Address+PW_n+(PW_o*4)+2]*256 + in_data[PW_Start_Address+PW_n+(PW_o*4)+3]);
-printf ("testSA(%x) - 8b data sizes %x\n",PW_Start_Address,PW_j);
+printf ("testSA(%llx) - 8b data sizes %x",(long long)PW_Start_Address,PW_j);
       PW_k += PW_j;
     }
   }

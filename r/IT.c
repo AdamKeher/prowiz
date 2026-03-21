@@ -169,7 +169,7 @@ shall have to be handled, some day */
   CONVERT = BAD;
   if (COMPRESSED == 2)
   {
-    printf ("found Impulse Tracker module at %d with last sample compressed - can't save\n",PW_Start_Address);
+    printf ("found Impulse Tracker module at %lld with last sample compressed - can't save\n",(long long)PW_Start_Address);
     Save_Status = GOOD;
   }
   else

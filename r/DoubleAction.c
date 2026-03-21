@@ -94,7 +94,7 @@ void Rip_DoubleAction10 ( void )
 
 /*     Save_Rip_Special ( "Double Action 1.0 Exe-file", Double_Action, Amiga_EXE_Header_Block , 24 ); */
 /*     free ( Amiga_EXE_Header_Block ); */
-    printf ("Double Action 1.0 Exe-file without header detected at %d. Can't rebuild it, sorry\n", PW_Start_Address);
+    printf ("Double Action 1.0 Exe-file without header detected at %lld. Can't rebuild it, sorry\n", (long long)PW_Start_Address);
   }
   else
   {

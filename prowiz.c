@@ -11,7 +11,7 @@
 
 void DisplayBanner(FILE *out)
 {
-  fprintf(out, "-<([ Pro-Wizard v1.70c (demoscene.au modified) ])>-\n\n");
+  fprintf(out, "-<([ Pro-Wizard v1.71 (demoscene.au modified) ])>-\n\n");
 }
 
 void DisplayUsage(char *name, char *errorMessage)
@@ -146,7 +146,7 @@ int main(int ac, char **av)
   fseek(PW_in, 0, 0); /* probably useless */
   if (Script_Mode != GOOD)
   {
-    printf("input file size : %d\n", PW_in_size);
+    printf("input file size : %lld\n", (long long)PW_in_size);
   }
   if (PW_in_size < MINIMAL_FILE_LENGHT)
   {
@@ -165,16 +165,26 @@ int main(int ac, char **av)
   fread(in_data, PW_in_size, 1, PW_in);
   fclose(PW_in);
 
-  /********************************************************************/
-  /**************************   SEARCH   ******************************/
-  /********************************************************************/
+  PW_ScanData();
+  free(in_data);
+  if (Script_Mode != GOOD)
+  {
+    DisplayFooter();
+  }
+  exit(0);
+}
+
+/* ---------- scan engine (called by main() and prowiz_lib) ----------- */
+void PW_ScanData(void)
+{
   Current_Found_Index = 0;
   First_JSON_Entry = GOOD;
-  if (Script_Mode == GOOD)
+  PW_ResultCount = 0;
+  if (!PW_LibMode && Script_Mode == GOOD)
   {
     printf("{\n  \"results\": [\n");
   }
-  for (PW_i = 0; PW_i < (PW_in_size - MINIMAL_FILE_LENGHT); PW_i += 1)
+  for (PW_i = 0; PW_i < (uint32_t)(PW_in_size - MINIMAL_FILE_LENGHT); PW_i += 1)
   {
     Current_Is_Module = GOOD;
     /* display where we are every 10 Kbytes */
@@ -476,7 +486,7 @@ int main(int ac, char **av)
       /* The player 6.0a (packed samples)? */
       if (testP60A_pack() != BAD)
       {
-        printf("\b\b\b\b\b\b\b\bThe Player 6.0A with PACKED samples found at %d ... cant rip it!\n", PW_Start_Address);
+        printf("\b\b\b\b\b\b\b\bThe Player 6.0A with PACKED samples found at %lld ... cant rip it!\n", (long long)PW_Start_Address);
         /*if(Do_Rip==GOOD)Rip_P60A();*/
         /*if(Do_Depack==GOOD)Depack_P60A();*/
       }
@@ -493,7 +503,7 @@ int main(int ac, char **av)
       /* The player 6.1a (packed samples)? */
       if (testP61A_pack() != BAD)
       {
-        printf("\b\b\b\b\b\b\b\bThe Player 6.1A with PACKED samples found at %d ... cant rip it!\n", PW_Start_Address);
+        printf("\b\b\b\b\b\b\b\bThe Player 6.1A with PACKED samples found at %lld ... cant rip it!\n", (long long)PW_Start_Address);
         /*if(Do_Rip==GOOD)Rip_P61A();*/
         /*if(Do_Depack==GOOD)Depack_P61A();*/
       }
@@ -3324,15 +3334,8 @@ int main(int ac, char **av)
     } /* end of switch */
   }
 
-  if (Script_Mode == GOOD)
+  if (!PW_LibMode && Script_Mode == GOOD)
   {
     printf("\n  ]\n}\n");
   }
-
-  free(in_data);
-  if (Script_Mode != GOOD)
-  {
-    DisplayFooter();
-  }
-  exit(0);
 }

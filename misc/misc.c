@@ -256,60 +256,95 @@ void Support_Types_FileDefault ( void )
 
 
 /*
+ * PW_RecordFind — pure logic, no I/O.
+ * Checks mode filter, fills result struct, accumulates in PW_Results[].
+ * Returns: 0 = filtered out (mode mismatch), 1 = proceed.
+ */
+int PW_RecordFind ( char *format_id, int fmt_ext, PW_FindResult *out )
+{
+  (void)fmt_ext; /* reserved for future use */
+
+  if ( (Current_Is_Module == GOOD && Do_Module_Mode != GOOD) ||
+       (Current_Is_Module == BAD  && Do_Data_Mode  != GOOD) ) {
+    Save_Status = GOOD;
+    return 0;
+  }
+
+  strncpy ( out->format_id, format_id, sizeof(out->format_id) - 1 );
+  out->format_id[sizeof(out->format_id) - 1] = '\0';
+  out->offset    = PW_Start_Address;
+  out->size      = OutputSize;
+  out->index     = Current_Found_Index;
+  out->is_module = (Current_Is_Module == GOOD) ? 1 : 0;
+  strncpy ( out->filename, User_OutName, sizeof(out->filename) - 1 );
+  out->filename[sizeof(out->filename) - 1] = '\0';
+  out->truncated = ( (PW_Start_Address + (int64_t)OutputSize) > PW_in_size ) ? 1 : 0;
+
+  if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
+
+  if ( PW_ResultCount < PW_MAX_RESULTS )
+    memcpy ( &PW_Results[PW_ResultCount++], out, sizeof(PW_FindResult) );
+
+  return 1;
+}
+
+/*
  * saving what's found. Mainly music file here.
- * PW_Start_Address & OutputSize are global .. not everybody likes
- * that :(. I just cant seem to manage it otherwise.
+ * PW_Start_Address & OutputSize are global.
  *
- * 20070825 : catching NULL off PW__fopen() for WinUAE
+ * 20070825 : catching NULL off PW_fopen() for WinUAE
 */
 void Save_Rip ( char * format_to_save, int FMT_EXT )
 {
+  PW_FindResult result;
   Save_Status = BAD;
   CONVERT = BAD;
 
-  if ( (Current_Is_Module == GOOD && Do_Module_Mode != GOOD) ||
-       (Current_Is_Module == BAD && Do_Data_Mode != GOOD) ) {
-    Save_Status = GOOD;
+  if ( PW_RecordFind ( format_to_save, FMT_EXT, &result ) == 0 )
     return;
-  }
 
-  if ( Script_Mode == GOOD ) {
-    if ( Filter_By_Index == BAD || Current_Found_Index == Requested_Index ) {
-      if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
-      if ( First_JSON_Entry == GOOD ) {
-        First_JSON_Entry = BAD;
-      } else {
-        printf ( ",\n" );
+  if ( !PW_LibMode ) {
+    if ( Script_Mode == GOOD ) {
+      if ( Filter_By_Index == BAD || result.index == Requested_Index ) {
+        if ( First_JSON_Entry == GOOD ) {
+          First_JSON_Entry = BAD;
+        } else {
+          printf ( ",\n" );
+        }
+        printf ( "    {\n"
+                 "      \"id\": \"%s\",\n"
+                 "      \"offset\": %lld,\n"
+                 "      \"size\": %u,\n"
+                 "      \"index\": %d,\n",
+                 result.format_id, (long long)result.offset,
+                 result.size, result.index );
+        if ( Scan_Only == BAD )
+          printf ( "      \"filename\": \"%s\",\n", result.filename );
+        printf ( "      \"module_found\": %s\n"
+                 "    }",
+                 result.is_module ? "true" : "false" );
       }
-      printf ( "    {\n"
-               "      \"id\": \"%s\",\n"
-               "      \"offset\": %d,\n"
-               "      \"size\": %u,\n"
-               "      \"index\": %d,\n" ,
-               format_to_save , PW_Start_Address , OutputSize, Current_Found_Index );
-      if ( Scan_Only == BAD )
-        printf ( "      \"filename\": \"%s\",\n", User_OutName );
-      printf ( "      \"module_found\": %s\n"
-               "    }",
-               Current_Is_Module == GOOD ? "true" : "false" );
+    } else {
+      printf ( "[%d] %s found at %lld !. its size is : %u\n",
+               result.index, result.format_id,
+               (long long)result.offset, result.size );
     }
-  } else {
-    printf ( "[%d] %s found at %d !. its size is : %u\n", Current_Found_Index, format_to_save , PW_Start_Address , OutputSize );
   }
 
-  if ( (PW_Start_Address + (int32_t)OutputSize) > PW_in_size )
-  {
+  if ( result.truncated ) {
     if ( Script_Mode != GOOD )
-      printf ( "!!! Truncated, missing (%u byte(s) !)\n"
-               , (PW_Start_Address+OutputSize)-PW_in_size );
-    PW_i += 2 ;
+      printf ( "!!! Truncated, missing (%u byte(s) !)\n",
+               (uint32_t)(result.offset + result.size - PW_in_size) );
+    PW_i += 2;
     Current_Found_Index++;
     return;
   }
-  BZERO ( OutName_final, sizeof OutName_final);
-  strcpy ( OutName_final , User_OutName );
 
-  if ( Current_Found_Index != Requested_Index ) {
+  BZERO ( OutName_final, sizeof OutName_final );
+  strncpy ( OutName_final, User_OutName, sizeof(OutName_final) - 1 );
+  OutName_final[sizeof(OutName_final) - 1] = '\0';
+
+  if ( result.index != Requested_Index ) {
     Save_Status = BAD;
     Current_Found_Index++;
     return;
@@ -324,18 +359,15 @@ void Save_Rip ( char * format_to_save, int FMT_EXT )
   Current_Found_Index++;
 
   if ( Script_Mode != GOOD )
-    printf ( "  saving in file \"%s\" ... " , OutName_final );
+    printf ( "  saving in file \"%s\" ... ", OutName_final );
   Cpt_Filename += 1;
-  if ((PW_out = PW_fopen ( OutName_final , "w+b" )) == NULL)
-  {
+  if ( (PW_out = PW_fopen ( OutName_final, "w+b" )) == NULL )
     return;
-  }
-  fwrite ( &in_data[PW_Start_Address] , OutputSize , 1 , PW_out );
+  fwrite ( &in_data[PW_Start_Address], OutputSize, 1, PW_out );
   fclose ( PW_out );
   if ( Script_Mode != GOOD )
     printf ( "done\n" );
-  if ( CONVERT == GOOD )
-  {
+  if ( CONVERT == GOOD ) {
     if ( Script_Mode != GOOD )
       printf ( "  converting to Protracker ... " );
   }
@@ -344,58 +376,60 @@ void Save_Rip ( char * format_to_save, int FMT_EXT )
 }
 
 /*
- * Special cases for files with header to rebuild ...
- *
+ * Special cases for files with header to rebuild.
 */
-void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Block , uint32_t Block_Size )
+void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Block, uint32_t Block_Size )
 {
   uint8_t ending[4] = {0x00,0x00,0x03,0xf2};
+  PW_FindResult result;
   Save_Status = BAD;
   CONVERT = BAD;
 
-  if ( (Current_Is_Module == GOOD && Do_Module_Mode != GOOD) ||
-       (Current_Is_Module == BAD && Do_Data_Mode != GOOD) ) {
-    Save_Status = GOOD;
+  if ( PW_RecordFind ( format_to_save, FMT_EXT, &result ) == 0 )
     return;
-  }
 
-  if ( Script_Mode == GOOD ) {
-    if ( Filter_By_Index == BAD || Current_Found_Index == Requested_Index ) {
-      if ( Current_Is_Module == GOOD ) Module_Found = GOOD;
-      if ( First_JSON_Entry == GOOD ) {
-        First_JSON_Entry = BAD;
-      } else {
-        printf ( ",\n" );
+  if ( !PW_LibMode ) {
+    if ( Script_Mode == GOOD ) {
+      if ( Filter_By_Index == BAD || result.index == Requested_Index ) {
+        if ( First_JSON_Entry == GOOD ) {
+          First_JSON_Entry = BAD;
+        } else {
+          printf ( ",\n" );
+        }
+        printf ( "    {\n"
+                 "      \"id\": \"%s\",\n"
+                 "      \"offset\": %lld,\n"
+                 "      \"size\": %u,\n"
+                 "      \"index\": %d,\n",
+                 result.format_id, (long long)result.offset,
+                 result.size, result.index );
+        if ( Scan_Only == BAD )
+          printf ( "      \"filename\": \"%s\",\n", result.filename );
+        printf ( "      \"module_found\": %s\n"
+                 "    }",
+                 result.is_module ? "true" : "false" );
       }
-      printf ( "    {\n"
-               "      \"id\": \"%s\",\n"
-               "      \"offset\": %d,\n"
-               "      \"size\": %u,\n"
-               "      \"index\": %d,\n" ,
-               format_to_save , PW_Start_Address , OutputSize, Current_Found_Index );
-      if ( Scan_Only == BAD )
-        printf ( "      \"filename\": \"%s\",\n", User_OutName );
-      printf ( "      \"module_found\": %s\n"
-               "    }",
-               Current_Is_Module == GOOD ? "true" : "false" );
+    } else {
+      printf ( "[%d] %s found at %lld !. its size is : %u\n",
+               result.index, result.format_id,
+               (long long)result.offset, result.size );
     }
-  } else {
-    printf ( "[%d] %s found at %d !. its size is : %u\n", Current_Found_Index, format_to_save , PW_Start_Address , OutputSize );
   }
 
-  if ( (PW_Start_Address + (int32_t)OutputSize) > PW_in_size )
-  {
+  if ( result.truncated ) {
     if ( Script_Mode != GOOD )
-      printf ( "!!! Truncated, missing (%u byte(s) !)\n"
-               , (PW_Start_Address+OutputSize)-PW_in_size );
-    PW_i += 2 ;
+      printf ( "!!! Truncated, missing (%u byte(s) !)\n",
+               (uint32_t)(result.offset + result.size - PW_in_size) );
+    PW_i += 2;
     Current_Found_Index++;
     return;
   }
-  BZERO (OutName_final, sizeof OutName_final);
-  strcpy ( OutName_final , User_OutName );
 
-  if ( Current_Found_Index != Requested_Index ) {
+  BZERO ( OutName_final, sizeof OutName_final );
+  strncpy ( OutName_final, User_OutName, sizeof(OutName_final) - 1 );
+  OutName_final[sizeof(OutName_final) - 1] = '\0';
+
+  if ( result.index != Requested_Index ) {
     Amiga_EXE_Header = GOOD;
     Save_Status = BAD;
     Current_Found_Index++;
@@ -412,23 +446,24 @@ void Save_Rip_Special ( char * format_to_save, int FMT_EXT, uint8_t * Header_Blo
   Current_Found_Index++;
 
   if ( Script_Mode != GOOD )
-    printf ( "  saving in file \"%s\" ... " , OutName_final );
+    printf ( "  saving in file \"%s\" ... ", OutName_final );
   Cpt_Filename += 1;
-  PW_out = PW_fopen ( OutName_final , "w+b" );
-  fwrite ( Header_Block , Block_Size  , 1 , PW_out );
-  fwrite ( &in_data[PW_Start_Address] , OutputSize-4 , 1 , PW_out );
-  fwrite ( ending, 4, 1, PW_out);
+  PW_out = PW_fopen ( OutName_final, "w+b" );
+  if ( PW_out == NULL )
+    return;
+  fwrite ( Header_Block, Block_Size, 1, PW_out );
+  fwrite ( &in_data[PW_Start_Address], OutputSize - 4, 1, PW_out );
+  fwrite ( ending, 4, 1, PW_out );
   fclose ( PW_out );
   if ( Script_Mode != GOOD )
     printf ( "done\n" );
-  if ( CONVERT == GOOD )
-  {
+  if ( CONVERT == GOOD ) {
     if ( Script_Mode != GOOD )
       printf ( "  converting to Protracker ... " );
   }
   if ( Script_Mode != GOOD ) {
     printf ( "  Header of this file was missing and has been rebuilt !\n" );
-    if ( FMT_EXT == DragPack252)
+    if ( FMT_EXT == DragPack252 )
       printf ( "  WARNING !: it's a fake header in this case !!\n" );
   }
   fflush ( stdout );
@@ -491,7 +526,7 @@ int16_t testSpecialCruncherData ( int32_t Pack_addy , int32_t Unpack_addy )
 
   /* a small test preventing hangover :) ... */
   /* e.g. addressing of unassigned data */
-  if ( ( (int32_t)PW_i + Pack_addy ) > PW_in_size )
+  if ( ( (int64_t)PW_i + Pack_addy ) > PW_in_size )
   {
 /*printf ( "#0\n" );*/
     return BAD;
@@ -574,15 +609,14 @@ void Rip_SpecialCruncherData ( char *Packer_Name , int Header_Size , int Packer_
 
 
 /* yet again on Xigh's suggestion. How to handle 'correctly' a file size */
-int32_t PWGetFileSize (char * infile)
+int64_t PWGetFileSize (char * infile)
 {
   struct stat sb;
-  
+
   if (stat ( infile, &sb ) < 0) {
-      /* xigh: TODO: Error */
       return -1;
   }
-  return (int32_t) sb.st_size;
+  return (int64_t) sb.st_size;
 }
 
 /* Same as fopen() but saves a lot of tests, done only here. */

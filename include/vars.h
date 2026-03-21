@@ -7,10 +7,10 @@
 
 
 FILE      *PW_in,*PW_out;
-int32_t   PW_Start_Address=0;
+int64_t   PW_Start_Address=0;
 uint32_t  OutputSize=0;
-int32_t   PW_in_size;
-int32_t   Cpt_Filename=0l;
+int64_t   PW_in_size=0;
+int32_t   Cpt_Filename=0;
 uint32_t  PW_i;
 uint32_t  PW_j,PW_k,PW_l,PW_m,PW_n,PW_o;
 uint8_t   *in_data;
@@ -35,3 +35,6 @@ uint8_t   Do_Depack = BAD;
 uint8_t   Script_Mode = BAD;
 uint8_t   Module_Found = BAD;
 uint8_t   Current_Is_Module = GOOD;
+uint8_t   PW_LibMode = 0;
+PW_FindResult PW_Results[PW_MAX_RESULTS];
+int32_t   PW_ResultCount = 0;

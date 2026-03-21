@@ -2,6 +2,7 @@ CC = gcc
 CFLAGS = -Iinclude -DINCLUDEALL -O2 -Wall
 
 SRC = prowiz.c \
+prowiz_lib.c \
 misc/misc.c \
 misc/testbag.c \
 r/ZenPacker.c \
@@ -147,3 +148,19 @@ $(BIN): $(OBJ)
 
 clean:
 	rm -f $(OBJ) $(BIN)
+
+# WASM build — requires Emscripten (emcc)
+WASM_OUT = packages/prowiz-wasm/wasm
+WASM_SOURCES = $(SRC)
+
+wasm:
+	mkdir -p $(WASM_OUT)
+	emcc $(WASM_SOURCES) \
+	  -Iinclude -DINCLUDEALL -O2 \
+	  -s EXPORTED_FUNCTIONS='["_prowiz_scan","_prowiz_extract","_malloc","_free"]' \
+	  -s EXPORTED_RUNTIME_METHODS='["ccall","cwrap","HEAPU8","UTF8ToString"]' \
+	  -s ALLOW_MEMORY_GROWTH=1 \
+	  -s MODULARIZE=1 \
+	  -s EXPORT_NAME="ProwizWasm" \
+	  --no-entry \
+	  -o $(WASM_OUT)/prowiz.js

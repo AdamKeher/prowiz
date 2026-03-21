@@ -384,18 +384,22 @@ extern int16_t testSpecialCruncherData ( int32_t , int32_t );
 extern void Rip_SpecialCruncherData ( char * , int , int );
 extern int16_t test_1_start ( uint32_t );
 extern int16_t test_smps ( int32_t, int32_t, int32_t, uint8_t, uint8_t );
-extern int32_t PWGetFileSize ( char * );		/* xigh: Should be 64-bits */
+extern int64_t PWGetFileSize ( char * );
 extern FILE * PW_fopen ( char *, char * );
 extern void fillPTKtable ( uint8_t[37][2] );
 extern void write_log (const char *, ...);
+extern int  PW_RecordFind ( char *, int, PW_FindResult * );
+extern void PW_ScanData ( void );
+extern char *prowiz_scan ( const uint8_t *, int32_t, int, int );
+extern int32_t prowiz_extract ( const uint8_t *, int32_t, int, uint8_t * );
 
 /* globals */
 /* Some say it's badly coding when using Globals ... sure it is, now what's the solution ? */
 
 extern FILE  *PW_in,*PW_out;
-extern int32_t  PW_Start_Address;		/* xigh: Should be 64 bits */
+extern int64_t  PW_Start_Address;
 extern uint32_t OutputSize;
-extern int32_t  PW_in_size;
+extern int64_t  PW_in_size;
 extern int32_t  Cpt_Filename;
 extern uint32_t PW_i;
 extern uint32_t PW_j,PW_k,PW_l,PW_m,PW_n,PW_o;
@@ -421,3 +425,6 @@ extern uint8_t Do_Depack;
 extern uint8_t Script_Mode;
 extern uint8_t Module_Found;
 extern uint8_t Current_Is_Module;
+extern uint8_t PW_LibMode;
+extern PW_FindResult PW_Results[];
+extern int32_t PW_ResultCount;

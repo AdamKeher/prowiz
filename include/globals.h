@@ -31,6 +31,17 @@
 #define GOOD                0
 #define BAD                 1
 #define BZERO(a,b)          memset(a,0,b)
+#define PW_MAX_RESULTS      4096
+
+typedef struct {
+  char     format_id[64];
+  int64_t  offset;
+  uint32_t size;
+  int32_t  index;
+  int8_t   is_module;
+  int8_t   truncated;
+  char     filename[256];
+} PW_FindResult;
 
 enum
 {
