@@ -17,8 +17,11 @@ void Support_Types ( void )
   types_file = fopen ( _TYPES_FILENAME , "rb" );
   if ( types_file == NULL )
   {
-    printf ( "!!! couldn't find \"%s\" file !. Default extension used.\n"
-             , _TYPES_FILENAME );
+    if ( Script_Mode != GOOD )
+    {
+      printf ( "!!! couldn't find \"%s\" file !. Default extension used.\n"
+               , _TYPES_FILENAME );
+    }
     Support_Types_FileDefault ();
     return;
   }
