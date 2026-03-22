@@ -1,158 +1,180 @@
 CC = gcc
 CFLAGS = -Iinclude -DINCLUDEALL -O2 -Wall
+AR = ar
 
-SRC = prowiz.c \
+# --- common sources (scan driver, library API, utilities) ---
+SRC_COMMON = \
 prowiz_scan.c \
 prowiz_lib.c \
 misc/misc.c \
-misc/testbag.c \
-r/ZenPacker.c \
-r/AMOS-MusicBank.c \
-r/AMOS-PPBk.c \
-r/BP.c \
-r/BSI-FutureComposer.c \
-r/Bytekiller.c \
-r/ChipTracker.c \
-r/Crunchmania-Address.c \
-r/Crunchmania-Simple.c \
-r/datacrunchers.c \
-r/DefjamCr.c \
-r/DigiBooster17.c \
-r/DigitalIllusion.c \
-r/DoubleAction.c \
-r/Dragpack100.c \
-r/Dragpack252.c \
-r/EurekaPacker.c \
-r/FT2.c \
-r/FC-M-Packer.c \
-r/FuchsTracker.c \
-r/THX.c \
-r/FC14.c \
-r/FuzzacPacker.c \
-r/GMC.c \
-r/GNUPacker12.c \
-r/GnuPlayer.c \
-r/GPMO.c \
-r/HeatseekerMC10.c \
-r/HornetPacker.c \
-r/HQC2.c \
-r/JamCracker.c \
-r/TitanicsPlayer.c \
-r/MastCrunch30-Add.c \
-r/MaxPacker12.c \
-r/MED-Octamed.c \
-r/MegaCruncher.c \
-r/MegaCruncher-Obj.c \
-r/MOD-compatible.c \
-r/ModuleProtector.c \
-r/Mugician.c \
-r/Newtron.c \
-r/NoiseFromHeaven.c \
-r/NP1.c \
-r/NP2.c \
-r/NP3.c \
-r/NoiseRunner.c \
-r/PhaPacker.c \
-r/PolkaPacker.c \
-r/PowerMusic.c \
-r/PowerPacker23.c \
-r/PowerPacker30.c \
-r/PowerPacker40.c \
-r/PowerPacker40-lib.c \
-r/Promizer01.c \
-r/Promizer10c.c \
-r/Promizer18a.c \
-r/Promizer20.c \
-r/Promizer40.c \
-r/ProPacker10.c \
-r/ProPacker21.c \
-r/ProPacker30.c \
-r/Prorunner10.c \
-r/Prorunner20.c \
-r/QC.c \
-r/RelokIt10.c \
-r/SGT-Packer.c \
-r/SkytPacker.c \
-r/SoundFX.c \
-r/SoundTracker.c \
-r/SoundTracker26.c \
-r/SpikeCruncher.c \
-r/StartrekkerPack.c \
-r/StimPacker.c \
-r/StoneCracker270.c \
-r/StoneCracker299.c \
-r/StoneCracker299b.c \
-r/StoneCracker299d.c \
-r/StoneCracker300.c \
-r/StoneCracker310.c \
-r/SuperCruncher27.c \
-r/SyncroPacker46.c \
-r/TetraPack1.c \
-r/TetraPack21.c \
-r/TetraPack22.c \
-r/TheDarkDemon.c \
-r/TP22a.c \
-r/TP30a.c \
-r/TP40.c \
-r/TP41a.c \
-r/TP50a.c \
-r/TP60a.c \
-r/TP61a.c \
-r/TimeCruncher17.c \
-r/TMK.c \
-r/TNMCruncher.c \
-r/TrackerPacker1.c \
-r/TrackerPacker2.c \
-r/TrackerPacker3.c \
-r/TryItCruncher101.c \
-r/TurboSqueezer61.c \
-r/UnicTracker.c \
-r/UnicTracker2.c \
-r/WantonPacker.c \
-r/AC1D_packer.c \
-r/KSM.c \
-r/NewtronOld.c \
-r/NovoTrade.c \
-r/skizzo.c \
-r/StoneArtsPlayer.c \
-r/SlamPacker.c \
-r/S3M.c \
-r/mosh.c \
-r/HCD.c \
-r/struggle.c \
-r/AMF.c \
-r/okta.c \
-r/FC13.c \
-r/sidmon1.c \
-r/sidmon2.c \
-r/Perfsong.c \
-r/IT.c \
-r/HighPresCr.c \
-r/bnr.c \
-r/XannPlayer.c \
-r/IFF.c \
-r/SA.c \
-r/DM1.c \
-r/pmd3.c
+misc/testbag.c
 
-OBJ = $(SRC:.c=.o)
+# --- rip mode library (module format handlers) ---
+SRC_RIP = \
+rip/prowiz_scan_rip.c \
+rip/AC1D_packer.c \
+rip/AMF.c \
+rip/AMOS-MusicBank.c \
+rip/AMOS-PPBk.c \
+rip/BP.c \
+rip/BSI-FutureComposer.c \
+rip/ChipTracker.c \
+rip/Crunchmania-Address.c \
+rip/Crunchmania-Simple.c \
+rip/DigiBooster17.c \
+rip/DigitalIllusion.c \
+rip/DoubleAction.c \
+rip/DM1.c \
+rip/EurekaPacker.c \
+rip/FC-M-Packer.c \
+rip/FC13.c \
+rip/FC14.c \
+rip/FT2.c \
+rip/FuchsTracker.c \
+rip/FuzzacPacker.c \
+rip/GMC.c \
+rip/GnuPlayer.c \
+rip/GPMO.c \
+rip/HCD.c \
+rip/HeatseekerMC10.c \
+rip/HornetPacker.c \
+rip/IT.c \
+rip/JamCracker.c \
+rip/KSM.c \
+rip/MED-Octamed.c \
+rip/MOD-compatible.c \
+rip/ModuleProtector.c \
+rip/mosh.c \
+rip/Mugician.c \
+rip/Newtron.c \
+rip/NewtronOld.c \
+rip/NoiseFromHeaven.c \
+rip/NoiseRunner.c \
+rip/NovoTrade.c \
+rip/NP1.c \
+rip/NP2.c \
+rip/NP3.c \
+rip/okta.c \
+rip/Perfsong.c \
+rip/PhaPacker.c \
+rip/pmd3.c \
+rip/PolkaPacker.c \
+rip/PowerMusic.c \
+rip/Promizer01.c \
+rip/Promizer10c.c \
+rip/Promizer18a.c \
+rip/Promizer20.c \
+rip/Promizer40.c \
+rip/ProPacker10.c \
+rip/ProPacker21.c \
+rip/ProPacker30.c \
+rip/Prorunner10.c \
+rip/Prorunner20.c \
+rip/QC.c \
+rip/S3M.c \
+rip/SA.c \
+rip/SGT-Packer.c \
+rip/sidmon1.c \
+rip/sidmon2.c \
+rip/skizzo.c \
+rip/SlamPacker.c \
+rip/SoundFX.c \
+rip/SoundTracker.c \
+rip/SoundTracker26.c \
+rip/StartrekkerPack.c \
+rip/StimPacker.c \
+rip/StoneArtsPlayer.c \
+rip/struggle.c \
+rip/TheDarkDemon.c \
+rip/THX.c \
+rip/TitanicsPlayer.c \
+rip/TMK.c \
+rip/TP22a.c \
+rip/TP30a.c \
+rip/TP40.c \
+rip/TP41a.c \
+rip/TP50a.c \
+rip/TP60a.c \
+rip/TP61a.c \
+rip/TrackerPacker1.c \
+rip/TrackerPacker2.c \
+rip/TrackerPacker3.c \
+rip/UnicTracker.c \
+rip/UnicTracker2.c \
+rip/WantonPacker.c \
+rip/XannPlayer.c \
+rip/ZenPacker.c \
+rip/bnr.c
+
+# --- data mode library (data cruncher handlers) ---
+SRC_DATA = \
+data/prowiz_scan_data.c \
+data/Bytekiller.c \
+data/datacrunchers.c \
+data/DefjamCr.c \
+data/Dragpack100.c \
+data/Dragpack252.c \
+data/GNUPacker12.c \
+data/HighPresCr.c \
+data/HQC2.c \
+data/IFF.c \
+data/MastCrunch30-Add.c \
+data/MaxPacker12.c \
+data/MegaCruncher.c \
+data/MegaCruncher-Obj.c \
+data/PowerPacker23.c \
+data/PowerPacker30.c \
+data/PowerPacker40.c \
+data/PowerPacker40-lib.c \
+data/RelokIt10.c \
+data/SkytPacker.c \
+data/SpikeCruncher.c \
+data/StoneCracker270.c \
+data/StoneCracker299.c \
+data/StoneCracker299b.c \
+data/StoneCracker299d.c \
+data/StoneCracker300.c \
+data/StoneCracker310.c \
+data/SuperCruncher27.c \
+data/SyncroPacker46.c \
+data/TetraPack1.c \
+data/TetraPack21.c \
+data/TetraPack22.c \
+data/TimeCruncher17.c \
+data/TNMCruncher.c \
+data/TryItCruncher101.c \
+data/TurboSqueezer61.c
+
+OBJ_COMMON = $(SRC_COMMON:.c=.o)
+OBJ_RIP = $(SRC_RIP:.c=.o)
+OBJ_DATA = $(SRC_DATA:.c=.o)
 
 BIN = prowiz
 
 all: $(BIN)
 
-$(BIN): $(OBJ)
-	$(CC) $(OBJ) -o $(BIN)
+# --- static libraries ---
+libprowiz_rip.a: $(OBJ_COMMON) $(OBJ_RIP)
+	$(AR) rcs $@ $^
+
+libprowiz_data.a: $(OBJ_COMMON) $(OBJ_DATA)
+	$(AR) rcs $@ $^
+
+libs: libprowiz_rip.a libprowiz_data.a
+
+# --- CLI binary (links both libraries) ---
+$(BIN): prowiz.o libprowiz_rip.a libprowiz_data.a
+	$(CC) prowiz.o -L. -lprowiz_rip -lprowiz_data -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(BIN)
+	rm -f $(OBJ_COMMON) $(OBJ_RIP) $(OBJ_DATA) prowiz.o $(BIN) libprowiz_rip.a libprowiz_data.a
 
 # WASM build — requires Emscripten (emcc)
 WASM_OUT = packages/prowiz-wasm/wasm
-WASM_SOURCES = $(SRC)
+WASM_SOURCES = prowiz.c $(SRC_COMMON) $(SRC_RIP) $(SRC_DATA)
 
 wasm:
 	mkdir -p $(WASM_OUT)

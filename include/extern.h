@@ -390,6 +390,8 @@ extern void fillPTKtable ( uint8_t[37][2] );
 extern void write_log (const char *, ...);
 extern int  PW_RecordFind ( char *, int, PW_FindResult * );
 extern void PW_ScanData ( void );
+extern void PW_ScanRipAt ( void );
+extern void PW_ScanDataAt ( void );
 extern char *prowiz_scan ( const uint8_t *, int32_t, int, int );
 extern int32_t prowiz_extract ( const uint8_t *, int32_t, int, uint8_t * );
 

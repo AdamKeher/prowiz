@@ -1,6 +1,6 @@
 {
   "name": "@prowiz/wasm",
-  "version": "1.71.0",
+  "version": "1.72.0",
   "description": "WebAssembly bindings for ProWizard — Amiga music module scanner and extractor",
   "type": "module",
   "main": "./dist/index.js",
