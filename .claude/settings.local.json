@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/technical/development/c/prowiz -type f -name *.c -o -name *.h -o -name Makefile -o -name *.mk)",
+      "Bash(make clean:*)",
+      "Bash(make)",
+      "Bash(for file:*)",
+      "Bash(do basename:*)",
+      "Bash(done)",
+      "Bash(grep:*)",
+      "Bash(head -5 /c/technical/development/c/prowiz/r/Promizer*.c /c/technical/development/c/prowiz/r/Prorunner*.c /c/technical/development/c/prowiz/r/NP*.c)",
+      "Bash(sort __NEW_LINE_a92f71bfd55278d0__:*)"
+    ]
+  }
+}

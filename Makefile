@@ -2,6 +2,7 @@ CC = gcc
 CFLAGS = -Iinclude -DINCLUDEALL -O2 -Wall
 
 SRC = prowiz.c \
+prowiz_scan.c \
 prowiz_lib.c \
 misc/misc.c \
 misc/testbag.c \
