@@ -13,6 +13,14 @@ checked memory access and a callback API, plus a command line tool with a few
 optional extras (mode selection, an output directory, a scan-only listing and
 JSON output).
 
+## Downloads
+
+Ready-made command line binaries are on the
+[releases page](https://github.com/AdamKeher/prowiz/releases): Windows
+(x86-64), Linux (x86-64 and arm64, statically linked) and macOS (universal,
+11 or later). The macOS binary is not notarised; if macOS refuses to open it,
+clear the download flag with `xattr -d com.apple.quarantine prowiz`.
+
 ## Building
 
 Any C99 compiler. GNU make:

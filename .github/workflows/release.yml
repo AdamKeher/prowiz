@@ -1,0 +1,203 @@
+# Builds prowiz for Windows, Linux and macOS and publishes a GitHub release
+# with the archives and their SHA-256 sums.
+#
+# To release: set the version in include/prowiz.h (PROWIZ_VERSION) and
+# CMakeLists.txt, commit, then push an annotated tag named v<version>:
+#
+#   git tag -a v2.0.1 --cleanup=verbatim -F notes.md
+#   git push origin v2.0.1
+#
+# The tag message's first line becomes the release title and the rest the
+# release notes (for a lightweight tag: "prowiz <version>" and GitHub's
+# generated notes). Nothing is published unless every check in build.yml
+# passes, the comparison with the original included.
+#
+# Run it by hand (Actions > release > Run workflow) to build and test the
+# archives without publishing; they are kept as workflow artifacts.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - uses: actions/checkout@v5
+      - id: v
+        name: check the version against the tag
+        run: |
+          v=$(sed -n 's/^#define PROWIZ_VERSION *"\(.*\)"$/\1/p' include/prowiz.h)
+          c=$(sed -n 's/^project(prowiz VERSION \([^ ]*\) .*/\1/p' CMakeLists.txt)
+          echo "include/prowiz.h: $v  CMakeLists.txt: $c"
+          if [ -z "$v" ] || [ "$v" != "$c" ]; then
+            echo "::error::include/prowiz.h and CMakeLists.txt disagree on the version"
+            exit 1
+          fi
+          if [ "$GITHUB_REF_TYPE" = tag ] && [ "$GITHUB_REF_NAME" != "v$v" ]; then
+            echo "::error::tag $GITHUB_REF_NAME does not match version $v"
+            exit 1
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+
+  checks:
+    uses: ./.github/workflows/build.yml
+
+  linux:
+    needs: version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-latest
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    env:
+      PKG: prowiz-${{ needs.version.outputs.version }}-linux-${{ matrix.arch }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: build (static) and unit tests
+        run: make -j4 test LDFLAGS=-static
+      - name: smoke test
+        run: |
+          strip build/prowiz
+          file build/prowiz
+          build/prowiz -v
+          build/prowiz -s tests/corpus/synthetic/BP/synthetic.bp | tee scan.txt
+          grep -q "Sound Monitor" scan.txt
+      - name: package
+        run: |
+          mkdir "$PKG"
+          cp build/prowiz README.md COPYING "$PKG/"
+          tar -czf "$PKG.tar.gz" "$PKG"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: pkg-linux-${{ matrix.arch }}
+          path: ${{ env.PKG }}.tar.gz
+          if-no-files-found: error
+
+  macos:
+    needs: version
+    runs-on: macos-latest
+    env:
+      PKG: prowiz-${{ needs.version.outputs.version }}-macos-universal
+      MACOSX_DEPLOYMENT_TARGET: '11.0'
+    steps:
+      - uses: actions/checkout@v5
+      - name: build arm64 and unit tests
+        run: make -j4 test O=build/arm64 CFLAGS="-O2 -arch arm64" LDFLAGS="-arch arm64"
+      - name: build x86_64
+        run: make -j4 O=build/x86_64 CFLAGS="-O2 -arch x86_64" LDFLAGS="-arch x86_64"
+      - name: universal binary
+        run: |
+          lipo -create build/arm64/prowiz build/x86_64/prowiz -output build/prowiz
+          strip build/prowiz
+          codesign --force --sign - build/prowiz
+          lipo -info build/prowiz
+      - name: smoke test
+        run: |
+          build/prowiz -v
+          build/prowiz -s tests/corpus/synthetic/BP/synthetic.bp | tee scan.txt
+          grep -q "Sound Monitor" scan.txt
+          if arch -x86_64 /usr/bin/true 2>/dev/null; then
+            arch -x86_64 build/prowiz -s tests/corpus/synthetic/BP/synthetic.bp | grep -q "Sound Monitor"
+          else
+            echo "no Rosetta on this runner: x86_64 slice not run"
+          fi
+      - name: package
+        run: |
+          mkdir "$PKG"
+          cp build/prowiz README.md COPYING "$PKG/"
+          tar -czf "$PKG.tar.gz" "$PKG"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: pkg-macos-universal
+          path: ${{ env.PKG }}.tar.gz
+          if-no-files-found: error
+
+  # The toolchain the port was verified with: MinGW-w64 gcc on the UCRT.
+  windows:
+    needs: version
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    env:
+      PKG: prowiz-${{ needs.version.outputs.version }}-windows-x86_64
+      CC: gcc
+    steps:
+      - uses: actions/checkout@v5
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: false
+          install: make unzip zip python mingw-w64-ucrt-x86_64-gcc
+      - name: build (static) and unit tests
+        run: make -j4 test LDFLAGS=-static
+      - name: compare with the original on the synthetic corpus
+        run: |
+          sh tests/reference/build_reference.sh build/reference
+          python tests/difftest.py --quiet --known-list tests/corpus/known-differences.txt \
+              --ref build/reference/prowiz-ref.exe --port build/prowiz.exe tests/corpus/synthetic
+      - name: smoke test
+        run: |
+          strip build/prowiz.exe
+          ldd build/prowiz.exe
+          build/prowiz.exe -v
+          build/prowiz.exe -s tests/corpus/synthetic/BP/synthetic.bp | tee scan.txt
+          grep -q "Sound Monitor" scan.txt
+      - name: package
+        run: |
+          mkdir "$PKG"
+          cp build/prowiz.exe README.md COPYING "$PKG/"
+          zip -9 -r "$PKG.zip" "$PKG"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: pkg-windows-x86_64
+          path: ${{ env.PKG }}.zip
+          if-no-files-found: error
+
+  release:
+    if: github.ref_type == 'tag'
+    needs: [version, checks, linux, macos, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ github.ref_name }}
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: pkg-*
+          path: dist
+          merge-multiple: true
+      - name: checksums
+        working-directory: dist
+        run: |
+          sha256sum -- * > SHA256SUMS
+          cat SHA256SUMS
+      - name: publish
+        run: |
+          # checkout leaves the tag lightweight; fetch the real one for its message
+          git fetch --force --depth=1 origin "+refs/tags/$TAG:refs/tags/$TAG"
+          if [ "$(git cat-file -t "$TAG")" = tag ]; then
+            title=$(git tag -l --format='%(contents:subject)' "$TAG")
+            git tag -l --format='%(contents:body)' "$TAG" > notes.md
+            set -- --notes-file notes.md
+          else
+            title="prowiz $VERSION"
+            set -- --generate-notes
+          fi
+          gh release create "$TAG" --verify-tag --title "$title" "$@" dist/*
