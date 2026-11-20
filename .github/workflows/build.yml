@@ -1,0 +1,43 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  make:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: build and unit tests
+        run: make -j4 test CFLAGS="-O2 -Werror"
+
+  cmake:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: configure
+        run: cmake -S . -B build
+      - name: build
+        run: cmake --build build --config Release
+      - name: unit tests
+        run: ctest --test-dir build -C Release --output-on-failure
+
+  difftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: build port and reference
+        run: |
+          make -j4
+          sh tests/reference/build_reference.sh build/reference
+      - name: compare on the synthetic corpus
+        run: python3 tests/difftest.py --quiet --skip-list tests/corpus/platform-dependent.txt --ref build/reference/prowiz-ref --port build/prowiz tests/corpus/synthetic

@@ -1,0 +1,10 @@
+# Inputs whose ORIGINAL output depends on the C library it was built with.
+# The port reproduces the original's Windows build (the release Asle shipped);
+# a reference built elsewhere (e.g. Linux/glibc) gives different bytes for
+# these, so difftest.py --skip-list skips them there. They match on Windows.
+#
+# TetraPack 2.2 entered through its 0x61 signature reads its size from its own
+# code: about 3 GB. The original fwrite()s that from its input buffer; msvcrt
+# writes nothing (or up to its 4 KiB buffer boundary) before failing, glibc
+# writes megabytes of whatever memory follows.
+TetraPack22/Tetrapack_2_2_61_

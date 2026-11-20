@@ -1,0 +1,6 @@
+/build/
+/build-*/
+/tests/corpus/libxmp/
+__pycache__/
+*.o
+/.claude/settings.local.json

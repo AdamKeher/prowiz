@@ -1,0 +1,9 @@
+# Inputs where the port deliberately differs from the original (see
+# docs/PORTING.md, "Undefined behaviour"). difftest.py --known-list still
+# compares and reports them, as KNOWN, but they do not fail the run.
+#
+# Digital Illusion module with note values 49..62: the original reads those
+# periods from past the end of its 37-entry period table, i.e. from whatever
+# lies next to it on its stack. The port writes 0 for them (10 bytes of the
+# converted 0.mod).
+m__di.nightmare
