@@ -80,6 +80,11 @@ files.
     through MMD0exp+00 `nextmod`, with IDs `MCN2`/`MCN3`.
   - Their `modlen` is 0, and their pointers are offsets from the first
     header. The first header's `modlen` covers everything.
+  - **Exceptions:** 1 of 322 Modland MMD2/MMD3 headers probed has a
+    `modlen` 4 bytes short of the file. The extra bytes are an Amiga
+    HUNK_END (`000003F2`): the module was cut out of an executable and
+    `modlen` is right. libxmp's `med_hold_1exx_ss2.med` (MED Soundstudio 2)
+    has `modlen` 0.
 - **Differences from MMD0/1 that matter for a test:**
   - The song structure (MMD2song, 314 bytes) is not at 34. The playseq,
     section and track-volume tables come first; the song was found between
@@ -88,18 +93,12 @@ files.
     +200, +204 and +20C.
   - Blocks use the MMD1 layout.
   - `mmdflags` (14) bit 0 is set in MMD3 files.
+  - MED 3.00 did not align its MMD0 structures (the spec admits it):
+    libxmp has MMD0 files with odd `blockarr`, `smplarr` and `expdata`.
 - **Upstream support was started:** the original has `'2'`/`'3'` commented
   out of its `MMD` check (`src/scan.c` ~1693). `pw_rip_MMD0` saves only IDs
   ending in `0`/`1` (`src/formats/MED-Octamed.c` ~59). `pw_test_MMD0`
   already passes every MMD2/MMD3 file examined.
-- **To add it:** enable the IDs, give them names and format IDs, and tighten
-  the test:
-  - `modlen` even and at least 348;
-  - `blockarr`, `smplarr` and `expdata` either 0 or even and inside
-    [34, modlen);
-  - song + 314 ≤ modlen;
-  - numblocks ≥ 1, numsamples ≤ 63;
-  - the word at 30 is FFFF in files.
 - **In memory:** `RelocModule` adds the load address to every non-null
   pointer.
   - Pointers covered:
@@ -122,6 +121,94 @@ files.
   - Modland: 305 MMD2 and 660 MMD3.
   - Multi-song examples: Olek/love story blues.mmd2, Spoochy/freedom-title
     (remix).mmd2, Elapse/pyro-electricity.mmd3.
+
+### Implementation (`src/formats/new/MMD23.c`)
+
+- **MMD2 / MMD3 files** (`pw_new_MMD23`, at "MMD2"/"MMD3" in `scan.c`):
+  `PWF_MMD2` "OctaMED Pro (MMD2) module" and `PWF_MMD3` "OctaMED
+  Soundstudio (MMD3) module". The size is `modlen`.
+  - **Checks:** the structures are walked, and every pointer must land
+    inside [34, modlen) on an even offset:
+    - `modlen` ≥ 348 (header + song);
+    - `mmdflags` ≤ 1 and the reserved bytes 15-17 zero (as `pw_test_MMD0`);
+    - the song fits; numblocks ≥ 1; numsamples ≤ 63;
+    - MMD2song: numpseqs ≥ 1 and each PlaySeq fits; songlen ≥ 1 and every
+      section number < numpseqs; numtracks ≤ 64 and the track volume / pan
+      tables fit;
+    - every block has 1-64 tracks, and its notes and BlockInfo fit;
+    - every instrument has a type from -4 to -1, or a sample type 0-8 plus
+      the 16-bit / stereo / delta / packed flags, and its data fits (a
+      stereo sample is twice its length);
+    - MMD0exp: its pointers, and the InstrExt, annotation, InstrInfo and
+      song name tables, fit;
+    - each further song of a multi-module is an "MCN" header after the
+      previous one (so there are no cycles), with a valid song and MMD0exp.
+  - **Deliberately not tested:** `modlen` being even (it need not be), and
+    the word at 30 being FFFF (a player field, not a structure).
+  - **`modlen` 0** is accepted when every structure is in the input. The
+    size is then the end of the furthest structure, rounded up to even:
+    blocks with their BlockInfo data, instruments with their waveforms, and
+    MMD0exp with its tables.
+  - **Truncated modules:** the data that only part of the input holds is
+    not checked, so a module cut by the end of the input is still reported
+    (TRUNCATED).
+- **Relocated MMD0-MMD3** (`pw_new_MMD_relocated`):
+  - **When it runs:** `scan.c` calls it at "MMD0"/"MMD1" when 1.70a's
+    `pw_test_MMD0` rejects the header, and at "MMD2"/"MMD3" when
+    `pw_new_MMD23` finds no file. 1.70a's own rips stay as they were, even
+    of a module relocated to a low address.
+  - **Load address:** every non-null header pointer p was an offset in
+    [34, modlen). So the address B is in [max(p) - modlen + 1,
+    min(p) - 34], and B ≥ 400 (the 68k vectors are below).
+    - Candidates are tried from the top down: the song at 34 first, then
+      further in, since MMD2/MMD3 songs come after their play sequences.
+    - At most 64 Ki candidates are tried. Each gets a quick look at the
+      song, then the full checks of a file, reading pointers minus B.
+  - **Restore:** a copy of the module is walked as `reloc.a` walks it, and
+    every pointer it relocated gets B taken off. Synth waveform pointers get
+    the instrument's address taken off instead.
+    - The walk covers the header, the instruments of the first song, the
+      block table and BlockInfo, the MMD2song tables and play sequences,
+      and MMD0exp with its MIDI dumps, first ARexx trigger and command 3x
+      tables. Then it does each further song while `extra_songs` lasts.
+    - `reloc.a`'s loop quirks are repeated:
+      - byte counters for the sample and block tables: 0 means 256, and a
+        multiple of 256 blocks walks 255 more;
+      - 65536 rounds for a zero waveform, page or play sequence count;
+      - no BlockInfo walk above 32768 blocks.
+    - The player fields of every header are reset: 0C-0F, 28-2F and 32 to
+      0, and 30 to FFFF.
+    - The result must pass the checks of a file.
+  - **Saved** with `pw_save_rip_data(..., restored=1)`:
+    - MMD0/MMD1 under 1.70a's `PWF_MED` ("MED (MMD0) module", "OctaMED
+      (MMD1) module");
+    - MMD2/MMD3 under their own IDs.
+
+    A relocated module cut by the end of the input is only reported
+    (TRUNCATED), since there is nothing to restore.
+- **Bounds:** the walks have a work budget: 4 Mi structures per finding,
+  and for the undo, half the module size more. Tables that repeat one
+  another cannot make a scan quadratic.
+- **Tests** (`tests/newformats/MMD.txt`):
+  - 50 MMD2 and 52 MMD3 files, 7 of them multi-song;
+  - synthetic MMD2 and multi-song MMD3 files;
+  - relocated MMD0, MMD1, MMD2 and multi-song MMD3 memory images, made by
+    `tests/newformats/files/MMD/make_mmd.py`, whose `reloc()` follows
+    `reloc.a`.
+
+  Relocating 164 real MMD0-MMD3 files (Modland and libxmp) the same way and
+  scanning the images restores every one of them exactly.
+- **Limitations:**
+  - Modules relocated by other routines (game players, MED packers) are
+    only found if they follow `reloc.a`.
+  - A structure reached twice is fixed once, where `reloc.a` would add B
+    twice.
+  - ARexx trigger commands after the first one are left alone: `reloc.a`
+    follows their unrelocated `next` pointers out of the module.
+  - The trackinfo and effectinfo tag lists of Soundstudio MMD3s
+    (MMD0exp+44/48) are neither relocated by `reloc.a` nor checked here.
+  - A relocated module is not found if its `modlen` is 0 or its song is
+    more than 128 KiB into the module.
 
 ## PreTracker
 
@@ -424,7 +511,34 @@ files.
 - **References** (reusable): libdigibooster3 (BSD-2, the official loader),
   libxmp `dbm_load.c` (MIT), OpenMPT `Load_dbm.cpp` (BSD), NostalgicPlayer
   (MIT).
-- **Test files:** Modland has 846, and libxmp test-dev about 14.
+- **Test files:** Modland has 846, and libxmp test-dev about 14 (3 real
+  modules, the rest broken on purpose). All 42 Modland headers probed are
+  version 2 (revisions 2.12-2.21); no real DigiBooster 3 file was found.
+
+### Implementation (`src/formats/new/DigiBoosterPro.c`)
+
+- `pw_new_DigiBoosterPro`, at 'D': `PWF_DigiBoosterPro`, "DigiBooster Pro
+  module" (version 2) or "DigiBooster 3 module".
+- **Signature:** `DBM0`, version 2 or 3, a BCD revision, and NAME or INFO
+  as the first chunk.
+- **Size:** the chunks are walked from 08 until an ID that is not a DBM0
+  chunk (at most 64 chunks).
+- **Checks:** as in libdigibooster3's `read_*()`:
+  - each chunk appears once;
+  - INFO comes before SONG, INST, VENV, PENV, PATT, SMPL and DSPE, and its
+    counts are in range;
+  - SONG, INST, PATT and SMPL are present;
+  - SONG (46 + 2 per order, per song), INST (50 per instrument), PATT
+    (rows ≥ 1 and a non-zero packed size, per pattern), SMPL (8 + frames ×
+    bytes per sample) and VENV / PENV (≤ 255 envelopes of 136 bytes) all
+    fit in their chunk;
+  - DSPE has one mask byte per track.
+- **Truncated modules:** a chunk running past the end of the input is
+  reported (TRUNCATED). So is a chunk ID cut by it.
+- **Tests** (`tests/newformats/DigiBoosterPro.txt`): 58 Modland files, the 3
+  real libxmp modules, and synthetic version 2 and 3 files
+  (`tests/newformats/files/DigiBoosterPro/make_dbm.py`; the version 3 one
+  has PNAM and DSPE).
 
 ## Musicline Editor
 
@@ -718,10 +832,13 @@ files.
   - 0: end of file.
 
   Unknown positive types are value hunks, unknown negative ones are blocks.
+  Symphonie's `.SymMACRO` files also start with `SymM`, followed by
+  `MCRO`.
 - **Size:** walk the hunks.
   - Exact end: stop after N sample hunks (−11, −12, −17, −18).
-  - N = (low word of −4) − the number of −14 records with byte +84 == 2
-    (StereoR slots).
+  - N = (low word of −4) − the number of −14 records that the saver skips:
+    a name set, a type other than "kill" (−4 at +80), and +84 == 2 (the
+    right half of a stereo pair).
   - The −14 block may be RLE-packed (`PACK FF FF` + u32 length): decode it
     first.
 - **Checks:**
@@ -733,6 +850,48 @@ files.
   source on Aminet has no formal licence, so it is spec only. libxmp's
   `sym_load.c` is a different format (Archimedes Digital Symphony).
 - **Test files:** Modland has 174.
+
+### Implementation (`src/formats/new/Symphonie.c`)
+
+- `pw_new_Symphonie`, at 'S' (after SidMon 2): `PWF_Symphonie`,
+  "Symphonie module".
+- **Signature:** `SymM`, version 1, then hunk −1 with 1-256 channels (12
+  fixed bytes and a range).
+- **Walk:** the order `SaveActualModule` writes:
+  1. the value hunks: −2 must be 1-1024, −4 1-256 slots, and −5 low word 4;
+  2. the song blocks −14, −10, −13 and −15, each once (−16, −19, −20 and
+     −21 are optional). Their unpacked sizes are multiples of 256, 32, 4
+     and 16. The instrument list −14 is decoded when RLE-packed (≤ 64 KiB),
+     to count the stereo right halves;
+  3. the sample hunks, until there are N of them.
+
+  A type 0 hunk (end of file) also ends it. Anything else that is not a hunk
+  of the current stage ends the walk, and the module must be complete.
+- **Packing and delta coding** never change the size: block lengths count
+  the stored bytes.
+- **`.SymSONG` (decision):** it is ripped too, under the same ID, as
+  "Symphonie song (samples not included)".
+  - It is recognised by its −7 hunk. It has no sample hunks, so it ends
+    after −15, optionally followed by −16, and by −20 + −19, as the saver
+    writes them.
+  - Its samples are separate files named in its instrument list. Nothing
+    links them to the song in a binary, so they are not looked for.
+  - The rip keeps the ID's extension, `symmod`. Symphonie opens a song
+    with Load Project, whose file requester lists `*.SymSONG`, and then
+    loads the samples by name (`LoadActualProject`, `AutoLoadSamples`).
+    The module loader just skips the −7 value, so through Load Module the
+    song plays without its samples.
+- **Truncated modules:** a module cut by the end of the input is reported
+  (TRUNCATED) once its instrument list has been read. When it is cut
+  between hunks, at least the next hunk's 4 bytes count as missing.
+- **Tests** (`tests/newformats/Symphonie.txt`):
+  - 29 Modland files: their end is exact, whether their −4 slot count is
+    128 (27 files) or 256 (2) and their −14 is packed (18) or not (11);
+    5 of them skip 1-12 stereo right halves;
+  - synthetic files (`tests/newformats/files/Symphonie/make_sym.py`): a
+    packed module with raw, 8-bit delta and 16-bit delta samples, a stereo
+    pair, empty and killed slots; an unpacked 4-slot module; and a
+    `.SymSONG`.
 
 ## Startrekker AM (mod + `.nt`)
 

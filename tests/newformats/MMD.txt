@@ -1,0 +1,115 @@
+# OctaMED MMD2 / MMD3 (src/formats/new/MMD23.c), and MMD0-MMD3 modules
+# relocated in memory by a player (restored to the file they came from).
+#
+# Synthetic files: tests/newformats/files/MMD/make_mmd.py (the relocated
+# images are its files relocated as reloc.a does, with player fields set).
+
+id=168 file=60d4d5c266935824f7e8fd5aac7168723d912919b7a38952bc3ecd274bf79f02:tests/newformats/files/MMD/mmd2.mmd2
+id=169 file=d27823aeec4b9e709ca2169b1155b8e1f84950351fbaa44428be6ba22faf18b2:tests/newformats/files/MMD/mmd3_multi.mmd3
+# relocated memory images: id 100 is 1.70a's MED (MMD0/MMD1) ID
+id=100 file=28e804847867d7f0a3aa20178718b9b94607d97759b6d92c26d620b39d1e4cc3:tests/newformats/files/MMD/reloc_mmd0.bin restored=1 rip=3a9a5e2a0ee6247453aa1e91f575ea0511c0b20602dc446940e89ec10ad149d2
+id=100 file=9c99a3e3c8f392a30fa15c985e005b6ae35fa1835ce68b6367806c17090033bb:tests/newformats/files/MMD/reloc_mmd1.bin restored=1 rip=889a1345eacdaf53848351614a1ced4737d43fd3d7d2934b1fe38fd7a06ac7a2
+id=168 file=18c6f20ad5aebe7c16a220d7723735500a2aff3a318f761bd72d60b31db117db:tests/newformats/files/MMD/reloc_mmd2.bin restored=1 rip=60d4d5c266935824f7e8fd5aac7168723d912919b7a38952bc3ecd274bf79f02
+id=169 file=62769c7b3300af42819bc8fae1bbc4527c21bab18d4811e31de7ce9b2a38412e:tests/newformats/files/MMD/reloc_mmd3_multi.bin restored=1 rip=d27823aeec4b9e709ca2169b1155b8e1f84950351fbaa44428be6ba22faf18b2
+
+# libxmp test-dev (real modules)
+id=168 file=16593dc6492f5291e10064dcb8a1843b5f261814e4de77a0bde28384b63fd013:https://raw.githubusercontent.com/libxmp/libxmp/master/test-dev/data/extsample.mmd2
+id=169 file=6a05ce223087422e49d431700e4e4e53248c7d67ef64887e471c2e1815c340db:https://raw.githubusercontent.com/libxmp/libxmp/master/test-dev/data/instruments.mmd3
+id=169 file=52afe54e76bd790bdb2d52775bdff13149b1451afad8ab930bd3c013e017c871:https://raw.githubusercontent.com/libxmp/libxmp/master/test-dev/data/m/OSS.r-type
+id=169 file=e0209bef5c4354b2334f2c426eb0a50eeabb32d86d807871f62eec10bd45883f:https://raw.githubusercontent.com/libxmp/libxmp/master/test-dev/data/med_hold_1exx_ss2.med  # modlen 0 (MED Soundstudio 2): the size is measured
+
+# Modland OctaMED MMD2 (every n-th file by name; multi-song files added)
+id=168 file=3dd47c7e2bc99f527a999bf3ff2e6a1cd1da6df6540007d7cbd65aa9f67f1889:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/_unknown/%28sp%29bassman.mmd2
+id=168 file=3c2d5036be0c1274fdcf272317b623893edeec2ca41ffee7e3b10d41511c1896:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/_unknown/gony%20shoot%204.mmd2
+id=168 file=d562b84ea50bc5233bed9187d43c67aafbcda719e0f9164219664f162c0161f8:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Amorel/oldgabba.mmd2
+id=168 file=a794dd3c7cd9569cc76252db238e57d2be01a15801aef02ebff3af6dfb62b6b2:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Andy%20O%27Brien/the%20fugitives.mmd2
+id=168 file=074f5a36e9d66c74c727a4d86ea874642641cb7095b704890a920a8b1176bbef:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Apollon/u.mmd2
+id=168 file=3fe8fcfe2e85c27cef55562bb2dc9853968127e05eb599a8b5e4b3752c15a899:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Carl%20Barry/heros%20%26cowards.mmd2
+id=168 file=9d2d7a8b102c31fd55e45a1f518e4281797e653334dca6a1fb84ed6a5b95c1b7:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Carl%20Barry/pioneers%20of%20bad%20taste.mmd2
+id=168 file=d1cf48ecea645caa0d832a0968c3ebded4e8b688fdc6f4725137d8bc4626add7:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Carl%20Barry/time%20to%20die.mmd2
+id=168 file=f4bc43adc913c440caa51c11a95b526eb87eb2c12ac4b1d036fe42958941ba3b:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Dave%20Sullivan/ethereal%20-%20by%20dave%20sullivan%20-%20%28c%29%20ai%2094.mmd2
+id=168 file=b9cf377da26e026844e0b5d12ab98a3b3296a88c68bde33bcef6fdb5b7f952e9:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Dazzy/extasis.mmd2
+id=168 file=1167d89a3cbd86021f03af59ca3ab2e8424c5e29be330e388eaa153a5c500063:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Dazzy/independance%20day.mmd2
+id=168 file=58aba68ba6cf682078c11f79daa86ee2b2ef021f1a1fa27c028b931e55a1fd3e:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Dazzy/the%20heaven%20within%20me.mmd2
+id=168 file=a8acf06ee50fd387cef83c85038dbb0a8f147886bf82832361bec12a31852fba:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/DJ%20White%20Stallion/follow%20the%20waves.mmd2
+id=168 file=63e5aab11eb06f3c5d464e4151100720ad2d28e46cb3867d219ec897afef0f7d:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/DJ%20White%20Stallion/theme.mmd2
+id=168 file=531683f8a4000a63125dc1e08fdc4a4aa7f2a21942e5cba1ca9820e598c7051d:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Essential%20Sound/action%20v%20no%20sfx.mmd2
+id=168 file=476b8bfdbc58fab78d14762e4f9f94f18a48e2b7dcb1f24ae73159b533612e30:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Ilkka%20Riihimaa/real%20side.mmd2
+id=168 file=aa496feba8b856d123272d2eae8e583e4ffa8002aa991ea9c1002bdb241c671b:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Joe%20Piazzo/scream2.mmd2
+id=168 file=cb3626cced01f656bb670a27aaa8c6e836fcd022a5c4e31afc524d293061116c:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Lem/hitfaa1.mmd2
+id=168 file=519cd4640c8ed3d8d4cbd162aef846992781271eb3282079b019f5680bedb779:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Leso/electroteric.mmd2
+id=168 file=98900a94775cec26bc0b70613198231a84d8b477ca5b1ec7f2943669e7e1dd64:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Little%20Bitchard/step%20%28original%29.mmd2
+id=168 file=5644c0d9b3782b3c375ac2f8e92cf935e3f7e7b6a912a2509dc2595d942b738f:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Max/shut%20up.mmd2
+id=168 file=01b72273f2179dbc980ef9454a886a53a7f658c61b21de7b84f245db94fa820a:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Mick%20Duncombe/weekends%20only%20by%20mick%20duncombe.mmd2
+id=168 file=b92c2ce3124c8f6448a59e0e81d0257c5db3d1ef54e14c209d8c679ca3956fed:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Mike%20Richmond/samurai%20sunset.mmd2
+id=168 file=f11893f81ef661e978e63d26aeb6f16c7ef9cbabef27b835945c601c0777d1bd:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Monzu/creepers%20theme.mmd2
+id=168 file=f0080bd481a3d45bb60087c55ef47544dbbb38eee4f79181acadc9b8fbed64c7:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Olek/smety.mmd2  # 3 songs
+id=168 file=ab3249c803938bc5d6ab89ab9ab184980b8f79485396662b6bdc4a4cee05199e:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/P.Morris/freind%20like%20me.%20from%20aladdin.mmd2
+id=168 file=ff7ef00001c35136b4ba4aa45c021d6f3f75c05db805873661567b72c58d5469:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/P.Morris/starwars%20cantina%20band.mmd2
+id=168 file=a09a20090e29c06447ed3e454cd407144a1258477e859c9f4608b75c330eee46:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Pete%20G/the%20longest%20goodbye.mmd2
+id=168 file=7e984d6414cac4acbe9990428d5e9d5791f6a38cf6395b2e7786aa8793b0069b:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Reg%20Simpson/brasilia%20%28j.wechter%29.mmd2
+id=168 file=068fc3a57c78aa3e6eb3ec31f1c2d1ea27ade47317809d2beb5713600b639aef:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Reg%20Simpson/feelings.mmd2
+id=168 file=40faa81f173b0e2e654a32492d718ccbf74d2f0dfa11d44adc6ea9d61d14a765:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Rottweiler/delayed%20ambience.mmd2
+id=168 file=d0a02d0c649abc03f3069eedb408c1bac3c8c404467af08b2d71eb75bf37ade4:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Soundburst/euro%20tunnel.mmd2
+id=168 file=846325712a230280f6df8009ff3e5eeda35729b8cda1107cada100fc07859d17:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Soundburst/new%20world.mmd2
+id=168 file=e887c652687c9b7dd89f83d98d092d059d54b933cda3ab65cbe93ac479c1b644:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Spoochy/loves.mmd2
+id=168 file=e1d77c9ee6d615485e59a79d358dec7468d970a4548ced73fced8cadde61fbb5:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/The%20Fly%20%28UK%29/coop-Mik%20%28UK%29/disco%20fantasy.mmd2
+id=168 file=eb3e3aa8aa2bb0df053094bdabffcca96071cea7175fec9e2c89fb5a207d0d25:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/The%20Fly%20%28UK%29/coop-Mik%20%28UK%29/summertime%28remix%29.mmd2
+id=168 file=2b4f13227fc1668677ff7638777aee9376e0c87cc8541a3eb48b4ffd9978de25:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Wheeler/mrraver.mmd2
+id=168 file=9e4093e26ebcde8b0f8134105b8bda1fbe68bf20f9f2bee1c2bfe4fa21d0707f:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Zenon/house%20of%20the%20rising%20sun.mmd2
+id=168 file=27155b20f1f81e039f1c8b46df314dd5a895f425752108c820fd2113ccd75631:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Olek/love%20story%20blues.mmd2  # 3 songs
+id=168 file=bbffb441892f64a8ef4ea80c8cd7c68b25aa1c6eb3dfdc514676920de16ae7cb:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/Spoochy/freedom-title%20%28remix%29.mmd2  # 2 songs
+id=168 file=2b77dbc3b76a642d47ed14c174b3e2cf4bfb593018e4fef8fef1ef8496f9b828:https://ftp.modland.com/pub/modules/OctaMED%20MMD2/_unknown/vicksbac.mmd2  # 2 songs
+
+# Modland OctaMED MMD3 (every n-th file by name; multi-song files added)
+id=169 file=f9365e65a5e5a6157be8a76ceb7daf18d0bb0fbf6ccc17007078ba52f3e0e96c:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/_unknown/agression.mmd3
+id=169 file=b9a99dddd531d34da89ee1fa268941bf1601a4a44b1006bcfd6983faae60dab5:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/_unknown/dune%20-%20battle%20of%20the%20lions.mmd3
+id=169 file=ff9601a8c094bdd252ddbbbcee8f2c3e8c2f384460c2d7d61d7f7a493970d27f:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/_unknown/happyb.mmd3
+id=169 file=56bffad6edc08de6c3d306aaaeea3d056e999f21e936a6b734f72e23ac552c73:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/_unknown/mr%20techno.mmd3
+id=169 file=102b5fc58b1a287118dfd637bdd9e7497c656143c8b476ae6d67db31e45c6504:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/_unknown/sound%20of%20aliens.mmd3
+id=169 file=a8bfe35c35998773092f4c9bab911900ddd89141b3b205842a75fb5ab24bbef6:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/_unknown/tune2.mmd3
+id=169 file=54368fee014af904f81a0c951955ff478251dcf6ab099aa50519806407b8aaf4:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Arndt%20Heitkamp/awave%20sector%20mix.mmd3
+id=169 file=2a4c993450d68ecbb92156fe4a14f1992c936f28c8901c5ee2f8c69d24f69309:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/C0ntax/bumble.mmd3
+id=169 file=4f868d430f7a49a8f7a3b3aa13468d4905da1eaa8b6cdb58baf05e8027f45b13:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Chroust/znalka%20-%20still%20team.mmd3
+id=169 file=598a084d582dc21897c17478b1f5a3e206f9a5c55be7f0db77026d19b8a78078:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Darren%20Tomlyn/bass%20line%202.mmd3
+id=169 file=c7530d76dbd2b75fcfe61f503332ae3bc313a22f2a91e5c475b20f1c2b412ecb:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Dave%20The%20Brave/flying.mmd3
+id=169 file=ceadff22d82ef7069d9aaeb0bea546ce660c822ab59c0784334115f071675a44:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Deltaray/feel%20da%20bass.mmd3
+id=169 file=ab91fdbfe89c03111ae2a245240c46c0eb81e0be594a4a3f9442af13946d9a6e:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/DJ%20Freak/303%20dream%20%28final%20rmx%29.mmd3
+id=169 file=fa8f818e6ed85c799d7de1b1838ff75a3f6582efd228efdd5e8aff72c51da6a2:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/DJ%20Freak/the%20air.mmd3
+id=169 file=98356f05ab187a377d16d5171ffdc76e5de749e0c08ad680b722aa56b6526ce9:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/DJ%20Hotcakes/still%20happy%20%28after%20all%20of%20these%20years%29.mmd3
+id=169 file=bfb46aeea481fc2ef671af622abbc3f350294a2de7b6657b59dae36c3c741629:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/DJ%20Nick/capital%20punishment%20-%20cd%20intro.mmd3
+id=169 file=8890c747a866c3411cf82168662238c87f1f51dfef4bea849b2000aaeec900f6:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/DJ%20Twiglet/bread%20and%20butter.mmd3
+id=169 file=d994e9d48393210f431a222fcc23aac7751c9b66f6aded3a9b536d4636179100:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/DJ%20Twiglet/rock%20your%20soul.mmd3
+id=169 file=73225ff22176b7f5ba1a9b7033542e7ddc014e34fd9a5b7525410dea6ff1397c:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Doc%20K/messies%202%20all%20%28remixed%29.mmd3
+id=169 file=f4d5640b8a7487c33222635b49e32947ac6c72a831d125bb5596921ec8e35c05:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Doc%20Mike/no%20retarger%20activated%20%282001%20remix%29.mmd3
+id=169 file=d4d8348b5b8af9032768e7f5037f592c381f99462a958ffe2b5fede6caf15afe:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Dominator/lamer%20hunt.mmd3
+id=169 file=6ee5284d9bc09006c6d2bcdfb1e26ebbf5b6d1646f59923cfc3e7ed83c5275a8:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Elapse/link%20to%20nowhere.mmd3  # 2 songs
+id=169 file=a69a5ed3c6b38545bd070098f34f636c7d40a872df555cb29689f73f3285baef:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Essential%20Sound/low%20speed%20race.mmd3
+id=169 file=2c7f51921d543ab17eaf784d68c4ae82b64604ecb1131f4ee208c710dd90cdb4:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Essential%20Sound/space%20station.mmd3
+id=169 file=749decc53e3618f902c61a9a117c36ef1b5d2db34f973f6f3d6846b54c534da6:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Fabien/coop-Barthy/exctasia.mmd3
+id=169 file=5eea4f304c8276dcbf306885a62499eb5629eda327cff56e166e091e285547fb:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Gabriel%20Klein/alone%20forever.mmd3
+id=169 file=2898e74d9657db0bb07d9e608630db8f67d4cbe91fb1e3dc8475a6ec418eeff0:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Immortal/fuck%20the%20viscorp.mmd3
+id=169 file=b3b6b60a448815c67d7535cda93e2a347109713468d1411071d6bf485b87900f:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Johnny%20Z/fabiness.mmd3
+id=169 file=09e270134d57e8199d365558f01c33a6868dc5832f0328484c7447ce3e2a2f63:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/MeloManiac/twisted%20cinema%20iii%20-%20lite.mmd3
+id=169 file=311fff8f0ae60250e2aa8b10603c636ee2068e7808ce53ef69cecdaef4ce7160:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Mortal%20Tindl/last%20night%20in%20my%20dreams.mmd3
+id=169 file=7df7d2bb9d467ef0e8debe3a8ee56eaa35f10c48d0f7545b142e43500530e7b4:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Neurodancer/glacier%20dream.mmd3
+id=169 file=f6a88a719ebb9df8d68ba80bfedbbb7229cb065d0b0ecafb183d153b0edad2e7:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Nork/lookers.mmd3
+id=169 file=a8ff12af3a68af0e31273138fc6a3d39b9ab739669d9556087978246e6001917:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Omslag%20Van%20Knoblet/industry%20cant%20stop.mmd3
+id=169 file=802bca475a6e9835356d244d7060fd9d0afff8827d7c658f24f2f874b35ebdfa:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Phin/back%20in%20%2794.mmd3
+id=169 file=d4ca81e1e69e3e00e568b0647bf4d37558af7fc75087bc1de160a4634e2b29cc:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/PST%21/faith.mmd3
+id=169 file=445b3a6e65bd834f6fd5a322cf0a226e860cc02e0c7f0bdf85d8d5199a588fb1:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/PST%21/on%20the%20floor%21.mmd3
+id=169 file=0124dd827a3766a9ca2be41ecd2d337c9366c081d2e5858ef5fc1f45dc6ff728:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Rebb/underwater.mmd3
+id=169 file=592d0a6b9e9fe541f59f008af4e9c29766dade5e7065b6699e8c17680da64649:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Robin/taste%20membrane.mmd3
+id=169 file=c5499cb5e7834c8ded5a7a888677c73602a2140fccf07dc9a8046d3aedda565d:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Silize/amadeus%20is%20born.mmd3
+id=169 file=2b709cd825078af978a0ca6a3d530bef8eb79a1a0404d28f5b449dc43411f31c:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Sniper/lost%20dream.mmd3
+id=169 file=6bff00279ce103b32f541ce966f26cb8523ae1bd949e6fc43b982e47a452b66d:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Teo.P3/smokin%27%20penguin.mmd3
+id=169 file=49d623efddd644ec36c73a1102cb6cd14646b6b3c80876aba9eb4b5274adc6de:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Toady/day%20of%20legend.mmd3
+id=169 file=d21277f78fce0bb3659d57e384064cbc241bdd7585772d8693d9133c7fc1fdd9:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/TTX/i%20want%20u%20%28remix%29.mmd3
+id=169 file=939a0fbdb0f09d296a1a34d0e2a3fc85951023c276c05aa2d5c02d2c3cf19c9d:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/TTX/we0.2.mmd3
+id=169 file=0a299c58c66e96582bda9bd179f503e85356c92458caae9da5b6b86e083a8227:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Xenon%20%28DK%29/lost%20in%20gravity.mmd3
+id=169 file=4f0bd969818c999b28f197c86e7bd0365df73487756a606942bb30a78b020752:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Zee/flux.mmd3
+id=169 file=e24afb295dc8f09c985e125a0255c4e54ead6802469a1540307768492a247c50:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Dirtie/little%20man%20in%20phuturetown.mmd3  # 2 songs
+id=169 file=74584968d16f9514356412065fd9489e631107a00442e7f374ec655b93cad8b6:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Elapse/all%20messy%202k3rmx.mmd3  # 2 songs
+id=169 file=6693f4c5a2c47398f096f80732b22834384797bd078afd86b094ae8624b72944:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Elapse/coop-Dirtie/headnoddah%20part%20ii.mmd3  # 2 songs
+id=169 file=cd37691e9b7a973e1d8fb8eb7764bc5238a909a01eb18725aa499cdb4ff1075d:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/Elapse/pyro-electricity.mmd3  # 2 songs
+id=169 file=99018cea1efc47e5e27881a4e29c690e137df8b28dad007806c71778ab97f65e:https://ftp.modland.com/pub/modules/OctaMED%20MMD3/CJ/dizzy%20goes%20cruising.mmd3 size=497704  # modlen 497704: the file has 4 more bytes (000003f2, an Amiga HUNK_END: it was cut out of an executable)
