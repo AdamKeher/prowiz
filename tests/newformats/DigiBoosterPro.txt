@@ -1,0 +1,70 @@
+# DigiBooster Pro / DigiBooster 3 (DBM0, src/formats/new/DigiBoosterPro.c).
+# Synthetic files: tests/newformats/files/DigiBoosterPro/make_dbm.py
+
+id=176 file=67caa16f675d375f540b0ab78c994efb4244bf98c4b521f2d1aec215e81b621a:tests/newformats/files/DigiBoosterPro/dbpro2.dbm
+id=176 file=dbcac4147f4129bc349e013759dd129e9ba0b0b4394523348f95c71cc708d6c4:tests/newformats/files/DigiBoosterPro/db3.dbm
+
+# libxmp test-dev (real modules)
+id=176 file=cdbdc46762a561f571be422ec5d8f030ab8ea20c2c774342a25e43c7ef45f1d2:https://raw.githubusercontent.com/libxmp/libxmp/master/test-dev/data/dbm_smpl_setpan.dbm
+id=176 file=47814ec4e1d53d5f743ae95a69fad5f238e87003eef79af220306ebe2173b9fd:https://raw.githubusercontent.com/libxmp/libxmp/master/test-dev/data/m/little%2001.dbm
+id=176 file=6f4bbeb3ea692fecfc0ae6e397df028afa2bd96972bef10ee49cb5f3b0cb4dc8:https://raw.githubusercontent.com/libxmp/libxmp/master/test-dev/data/m/the%20waiter.dbm
+
+# Modland Digibooster Pro (every n-th file by name)
+id=176 file=ffad5abffb20ebe84bac18d4d4420dcb277432c18da511736e9a003189920606:https://ftp.modland.com/pub/modules/Digibooster%20Pro/1541/blipp%20blopp.dbm
+id=176 file=9021c04c2669819b78afaddbfa830f268f08c5947b73fbe5a40e71ec05cdf724:https://ftp.modland.com/pub/modules/Digibooster%20Pro/AceMan/tricky%20reality.dbm
+id=176 file=f6984acbbe9ac62ee6fe524dd9224c483132be7af74f992a83db643c3f41837e:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Acid%20Frog/automatic%20drive.dbm
+id=176 file=d84bec1c339c923164da050429342158b402e9e42b17bdc303c8dbf4568825c0:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Acid%20Frog/pulse.dbm
+id=176 file=49d9cb3234301bc5ea908ec8dcb5cd07216059a07c9a25536fa809d050dd57ae:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Acid%20Frog/zwer.dbm
+id=176 file=586bca52ae8568aa0b35754cec27f89e5f296d2d0d461afcb8cba85e95f50436:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Azzaro/peaceful%20harmony.dbm
+id=176 file=e8750ab0a411224836e64fbdcd84842fddb836106c9e887effdd168dba67a6cf:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Blakkhar/gm%20rip%20edition.dbm
+id=176 file=07ee63ca5af3390f5ce6f09fbf4c81d30a160914ad6681869f2fcd625245efa0:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Blakkhar/nummer2.dbm
+id=176 file=e1cedcad5ae0ef30e079c0863441eba38e14fbb00b765b12f04142934834a0db:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Blakkhar/zuckerfrei.dbm
+id=176 file=7402057270cf60f13bf8a760677d050d50fdec71b82b012b52ba61ee9b9f6cec:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Broom/regular%20visit.dbm
+id=176 file=a5e2452c012e293e347bc5e3e43526073d272cb0013282afef5b5af4c334f057:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Climber/adventure.dbm
+id=176 file=3f15ca6ee6820f03a85e6bac680021d3aa2af5a4185a85386fe0954e053f121e:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Crossy/dizpartoflive.dbm
+id=176 file=2644d41891a5f0b7ce9733e100b50d6f07f6d3ec7a1597070e9e42d37eb4997e:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Dis/forever%20young.dbm
+id=176 file=5079dca8f09d560384d8be107bc480dabc41720f830d4dad0a32ab1074d90a61:https://ftp.modland.com/pub/modules/Digibooster%20Pro/DJ%20Pie/pie%20deathofbreakbeat.dbm
+id=176 file=fc0d4332de36711af9b4faf42d37dadf60140f1a41ca8de44d932fe6bb609ba6:https://ftp.modland.com/pub/modules/Digibooster%20Pro/DJ%20Pie/pie%20thunder%20edge.dbm
+id=176 file=6ddfc5bf9379a51b09389bef2fbc6a0db0f2460a61ce0a86c0a99765108dde55:https://ftp.modland.com/pub/modules/Digibooster%20Pro/DjDesco/going%20home.dbm
+id=176 file=2532896f1a289baa95e26e927155cd9b58c0a8b00e7988e95fd01a0b8b263e95:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Doktor/cytrynowa%20altana.dbm
+id=176 file=f0569e89fd0faa81aecf5d35cffa7fd1fddc292786ee6344215716f40f260164:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Dr0czkins/nude%20party.dbm
+id=176 file=af9f0c8fe7db349b5270d9f22c403dacbcae8504346f9c253434127830be8312:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Echexio/turnson.dbm
+id=176 file=227519db3b72db3cf7f4887ac354f5fa9f6f405a50fe0758960c9421262ab05e:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Falcon%20%28PL%29/my%20flower%20is%20for%20you.dbm
+id=176 file=b2fe7323b00d48337f86a21d155572c90b365ea92e9d1915983554db146f133e:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Frequent/flowering.dbm
+id=176 file=3b64dee2aa5bf1479b5765d6ef63ca18dc2d3a896efb14deafa356c196f99814:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Ganja/xmas99.dbm
+id=176 file=9ebb85d78eecfe2e8028e608a44c82a392ca628cb11f4d464d98fccce083b6ee:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Grogon/wellcome.dbm
+id=176 file=c9e50fe500ba46dd30f6ee280579005dd28689a7640ffdd7a1d47236b2109f29:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Ijon%20Tichy/extraterrestrial.dbm
+id=176 file=cf65f3e3db713a18fa22f7a2fd8d537d89d2f399e5de9a26e6f3b1161441cc8a:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Ilkke/ej%20pedja.dbm
+id=176 file=6844a07e2c5deafb601a65134a492af3e6ad5737ccce538ce9f76d3bf9f37b8e:https://ftp.modland.com/pub/modules/Digibooster%20Pro/JazzCat/women%20without%20wings.dbm
+id=176 file=b1dc1ab4cf9294f432a0f7ab9009f3f9de9b420d42bf33b19724e4519a844220:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Kam/third%20palace.dbm
+id=176 file=a847bc28a3110751fa81803d8526fe9ca3619e4dd4f5b1bc4d23e332cb39eb3c:https://ftp.modland.com/pub/modules/Digibooster%20Pro/LCR/sky%20full%20of%20blood.dbm
+id=176 file=38e3dc4969892e6540a5814070b2015dd505154a6c89e7758c631de413326730:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Mice/kannuswurst.dbm
+id=176 file=9d23769863f69114dec62ae58582a506f59de4456c455a94266c6274ba4b4d56:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Mind%20Walker/whisper%20my%20name.dbm
+id=176 file=23f3e929904602e27a60f39fc3cc4a74eedf4d261723bc319457c205afba252b:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Mr.%20Lou/forbidden%20adventure.dbm
+id=176 file=dd96a480e7748ee721e09146342e946e5e306e8fd43d6ced93e85acd3431bd9c:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Opal/good%20memories%20of%20amiga%20scene.dbm
+id=176 file=472aef26604efd361de84b6eb2adeae832afb39e3a037e8456730825a055587d:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Paranoid/7h15%27.dbm
+id=176 file=3c749d4c1aaece8282fbe588c2cdba353f31f99cb79835deb15b6808eb80ee30:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Psycreator/beginning%20autumn.dbm
+id=176 file=beb9bb579651bbfa219495720318f957dc1cec73ef16ab7d3b6a5fc055e6863a:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Psycreator/klangwelten.dbm
+id=176 file=6e74413daedc8303137681b68ebf3166100431f6d81f14c2efbf7b7acbe1366c:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Psycreator/no%20kaffeeklatsch.dbm
+id=176 file=657c15a7186722b55ecd62db1a2160468e0d94686e215c4637d158812abc6bae:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Psycreator/stimme%20des%20herzens.dbm
+id=176 file=72c12b6df8791cfa13e8d6f84d69a0ea12770836ab9f9bdfd453f9343649f5b3:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Psycreator/zorn%20gottes.dbm
+id=176 file=5d53b6d901c59076186b9e60976ff81a8a0c87292cc3fca084db2c7e2d5cda43:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Radix/coop-Skize/rivendell.dbm
+id=176 file=2e867b10e0e71ea7d92c7b65aa10b42a09a597794d53d0bd92f27e9fc7f4ccdf:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Richard%20E.%20Kapp/abgrnndiges.ric.dbm
+id=176 file=1c9d32bc615ef6b545bf32bfe5134f87b14276c8fcf4b9f166b3c77223e36859:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Rist/freespace.dbm
+id=176 file=304343f5b1806961e3a674942b236012ca129e327ba4679d97ad0168498a89b7:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Robin/i%20want%20you%20in%20storm%21.dbm
+id=176 file=808bb7454d91674b31b79da8161c952597c6b15778857d9cb9b89738d54d0362:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Robin/test1.dbm
+id=176 file=596da56733b2c93b0706a9fc6f030fbc44573306191032eea18038f15404ee3a:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Sadista/200%20jo%20jedna.dbm
+id=176 file=ee77aca0eb0a016e41379893660418a7d4f2962682b517e9788d25e0985259b1:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Slaxx/niceday.dbm
+id=176 file=92c0c9abeb60e3f12995fa4e15067b633500737be7b90774dba4bb8752a28a80:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Snow/earthsong.dbm
+id=176 file=1ed6dee628a82ec6fa2bcd8fc4f53648a0b7a7ca07964e6e25ad1781e97a09e8:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Snow/somewhere.dbm
+id=176 file=8bd5b8af05174e6439813936e62ab64b92428d55f5fe5b8d5b315b7c78e8a0e6:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Spot/laidbakkness.dbm
+id=176 file=20fcf82f165c75c2a03c8387d6c3a09f3ef99caee810703ab0e2b73bd4555298:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Substance/on-the-blue-side.dbm
+id=176 file=9aabf9ef42759dfb3cd19325ff1f1dea140470f2122f4f4729bca86cca3c328f:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Szudi/wizard%20in%20wonderland.dbm
+id=176 file=ef798bd5f9be4dfb0f624520459190f1f438b5b19e8b4f3d6a9e876b3cb0a3ad:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Tang/just%20another%20setback.dbm
+id=176 file=34faed273e3dad8650d65eb9bb07eb0e614b1871b6657aa8f2694231e8e4f412:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Teis/innerlogic.dbm
+id=176 file=6e59da520f4a728354433825534843bed14ad956f855637dba489969a8709e51:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Tripper/ballet%20cosmique.dbm
+id=176 file=c1077f591a3a196b50298b50f290b5d948c77764eade755488f453ab8fcc9ef8:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Tripper/raving%20preacher.dbm
+id=176 file=6205f4def893c637e94404f5660cb15f410db3b49d823423012f0fa962cf86bf:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Tripper/tomaatti.dbm
+id=176 file=3ff3622c7489cdaf858ec45e6cfbf1457088126ecb2e2a14d3fd98f2c5bb0dfc:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Vollkorn/vk-wsdm.dbm
+id=176 file=a792cbff6cbc9d5d35624967ecb72b5329d389fbeddfb128c3df9711e87299d0:https://ftp.modland.com/pub/modules/Digibooster%20Pro/XTD/the%20day%20part%20ii%20-%20the%20awakening.dbm
+id=176 file=09ad5e0f3b4934926a784aff4d4412e348faeceba680f09f9eb5e5359e725f40:https://ftp.modland.com/pub/modules/Digibooster%20Pro/Zabba/superdelic.dbm
