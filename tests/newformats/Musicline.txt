@@ -1,0 +1,111 @@
+# Musicline Editor (id 177): tests/newformats.py list, see its docstring.
+#
+# Synthetic files (tests/newformats/files/Musicline/make_synthetic.py; no music):
+id=177 file=0c4792350dc33ed4329f22c50524427bb1b91bb8a3517a4f207fa8cd135aa51b:tests/newformats/files/Musicline/ml_new.ml  # MODL data, VERS 1.15, packed SMPL
+id=177 file=aac77194cee9c35310f7e872c86bc798f9ef879e4cce4bf0c0fb66dafbb0fcb1:tests/newformats/files/Musicline/ml_old.ml  # VERS at 08, old TUNE lengths
+
+# Modland: 100 of the 817 files of https://ftp.modland.com/pub/modules/Musicline%20Editor/
+# (up to 3 per artist, the rest at random; 2026-11-21).
+id=177 file=e25fda74e8d21f940a3833be71cdb2af99a9279a42077367e6cac27f46338a3f:https://ftp.modland.com/pub/modules/Musicline%20Editor/ADE/cybernoid%202.ml  # version 1.15, 38854 bytes
+id=177 file=8bb86a2736da06e3cd9ad19c858a7e50adceedefef1984df22a423610ab6a576:https://ftp.modland.com/pub/modules/Musicline%20Editor/Aix/childs%20play.ml  # version 1.14, 21702 bytes
+id=177 file=0a2915d3b8b469242b9c445e0ae9325cb994b8004dcad2d31c8b2661db685a93:https://ftp.modland.com/pub/modules/Musicline%20Editor/Alfatech/spellbound.ml  # version 1.15, 41931 bytes
+id=177 file=2d1ff58feb14dfa12a2d08f9569cf8470aa065436c3814c742907620ad33c354:https://ftp.modland.com/pub/modules/Musicline%20Editor/Anaki%20Rob/guru%20meditation.ml  # version 1.15, 31143 bytes
+id=177 file=c4ac1028a1220a20dfaea72c6098495f8d32459a6ef0994040e802d1c67bb62d:https://ftp.modland.com/pub/modules/Musicline%20Editor/Anaki%20Rob/ooh%20ooh%20baby.ml  # version 1.15, 188440 bytes
+id=177 file=eb87272d596e6edfb6c65035372052a5c36a6bdb4f6a5ff9b89c5aa006a3b591:https://ftp.modland.com/pub/modules/Musicline%20Editor/Andrew/lonelyness.ml  # version 1.06, 46810 bytes
+# not listed: the Modland copy is truncated (its last SMPL misses 6261 bytes):
+# 87e8f62c75c118d411b3065a0f95e6203e9694d89530c77718948da58422bb7e:https://ftp.modland.com/pub/modules/Musicline%20Editor/Andrew/percubic.ml
+id=177 file=a14884b46c215cae4414704ae060ca22eaa217f572e89f76fc47e4c15c244f1b:https://ftp.modland.com/pub/modules/Musicline%20Editor/Benny/panazonik%20dream.ml  # version 1.14, 19829 bytes
+id=177 file=2f46ef2f04c40b83c733d5df2bb5bf11d9da0ef3cb730be66acebdca1c0275c1:https://ftp.modland.com/pub/modules/Musicline%20Editor/Buse/tetriz%20theme.ml  # version 1.14, 54645 bytes
+id=177 file=7e8e0e98b487c743cb94d55698c8f9bada9b3cb06d91db9323094b76f3bd26a3:https://ftp.modland.com/pub/modules/Musicline%20Editor/Buse/comic%20bakery.ml  # version 1.14, 20502 bytes
+id=177 file=da3f984ad9c5315e3e791a006e2dad4db9460b65f1ead95a684f0474ea04d80a:https://ftp.modland.com/pub/modules/Musicline%20Editor/Buse/monty%20still%20running.ml  # version 1.14, 41007 bytes
+id=177 file=7ad2ab7d39d73edacf7c5b38bcbec8de4afa6d47915703b97c0876366c62e1d0:https://ftp.modland.com/pub/modules/Musicline%20Editor/Christer%20Bjarnemo/flimbo%27s%20quest.ml  # version 1.12, 13137 bytes
+id=177 file=0a83925f9984ed9a7c171cb1dfa159ea84b9b7587f4b5612596e56d41ab25830:https://ftp.modland.com/pub/modules/Musicline%20Editor/Corpsicle/zombie%20computers.ml  # version 1.15, 796200 bytes
+id=177 file=63abc492f59b32dba7c3be4bad5076e96c5c209863591b9b427023081f0c0196:https://ftp.modland.com/pub/modules/Musicline%20Editor/Corpsicle/botulinumtoxin.ml  # version 1.15, 16232 bytes
+id=177 file=c9b9abe3a282aa30d1b03b8a4185b512c393e1784ff92de63e6cac6129d184b0:https://ftp.modland.com/pub/modules/Musicline%20Editor/Dick%20Jansen/denial.ml  # version 1.15, 13487 bytes
+id=177 file=747b4d663c469ebdbb5a157c41fa3051a54c629722551af05ae2ac4d7380fff1:https://ftp.modland.com/pub/modules/Musicline%20Editor/Dick%20Jansen/music001.ml  # version 1.15, 166831 bytes
+id=177 file=08fc6f62c55bd0887096c1f3ebb21874708c666a9537e7cbb12bf27c29293985:https://ftp.modland.com/pub/modules/Musicline%20Editor/Digital/hardcore.ml  # version 1.12, 10059 bytes
+id=177 file=62de1400aa28d7bb68bad7a2e450f18852dd776d69b0e77a8b763d8a552c0c1e:https://ftp.modland.com/pub/modules/Musicline%20Editor/Esemgy/smgs%20clap2groobrmx.ml  # version 1.15, 66870 bytes
+id=177 file=66d9a93cb3f2636aa099463c550fa1b6155e0d32ab0f86442366db7f339abc44:https://ftp.modland.com/pub/modules/Musicline%20Editor/Esemgy/smgs%20clap2.ml  # version 1.15, 49655 bytes
+id=177 file=d355e3b050f41c4b0e320e9ec22d982627538ccc63002e81651c0af0915929b1:https://ftp.modland.com/pub/modules/Musicline%20Editor/Esemgy/smg%27s%20digger.ml  # version 1.15, 131974 bytes
+id=177 file=e68469c2c2d713ef78a5d9d4674061ce06032f2afa4652ef495d62a47fa7de92:https://ftp.modland.com/pub/modules/Musicline%20Editor/Essential%20Sound/toxic.ml  # version 1.15, 90358 bytes
+id=177 file=466f5e091b6dea8f4bf4560139ee546e4c4d1229c4a8c4c8aa0988c062389c72:https://ftp.modland.com/pub/modules/Musicline%20Editor/Essential%20Sound/qjox.ml  # version 1.15, 19894 bytes
+id=177 file=12f68b771eb894248fd12a2bbca15dacd04450588a56b2efb7512b54197c5f6d:https://ftp.modland.com/pub/modules/Musicline%20Editor/Essential%20Sound/clashofsynth.ml  # version 1.15, 17226 bytes
+id=177 file=312f4704ce310512b4bcabe25f2032eaf6b2e0a7355239004fd1ea1c984d9173:https://ftp.modland.com/pub/modules/Musicline%20Editor/Firefox/drax.ml  # version 1.15, 15929 bytes
+id=177 file=ec41586792811ec143214122d7808d1582b55cd16baf5028e23037fff3f4e389:https://ftp.modland.com/pub/modules/Musicline%20Editor/Firefox/chambers%20of%20shaolin.ml  # version 1.15, 20456 bytes
+id=177 file=f4c45e299f81b8be703124828fc9afffaba95d31bfae6f4c9aec36323b88c56a:https://ftp.modland.com/pub/modules/Musicline%20Editor/Firefox/organ%20symphony.ml  # version 1.15, 3591 bytes
+id=177 file=a81edbed0fe97eff3080ab2ce55417f03a8d1f7a078ef5f308f60a43adfb459a:https://ftp.modland.com/pub/modules/Musicline%20Editor/Francesco%20Di%20Mauro/supercar.rmx.ml  # version 1.15, 8359 bytes
+id=177 file=b166c473b9893f45a5df8688ea3a03323eefe0fcf8390d910a55827bb2b18e29:https://ftp.modland.com/pub/modules/Musicline%20Editor/Francesco%20Di%20Mauro/oceanic%20storm.ml  # version 1.15, 287093 bytes
+id=177 file=d4dd7ade9ddbd140c0f46bd90fb2686a2386d367ef7795c8978d2d22f42619d3:https://ftp.modland.com/pub/modules/Musicline%20Editor/Francesco%20Di%20Mauro/hall-of-fame.ml  # version 1.15, 20143 bytes
+id=177 file=83eb7cfdd3b8f692484dff2d85957a3329cf03c4f5df048e9fffbaa906581402:https://ftp.modland.com/pub/modules/Musicline%20Editor/Francesco%20Gambino/cybscan.ml  # version 1.14, 49962 bytes
+id=177 file=53a0440346790f4554377d204f25803cef326b14230a4152fb52db10c7c77595:https://ftp.modland.com/pub/modules/Musicline%20Editor/Francesco%20Gambino/lands.ml  # version 1.14, 77933 bytes
+id=177 file=3a56f6bac61bd034bf59c23d460450dc8b69748ee2da3d2aa272e045e666b49c:https://ftp.modland.com/pub/modules/Musicline%20Editor/Freddie/monty%20on%20the%20run%202.ml  # version 1.14, 24025 bytes
+id=177 file=cf1fe5ef8f8adab1100c8588169fc1bbd74a8f1417bc186f26692ab638e0d006:https://ftp.modland.com/pub/modules/Musicline%20Editor/Freddie/crazy%20comets.ml  # version 1.14, 157538 bytes
+id=177 file=3ecaa79d11ca3b7f0867df291a253b614d8a7973c29bd232bcc331a79246b18f:https://ftp.modland.com/pub/modules/Musicline%20Editor/Freddie/ghosts%20n%20goblins.ml  # version 1.14, 12435 bytes
+id=177 file=412e0bc2574465fddaae95dee9d47342d7e7a3745488e2962b47f32fdfc28bbd:https://ftp.modland.com/pub/modules/Musicline%20Editor/Hoffman/logikal%20pathway.ml  # version 1.14, 123313 bytes
+id=177 file=780d7d93dcb743ed4554cbc01e1c9e04e378477e1a90bcf5aaa45dacec3d4e96:https://ftp.modland.com/pub/modules/Musicline%20Editor/Hoffman/floated2.ml  # version 1.14, 228725 bytes
+id=177 file=7eed3e43b8001e49fda75e6001c10aff20c8146d048f35a297dd1b9c5559121d:https://ftp.modland.com/pub/modules/Musicline%20Editor/Hoffman/chunky.ml  # version 1.14, 24343 bytes
+id=177 file=d4ca9fbe13d3fd2c52b763d694d4bfd8371878403d29372c574728f367539c2e:https://ftp.modland.com/pub/modules/Musicline%20Editor/Im-Pose/cytoplasm.ml  # version 1.12, 50214 bytes
+id=177 file=179956457f7f97834ded5122450909995d0edfb7af0eb9659508904f0d1ad7be:https://ftp.modland.com/pub/modules/Musicline%20Editor/Insanity/too%20pernicious.ml  # version 1.14, 28096 bytes
+id=177 file=2aff3412a3e1c687505e4b14d6605a72aff4b6173d162e722797cd4b1dd1b41d:https://ftp.modland.com/pub/modules/Musicline%20Editor/Insanity/qagwaakfin.ml  # version 1.14, 42407 bytes
+id=177 file=441c3a444d2c0dfa463f4ff32d1c33c57b7b7df8be163ffde90d5f7c217e6432:https://ftp.modland.com/pub/modules/Musicline%20Editor/Insanity/synthmix.ml  # version 1.14, 13898 bytes
+id=177 file=b6e759a25c3a32396f67e4947b303e250d3dcebf5d6e7874eff5856f79dc1a94:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/unnamed%2010.ml  # version 1.15, 17292 bytes
+id=177 file=2566334cb9848539fc783c4e88a8d060b8bad446710a7f722f1399922dabfca4:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/trudelutt.ml  # version 1.15, 1388 bytes
+id=177 file=1e406a23ef00688f42ccf9e6bb22371bd8f2108f79d7f5a91aace0a77cc35d58:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/war%20games.ml  # version 1.15, 40259 bytes
+# a PART says 70 bytes but holds 69, and the next PART starts at the 70th:
+# the player stops loading at that broken chunk header, and so does the rip
+id=177 file=d5dbfe300e0b9dc70528ec73f33b02b02c1149a23e657effdce19961af8d7c49:https://ftp.modland.com/pub/modules/Musicline%20Editor/Mark%20Sheeky/xenex-remix.ml size=1872  # version 1.14, 43919 bytes
+id=177 file=0100169281031d642452cbd3e211676851598604caa12629e7b03906fbb92c6c:https://ftp.modland.com/pub/modules/Musicline%20Editor/Mim/on.ml  # version 1.15, 41905 bytes
+id=177 file=695e62ea6b4102969d47f9af00ce862e868f931d941df3c52155683e3b7cd8cc:https://ftp.modland.com/pub/modules/Musicline%20Editor/Mim/carm.ml  # version 1.15, 88445 bytes
+id=177 file=7ecd6567f3c0f83d3e899aa860ca785cafa2b1678fdafd9d6fd06bdd3e93d7c8:https://ftp.modland.com/pub/modules/Musicline%20Editor/Mr.%20Chaos/beat%20it%20up%21.ml  # version 1.12, 28992 bytes
+id=177 file=7af13526899bdf0061e42a5e542e85cbcc77b8d95e355fcc533ac3ec4d1a76a0:https://ftp.modland.com/pub/modules/Musicline%20Editor/Mr.%20Chaos/tune.ml  # version 1.14, 34268 bytes
+id=177 file=1240199586628c92e8ddf14d455ad041935b34c337c3d7b242225b2c916dd595:https://ftp.modland.com/pub/modules/Musicline%20Editor/Niels%20De%20Koning/phonologic.ml  # version 1.15, 8355 bytes
+id=177 file=4886dcfec3c05050102427024baf28701c72f32251470dbbb5275e87daf1e073:https://ftp.modland.com/pub/modules/Musicline%20Editor/Padre%20Tetris/teressa%20mamamio.ml  # version 1.14, 222795 bytes
+id=177 file=1b15bd01314dfdadbbf7f24667530b5fa19b71f686dee3f98200b49c8dfab415:https://ftp.modland.com/pub/modules/Musicline%20Editor/Piper/preyravenous.ml  # version 1.11, 27853 bytes
+id=177 file=ea7cb56b9c2fb1b350bb2816d5ee501bb8280e96e4ac6fd0cf7d8322a9ad0727:https://ftp.modland.com/pub/modules/Musicline%20Editor/Radiant/pumping%20electrons.ml  # version 1.15, 649541 bytes
+id=177 file=76f27dfc30e1beb9333d0a2b66c5b1b915e849d09b8fc6e58b83a6dad947c319:https://ftp.modland.com/pub/modules/Musicline%20Editor/Radiant/eater-of-pommes-frites.ml  # version 1.15, 18353 bytes
+id=177 file=af8f18c952f7a11200fdd8f03fe66478a2ae1a04c3fa1fb045f5edc25f4306cb:https://ftp.modland.com/pub/modules/Musicline%20Editor/Role%20Model/split-reset-set.ml  # version 1.10, 4454 bytes
+id=177 file=e37b0723d1fc872ad30e94d0bfc9120c793be6b4a59ab8e94ac1a57d81d200db:https://ftp.modland.com/pub/modules/Musicline%20Editor/Role%20Model/memento%20kapan.ml  # version 1.15, 6249 bytes
+id=177 file=83871eeec3d1cdbc63e6aa20696722971016f3d2133ec6231cc38a2c64002a2c:https://ftp.modland.com/pub/modules/Musicline%20Editor/Role%20Model/kaffaf4%20el%20bretagne.ml  # version 1.15, 6935 bytes
+id=177 file=b3f0ec7bf513cf6f8c20993b6d98535e0af53d569f084044cb56165691a13a0b:https://ftp.modland.com/pub/modules/Musicline%20Editor/Rottweiler/isotope.ml  # version 1.14, 213560 bytes
+id=177 file=b2d6ff3c866505639d5de6ec6c34f0d3df460fa39a467045e2a7c15b4274bba0:https://ftp.modland.com/pub/modules/Musicline%20Editor/Seduce/hydrogenated.ml  # version 1.12, 50029 bytes
+id=177 file=8a35a2b6da952235b04f40505f7ce17100e7f7f5ac13f5cfba01397d2180cfeb:https://ftp.modland.com/pub/modules/Musicline%20Editor/Snille/opra.ml  # version 1.14, 103559 bytes
+id=177 file=18cf28467661fc23721b16552496d088f3b5558001e1f00268b8ddc974e16310:https://ftp.modland.com/pub/modules/Musicline%20Editor/Twins/speeding.ml  # version 1.10, 12037 bytes
+id=177 file=564a1e5f1c9f94c438577ebbd510e8fa92893dd7f456d57c2ea1dc32108ddde9:https://ftp.modland.com/pub/modules/Musicline%20Editor/Twins/straight%20on.ml  # version 1.14, 257138 bytes
+id=177 file=5afd0f61d0bc946317b207baf8ea3514ce02b8ceaea03b060b29cf696402dc8b:https://ftp.modland.com/pub/modules/Musicline%20Editor/Twins/eighties.ml  # version 1.15, 47925 bytes
+id=177 file=45aaa006ff27dfc58811039069c84338647b3b37f59ae111830dbb1bf832a0e0:https://ftp.modland.com/pub/modules/Musicline%20Editor/Vim%21/who%20cares.ml  # version 1.10, 12817 bytes
+id=177 file=a2f179f3afeae76d00c3eedf59eb951275aad4e42fd0c63ab79e465d3e08a881:https://ftp.modland.com/pub/modules/Musicline%20Editor/Yodelking/ninja.ml  # version 1.14, 37699 bytes
+id=177 file=8b474f0c23563c6109ce03bdb466320c673e87bbdb1b2ec18d8ff07987c3c21d:https://ftp.modland.com/pub/modules/Musicline%20Editor/Yonx/free%20teheran%20dub.ml  # version 1.15, 289626 bytes
+id=177 file=ce59faa5adfca4fc81c8c7110bb9c79305a47ce7136461a0bf4ade24032550cc:https://ftp.modland.com/pub/modules/Musicline%20Editor/Ziphoid/nakedchip.ml  # version 1.14, 12930 bytes
+id=177 file=b7383483b87f7073f15f6a20e598632ab0c4b3ddd00d1e47ddd28a5852e58102:https://ftp.modland.com/pub/modules/Musicline%20Editor/Ziphoid/octagroover.ml  # version 1.14, 27145 bytes
+id=177 file=668056a84afb1878363d5a3e304d087e8a04a9579c5ce93a8705775ae21a92e0:https://ftp.modland.com/pub/modules/Musicline%20Editor/Ziphoid/groover.ml  # version 0.79, 17652 bytes
+id=177 file=e3423d2ac01a371ed37e35898f597d91e5351a47ade7a5ed6a4762b3cd6eb312:https://ftp.modland.com/pub/modules/Musicline%20Editor/_unknown/pink2.ml  # version 1.05, 4630 bytes
+id=177 file=3441f03a7a0e9640439efad3a3b1279c86c00ab73f5d104028a06424b548d723:https://ftp.modland.com/pub/modules/Musicline%20Editor/_unknown/rush.ml  # version 1.14, 130059 bytes
+id=177 file=3f75cbeb6d25a62bd9416dfc8c8f127b6b9f5f9bceef5359575bd2ff6b8331d3:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/squash.ml  # version 1.15, 6310 bytes
+id=177 file=1e4d62a98fb41af4a8296053bb5e9ac18512bebbb70fc544fda90d195b6f20b5:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/panic.ml  # version 1.15, 44344 bytes
+id=177 file=38d7e3e0db9c662a30824645b921eb7c00f67ba1326a797b2b1c7c05d6f575aa:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/drifting.ml  # version 1.15, 2156 bytes
+id=177 file=256d0a32fa6c44eb193fe62d36b94b5c70d5bf72d20ef15e8882b8a2b0ed52b9:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/magnetic%20fields%20ii.ml  # version 1.15, 93567 bytes
+id=177 file=ba800038465fa534c36535357a701d892f4bea0e5d8b7b33a29ce104470e1c4a:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/dim%20test.ml  # version 1.15, 1500 bytes
+id=177 file=14bdb15060128d3af0e78dcbcd6a5a5ed47b37cd3aabda9da81b444312c8a5e2:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/sightseeing.ml  # version 1.15, 3807 bytes
+id=177 file=ebb7efbf716f702b0878d7de1cbdb7fc1e703792ae4abd11df2e768fe478cddf:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/party%20time.ml  # version 1.15, 112127 bytes
+id=177 file=5609c471d1b34b6b41f3581e90cf151bd986869ea67f95f1e5885551afb0b3b7:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/age%20of%20changes.ml  # version 1.15, 16022 bytes
+id=177 file=702f4e996189854b329e58f9a7b07c8503071f55685f94e42637ae5a0159fccc:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/worthless%20iv.ml  # version 1.15, 2695 bytes
+id=177 file=01baca5c6eda1173a40e36d6fbcdcdbd24945a0aa7befb282472fe92b37f2986:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/bombs%20falling.ml  # version 1.15, 43642 bytes
+id=177 file=aa2522755a13b812934ab9483660d29a73e1aab498c0560d63759a871272bbe2:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/the%20first%20rumba.ml  # version 1.15, 7301 bytes
+id=177 file=65c9445012ab2df6c62c14e156d749a1d9eb8ba8649c5e8d91b1c2a6e66ce994:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/tomten.ml  # version 1.15, 18016 bytes
+id=177 file=f0cf49a17b287542d7f353335828edf5d0bc5ece66004c565fe538b1db326aad:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/last%20goodnight.ml  # version 1.15, 2116 bytes
+id=177 file=bff38777ec4d3315e7b6c4632d67a6c93cc425135bd847b320ef5a4a7dc1c20c:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/mad%20house%20drum%20song.ml  # version 1.15, 71677 bytes
+id=177 file=ca52e6312f7a1d3a0931d17e500ccbe026dda6d64c1487894fec092b68ddfbae:https://ftp.modland.com/pub/modules/Musicline%20Editor/Role%20Model/goatrance.ml  # version 1.14, 37569 bytes
+id=177 file=41c92dd6f6560377cea050153a1d89f6525ac8ed578f94fb19de47527b1f962c:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/mark%20hur%20var%20skugga.ml  # version 1.15, 59569 bytes
+id=177 file=2f20d1108073d381d5874a8fdfc86d0acd543657036b3909b7f11790efba7338:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/unknown%202.ml  # version 1.15, 11393 bytes
+id=177 file=281b910b9ea3fe0053ed4acffe68daf2436c71e6cd113c00b424ce3b6c014c67:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/soderut.ml  # version 1.15, 20730 bytes
+id=177 file=35402ad3ab1620e7ed4ad73ea845a4e8c8b39232d7d604d55d4ed083e41a6611:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/total%20crap%20vii.ml  # version 1.15, 18298 bytes
+id=177 file=a1bc7e7959c67861baf2bc1fb87bd3c1d5b7a00fd4c561265e894ab6ca3c8fa2:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/red%20like%20ketchup.ml  # version 1.15, 2124 bytes
+id=177 file=1033e9641b8fc0363dbd3b0d2df8b809a5dac58a12b5ca520eba1f5b444bb412:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/bells.ml  # version 1.15, 1744 bytes
+id=177 file=b57c3c1098c59c5ac1f14b8e4623454d56c2deee24e241f12f97d2182a01dcf5:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/carnival%20of%20light.ml  # version 1.15, 31740 bytes
+id=177 file=8e213cbb37ea7c1cb77ddc9f02d72c12b2a2db5b037f1f167af524e73da2176e:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/imp.ml  # version 1.15, 4350 bytes
+id=177 file=bb7f69f8164d390f69f07546c10ec28a8eb88db6d2f7d3c42b4b87b986dcda7e:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/sailor.ml  # version 1.15, 44410 bytes
+id=177 file=5c25a2028348cc04e04ed158f50887bd31c9447dce52195a5a61e63515a5a62a:https://ftp.modland.com/pub/modules/Musicline%20Editor/Role%20Model/happychip%203.ml  # version 1.05, 4440 bytes
+id=177 file=5c8c41c4809a92afc27ab7871099bbc47bc154b1e30e8c6edd50c46d72f85b82:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/winter%27s%20dream.ml  # version 1.15, 15080 bytes
+id=177 file=14a2c0599a06ca99612c56690fd756f6d0bd8c87d9ccf130a4c2d79685170ecb:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/beat.ml  # version 1.15, 3178 bytes
+id=177 file=dcb5b3901a086f886f63650ce8a10b223ca1abd4a73ad7c4640cabf7783ef9bc:https://ftp.modland.com/pub/modules/Musicline%20Editor/Krister%20Fundin/barnslig%20militarmusik.ml  # version 1.15, 10026 bytes
+id=177 file=b6df85cf8976ac044ccfd1dbd88a2dc0eaf64b3ec9be4d5def8834862da49b25:https://ftp.modland.com/pub/modules/Musicline%20Editor/Role%20Model/kaffe%20gro.ml  # version 1.05, 49124 bytes

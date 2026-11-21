@@ -16,12 +16,12 @@ big-endian.
 | Format | Signature | Files | Size from | Checked | In memory dumps | Verdict |
 |---|---|---|---|---|---|---|
 | OctaMED MMD2/MMD3 | `MMD2`/`MMD3` at 0 | 1 | `modlen` at 04 | 15/15 | pointers relocated (as for MMD0/1 today) | easy (file images) |
-| PreTracker | `PRT` + version byte | 1 | header walk | 83/83 | verbatim | easy |
+| PreTracker | `PRT` + version byte | 1 | header walk | 83/83 | verbatim | easy (done) |
 | SidMon 2 | `SIDMON II - THE MIDI VERSION` at 3A | 1 | header sums + sample table | 101/107 | intact; sample bytes may be negated | easy |
 | Delta Music 2 | `.FNL` at BC6 | 1 (contains its player) | sample length table | 93/98 | player globals, waveform 0 change | easy |
-| Art of Noise | `AON4`/`AON8` + 42-byte string | 1 | chunk walk | 8/8 | verbatim | easy |
+| Art of Noise | `AON4`/`AON8` + known chunks | 1 | chunk walk | 209/211 | verbatim | easy (done) |
 | DigiBooster Pro | `DBM0` + version 2/3 | 1 | chunk walk | 4/4 | rare (loaded into structures) | easy |
-| Musicline Editor | `MLEDMODL` | 1 | chunk walk | 4/4 | rare (loaded into structures) | easy |
+| Musicline Editor | `MLEDMODL` | 1 | chunk walk | 102/104 | rare (loaded into structures) | easy (done) |
 | Rob Hubbard | 5 × `bra.w` + code | 1 (player code + data) | sample walk to `4E71` | 12/12 | - | easy |
 | Ben Daglish | `bra.w` table + init code | 1 (player code + data) | instrument tables | 28/44 exact, 33/44 within 34 bytes | offsets, probably intact | easy-moderate |
 | LightSpeedPlayer | `LSP1` / `LSPm` | 2 (music + bank) | stream walk; bank from instrument table | 38/38 music, 32/32 banks | relocated: undone; ADPCM bank packed again | moderate |
@@ -137,7 +137,7 @@ files.
 | Off | Size | Field |
 |---|---|---|
 | 00 | 3 | `PRT` |
-| 03 | 1 | version: 18-19 (pre-0.87), 1A-1B (0.87-1.02), 1E (1.5); 1C/1D never seen |
+| 03 | 1 | version: 18 (before 0.3), 19 (0.3-0.866), 1A (0.87-0.92), 1B (0.93-1.02), 1E (1.5); 1C/1D never seen |
 | 04 | 4 | POSD offset (positions) |
 | 08 | 4 | PATT offset (patterns) |
 | 0C | 4 | INST offset (instrument names) |
@@ -197,6 +197,29 @@ files.
 - **Test files:** Modland has 64; the PreTracker 1.00 and 1.5 release zips
   add 18 more, including the multi-subsong files Tinyus and Wrong Way
   Driver.
+- **Implementation** (`src/formats/new/PreTracker.c`, "PreTracker module"):
+  - Signature: `PRT` and a version 18-1E. The layout is chosen as the
+    official 1.5 player does (see above). POSD must not overlap the header
+    (POSD ≥ 43 / 5B / 5C).
+  - Checks: the hard checks above, plus: npat, nsteps and npos ≥ 1 for the
+    song or every subsong; nsub 1-31; ninst ≤ 32 (≤ 64 in 1E); the
+    subsongs' pattern offsets follow one another (true in every 1E file).
+  - The header and the positions must be in the input. When the input ends
+    before WAVE, the instrument chain cannot be checked and the module is
+    reported TRUNCATED; its size then counts the missing names as empty, so
+    it is a lower bound.
+  - Raspberry Casket's patch is recognised as POSD = 64 with 3C-3F equal to
+    the subsong-0 header bytes [0],[1],[3],[2] (a real 1E file has 0 there,
+    and npat ≥ 1). The rip is restored, POSD = 5C and 3C-3F = 0, and
+    flagged restored.
+  - Not checked: the wave-order permutation (rePlayer reports a file,
+    "wigged" by Curt Cool, with an odd order), the reserved bytes, the
+    POSD constants.
+  - Tests (`tests/newformats/PreTracker.txt`): the 64 Modland files and 5
+    synthetic ones (versions 19, 1B, 1E with 1 and 2 subsongs, and the
+    Raspberry Casket image), all exact alone and embedded. The 19 songs of
+    the two release zips (8 of them not on Modland) also pass with a
+    temporary list. No finding in the 460-file corpus.
 
 ## SidMon 2
 
@@ -293,8 +316,11 @@ files.
   - AON8: 8 software-mixed channels, patterns 800 bytes.
 - **Header:**
   - 00 `AON4`/`AON8`.
-  - 04: 42 bytes, either `artofnoise by bastian spiegel (twice/lego)` or
-    `ArtOfNoise by Bastian Spiegel(twice/lego)` followed by a NUL byte.
+  - 04: 42 bytes of text. In the 211 Modland files:
+    `artofnoise by bastian spiegel (twice/lego)` (163 files),
+    `ArtOfNoise by Bastian Spiegel(twice/lego)` + NUL (36),
+    `Chorus by Bastian Spiegel(twice/lego)` + NUL + `B-` + NUL + LF (11),
+    and one with a corrupted letter. So it is not a usable signature.
   - The chunks start at 2E.
 - **Chunks** (ID + u32 length, no padding), in order:
   - optional NAME, AUTH, DATE, RMRK;
@@ -309,8 +335,7 @@ files.
 - **Size:** walk the chunks to the end of WAVE. Then round up to a
   multiple of 4 if the next bytes are `?` (the editor's pad).
 - **Checks:**
-  - the string, case-insensitively;
-  - every chunk ID is known;
+  - every chunk ID is known, and appears once;
   - INFO byte 0 = 34;
   - PLST length = (song length + 1) & ~1;
   - PATT a multiple of 400/800 and every PLST entry below the pattern
@@ -323,7 +348,32 @@ files.
 - **References:** NostalgicPlayer ArtOfNoise (MIT) is reusable. The
   original editor source (miditracker.org) has no licence, so it is spec
   only.
-- **Test files:** Modland has 211.
+- **Test files:** Modland has 211 (178 AON4, 33 AON8).
+- **Checked on all 211:** the chunk order is always NAME AUTH DATE RMRK
+  INFO ARPG PLST PATT INST [INAM] WLEN WAVE (one file has only INFO to
+  WAVE). INFO is always 4 bytes starting with 34, ARPG 40, WLEN 100, INAM
+  7A0; INST is a multiple of 20 with types 0/1; WAVE = Σ WLEN. After WAVE
+  come: nothing (141 files), the `?` pad to a multiple of 4 (68), or zero
+  bytes that are not part of the module (2: Tivurr "herb", 4 bytes; Twice
+  "soundfx", 2 bytes). 209 files are exact.
+- **Implementation** (`src/formats/new/ArtOfNoise.c`, "Art of Noise
+  (AON4) module" / "Art of Noise (AON8) module"):
+  - Signature: `AON4`/`AON8` and a known chunk ID at 2E.
+  - The walk takes the twelve IDs above, each at most once, and ends after
+    WAVE. Text chunks are limited to 64 KB, any chunk to 16 MB.
+  - Checks: INFO (4 bytes, 34, song length ≥ 1) before PLST before PATT;
+    the PLST length; PATT a non-zero multiple of 400/800 with every played
+    pattern below the count; INST 1-61 records of type 0/1; INAM a
+    multiple of 20 (≤ 61 names); ARPG 40; WLEN 100; WAVE = Σ WLEN (when
+    WLEN is in the input), after INST, PATT and ARPG.
+  - The `?` pad is added only when all its bytes are `?`.
+  - Truncated modules (INFO, PLST and PATT seen) are reported TRUNCATED.
+    The size is exact when the input ends inside WAVE; otherwise it is a
+    lower bound (the end of the chunk that runs past the input).
+  - Tests (`tests/newformats/ArtOfNoise.txt`): the 211 Modland files (2
+    with a size= for the stray zero bytes) and 2 synthetic files (AON4 with
+    the pad, AON8 with INAM), all exact alone and embedded. No finding in
+    the 460-file corpus.
 
 ## DigiBooster Pro (DBM0)
 
@@ -352,26 +402,59 @@ files.
 ## Musicline Editor
 
 - **Origin:** the Cyréus brothers and others, 1993-95; `.ml`.
-- **Header:** 00 `MLED`, 04 `MODL`, 08 u32 length (4), then `VERS`.
+- **Header:** 00 `MLED`, 04 `MODL`, 08 u32 length (4 to 28 hex in practice)
+  and that many bytes, then `VERS`.
   Very old files have `VERS` at 08.
 - **Chunks** (ID + u32 length, unaligned): TUNE, PART, ARPG, INST, SMPL,
-  INFO.
+  INFO. The player (`mlineplayer102.asm`, LoadHeader) reads them one after
+  the other and stops at the first other ID.
+  - **TUNE** is read by its contents, not by its length: 40 bytes (decimal),
+    then channels × u32 sizes, then the sequences (no sizes when channels =
+    0). Files up to version 1.06 store a length as if all 8 sizes were
+    there: 16 bytes too much for 4 channels, 32 for none (6 of the 104 files
+    checked).
   - **SMPL** takes 8 + 6 + length bytes: the stored length leaves out a
-    6-byte prefix.
+    6-byte prefix (u32 unpacked length, delta command, pad). The length
+    covers the 50-byte (decimal) sample header and the data, packed or not.
 - **Size:**
-  1. Skip VERS.
-  2. Walk the chunks until an unknown ID.
-- **Checks:**
+  1. Skip the MODL data and VERS.
+  2. Walk the chunks until an unknown ID (or one with impossible fields).
+- **Checks** (numbers in decimal):
   - the first chunk after VERS is TUNE;
-  - TUNE: channels ≤ 8, play mode 0/1, length = 28 + 4·channels + Σ
-    channel sizes;
-  - PART number < 1024;
-  - ARPG (len − 2) % 6 == 0.
+  - TUNE: channels ≤ 8, play mode 0/1, sequence sizes even and ≤ 512 (the
+    player's buffer), length = 40 + 4·channels + Σ sizes, or that plus
+    4·(8 − channels);
+  - PART: number < 1024, length 3 to 2 + 128·13 + 2;
+  - ARPG: number < 256, (len − 2) % 6 == 0, len − 2 ≤ 768;
+  - INST: length ≤ 206 (`inst_SIZEOF`; always 206 in practice);
+  - SMPL: length ≥ 50, the data no longer than the unpacked length.
 - **Packing:** samples can be delta-packed and parts are packed, but the
   stored lengths cover both.
 - **References:** NostalgicPlayer MusiclineEditor (MIT) is reusable. The UADE
   deliplayer and format doc are LGPL-2.1 (68k assembly, a spec in practice).
 - **Test files:** Modland has 817.
+- **Checked:** 104 files (100 picked from Modland, up to 3 per artist, plus
+  4 more): 102 are exact. Andrew "percubic" is truncated on Modland (its
+  last SMPL misses 6261 bytes). Mark Sheeky "xenex-remix" has a PART whose
+  length says 70 but that holds 69 bytes, so the next PART starts one byte
+  early: the player stops loading there, and so does the rip (1872 of 43919
+  bytes).
+- **Implementation** (`src/formats/new/Musicline.c`, "Musicline Editor
+  module"):
+  - Signature: `MLEDMODL`, then MODL data (≤ 256 bytes) and `VERS` (≤ 256
+    bytes), or `VERS` at 08. The first chunk must be a valid TUNE.
+  - The walk follows the player (TUNE by its contents, SMPL + 6, the
+    others by their length) with the checks above, for at most 4096
+    chunks, and ends at the first ID that is not a valid chunk.
+  - A chunk that runs past the input makes the module TRUNCATED, with a
+    size up to the end of that chunk (a lower bound if more chunks follow).
+  - In memory the player keeps no copy of the file, so only file images
+    are found.
+  - Tests (`tests/newformats/Musicline.txt`): 99 of the 100 Modland files
+    (percubic left out; xenex-remix with size=1872) and 2 synthetic files
+    (MODL data, VERS 1.15, two subsongs, a packed SMPL; VERS at 08 with old
+    TUNE lengths), all exact alone and embedded. No finding in the 460-file
+    corpus.
 
 ## Rob Hubbard
 

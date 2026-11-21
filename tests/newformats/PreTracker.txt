@@ -1,0 +1,77 @@
+# PreTracker (id 170): tests/newformats.py list, see its docstring.
+#
+# Synthetic files (tests/newformats/files/PreTracker/make_synthetic.py; no music):
+# the three header layouts, and a song as Raspberry Casket patches it in memory.
+id=170 file=e01f077c8f48f1b872cd01c62f197058d3c261032978744225295ab256fbeeb8:tests/newformats/files/PreTracker/v19.prt  # version 19: no wave order, POSD at 43
+id=170 file=f855ca1879739cdc2f05fcdb385148e9a544786dd59ce329d5278586de0ef858:tests/newformats/files/PreTracker/v1b.prt  # version 1B: wave order, POSD at 5B
+id=170 file=7615038b0ed07c38be75e15bd73056d68ba33fd509d916e45a57e90a65ad7318:tests/newformats/files/PreTracker/v1e_2sub.prt  # version 1E: 2 subsongs, 64 instruments
+id=170 file=803f273cc40099c05295ca79af4e79b98a749e8d3cf0df1dd590beabfdfd95a6:tests/newformats/files/PreTracker/v1e_1sub.prt  # version 1E: 1 subsong
+# v1e_1sub.prt after the Raspberry Casket V1.5 patch (POSD+8, 3C-3F); saved restored
+id=170 file=b4fcf9e28e4513d062ac00d708bb04ad027b361b6316e2622d2a65b2ffc61131:tests/newformats/files/PreTracker/v1e_rc.bin restored=1 rip=803f273cc40099c05295ca79af4e79b98a749e8d3cf0df1dd590beabfdfd95a6
+
+# Modland: every file of https://ftp.modland.com/pub/modules/Pretracker/ (64, 2026-11-21).
+# Songs found only in the PreTracker 1.00 / 1.5 release zips cannot be listed here.
+id=170 file=9eb1121280aad5ffc52ca85ffd676e8bc10d1c19af60b2c991f74e753c0ee9a6:https://ftp.modland.com/pub/modules/Pretracker/AceMan/a%20dream%20of%20fish.prt  # version 1B, 28196 bytes
+id=170 file=d66449bb971246afb15eed92db16686786ff7753139629693b5b76d8b0e5405d:https://ftp.modland.com/pub/modules/Pretracker/AceMan/life%27s%20a%20glitch.prt  # version 18, 19326 bytes
+id=170 file=f70e560078d2edc656a191c779cea2d1bef7709476a104dedf7fee2198401c7d:https://ftp.modland.com/pub/modules/Pretracker/Buzzer/leavings.prt  # version 1B, 3564 bytes
+id=170 file=ac8c86b5b43850927f345464786bbf1971e1afe85bc96bc953de11fca63dd748:https://ftp.modland.com/pub/modules/Pretracker/Buzzer/secrets.prt  # version 1B, 14298 bytes
+id=170 file=8b37656022be00b5a55d4c504a31315b0c9796572402b1ba83eb34604280ca3b:https://ftp.modland.com/pub/modules/Pretracker/Chavez/kesaetuuli.prt  # version 1E, 7540 bytes
+id=170 file=e13b5f254c14a3d3ce6fc75cf20916e2107ca36a23607f9ec99adbd49c035c2e:https://ftp.modland.com/pub/modules/Pretracker/Chavez/lost%20song.prt  # version 1E, 8726 bytes
+id=170 file=4fe2ef1b1ca6dcc387088de6797d4255f9ab2966e9260f608b4062ff8645d43b:https://ftp.modland.com/pub/modules/Pretracker/Curt%20Cool/fruitiful.prt  # version 1B, 7518 bytes
+id=170 file=0acd1b195671e5d78e5871b32eea07a0bfb3b81bcb3835b63f9aad3051ce424f:https://ftp.modland.com/pub/modules/Pretracker/Curt%20Cool/scant_fabric.prt  # version 1B, 7380 bytes
+id=170 file=61f1114642fbdd34bb64977be382fc03dcbab2ee050862001aeb6a078f1367db:https://ftp.modland.com/pub/modules/Pretracker/Curt%20Cool/scapyard_labyrinth.prt  # version 1B, 7912 bytes
+id=170 file=cc49d53567067a3211db15ec2289b9273dfea2573155ebdba1791523dae68648:https://ftp.modland.com/pub/modules/Pretracker/E%21ghtbm/retr0juice.prt  # version 1E, 14622 bytes
+id=170 file=24df78f436e0bbe81ce8a44f6bff5e86f5c9e90c1c39fbb8ad9354740238570e:https://ftp.modland.com/pub/modules/Pretracker/Geir%20Tjelta/aabb.prt  # version 1A, 4474 bytes
+id=170 file=3ba6a9abbb9ee0038a813b5acf41e9bb3a426173255cb16a989f3fe711de6aa0:https://ftp.modland.com/pub/modules/Pretracker/Geir%20Tjelta/abmis%20star.prt  # version 1A, 8592 bytes
+id=170 file=543e1403aeffd83e02197d1da51de28088c4bec8dd273a81745c3f5564e313b1:https://ftp.modland.com/pub/modules/Pretracker/Mystra/birds%20aren%27t%20real.prt  # version 1B, 9712 bytes
+id=170 file=5d8effe8f4c442c449f1a8e6c43e27269c5046d4a4b64f479f8eda4c0f06ee66:https://ftp.modland.com/pub/modules/Pretracker/Mystra/salto%20mortale.prt  # version 1B, 10522 bytes
+id=170 file=dde25ef3eb352b03d4d65486f28b607b301b5947134db763a99bb7ebeb6f2235:https://ftp.modland.com/pub/modules/Pretracker/Okeanos/ignition%20code.prt  # version 1B, 8960 bytes
+id=170 file=4d8b303eea898d4168730aeeffb17f341efe5925e0ca3c444b3861d3533142ba:https://ftp.modland.com/pub/modules/Pretracker/Okeanos/returning%20home.prt  # version 1B, 5368 bytes
+id=170 file=0b627af17c31325d7b6d3945d7b5d524e847116ede5e587759afc2529e19918c:https://ftp.modland.com/pub/modules/Pretracker/Pink/attack%20and%20release.prt  # version 1A, 11138 bytes
+id=170 file=a2d01ff364f75f8b4765c93653c0b2e70a526c08f73b1596e4c93b777f318cc4:https://ftp.modland.com/pub/modules/Pretracker/Pink/cold%20and%20tired.prt  # version 19, 10958 bytes
+id=170 file=240f5e82291d295fcd0e062cf46eae5efa4a09e60e86cd30bc1de6e41eac4d2c:https://ftp.modland.com/pub/modules/Pretracker/Pink/micro%20management.prt  # version 1B, 7632 bytes
+id=170 file=703c1972dd36216b1c6d918ffd6736f558ba440b18c4e3796c9dc0d0898141e0:https://ftp.modland.com/pub/modules/Pretracker/Pink/on%20and%20on.prt  # version 1A, 9894 bytes
+id=170 file=cb39162ca9127f8e4ff46264577f14e54632e2879db74f78dbdeb06d24db10a4:https://ftp.modland.com/pub/modules/Pretracker/Pink/prefix.prt  # version 19, 11448 bytes
+id=170 file=e81b34742925d41aaa0e3369d0f452420b3b84fab8e8c4bb7f5cbd9ad518af6d:https://ftp.modland.com/pub/modules/Pretracker/Pink/rewind.prt  # version 1A, 13516 bytes
+id=170 file=5b3fa08a57e2eb557128f4c836996d6955a3b8c1d42133594c452207c76ffb65:https://ftp.modland.com/pub/modules/Pretracker/Pink/ub42.prt  # version 1B, 6444 bytes
+id=170 file=7f116c3be5ef8159e8e7601c1b1fb12134f7427ec827fe1a725ba7067071459f:https://ftp.modland.com/pub/modules/Pretracker/Pink/wesley%20bitcrusher.prt  # version 1B, 12142 bytes
+id=170 file=92636b2068f69e015a1dcb6ddf019d500e35d6d055396b20bf1e603a318b83cc:https://ftp.modland.com/pub/modules/Pretracker/Platon42/intermission.prt  # version 1B, 1208 bytes
+id=170 file=b7ea447e0b9c064f526feed5c24f81b932c51fe03825a229b03f639ec4550efd:https://ftp.modland.com/pub/modules/Pretracker/Rapture/space%20whattatouille.prt  # version 1B, 9690 bytes
+id=170 file=025cda66de6837e767edd9444e635d4cf90bcfd75485080e58c049e47b39491b:https://ftp.modland.com/pub/modules/Pretracker/Rapture/whatta.prt  # version 1B, 5106 bytes
+id=170 file=ed8b46717a6d3c6dfcf6333d97ff2a3cd0ec2ab731be2c5468279446d209f468:https://ftp.modland.com/pub/modules/Pretracker/Serpent/shinnos%20delight.prt  # version 1B, 10484 bytes
+id=170 file=dad4e797b3e133a8e0a38a9dbfc3288e9651ce094f0a460c4fab688e2c16a4c2:https://ftp.modland.com/pub/modules/Pretracker/Shinobi/surf%20dance.prt  # version 1B, 52726 bytes
+id=170 file=4aff3e662e29a92e531fcee87cbc4cff04be631a0b3e82c96c5affb7fead398a:https://ftp.modland.com/pub/modules/Pretracker/Silok/32c%20leberwurst.prt  # version 1B, 4240 bytes
+id=170 file=82a611bb441bbf1fcbd875f13bda5e16150eec8fe2133ee5edaaa3ce64369496:https://ftp.modland.com/pub/modules/Pretracker/Silok/64%20ways%20of%20illusion.prt  # version 1B, 8046 bytes
+id=170 file=0ada29f829b1b2b9251826090daddaefeceb730228853edbcac317a70f6afec6:https://ftp.modland.com/pub/modules/Pretracker/Silok/afternoon%20fuckdown.prt  # version 1B, 6358 bytes
+id=170 file=6845a928169c7d52478fdbdce76b9fc20fdedea0e2460fe8d34161d8ce8f9015:https://ftp.modland.com/pub/modules/Pretracker/Silok/dancing%20lightrays.prt  # version 1B, 7306 bytes
+id=170 file=1339a507057759d9d41e18c1af023b3e33a3a8415b83f240bfc18055dc460e88:https://ftp.modland.com/pub/modules/Pretracker/Silok/facerubber.prt  # version 1B, 4314 bytes
+id=170 file=48e190d0f4ea4c0039af22a27d556d43ac93937013c2338396e04cdb437c7326:https://ftp.modland.com/pub/modules/Pretracker/Silok/horizon.prt  # version 1B, 6470 bytes
+id=170 file=921a7ed4894e7f45d3f141cce097f13b66e125ec0c20f7db67859d665ab77f20:https://ftp.modland.com/pub/modules/Pretracker/Silok/insomnia%20stepdance.prt  # version 1B, 6482 bytes
+id=170 file=32ad64884a254b8e76d86f2bfb8cf0853c6370b7b18f26359ac94187ea42365d:https://ftp.modland.com/pub/modules/Pretracker/Silok/kingdom%20of%20wisdom.prt  # version 1B, 7402 bytes
+id=170 file=c1af5ce1358959eee8613ed9f372df5b8cb30808eff7b16a5caf44e0eb65e71d:https://ftp.modland.com/pub/modules/Pretracker/Silok/midnight%20elevator.prt  # version 1B, 3852 bytes
+id=170 file=71ee8a659f15ec40427ac1237714e5043ff3d2621a933d00df237efb23d1be91:https://ftp.modland.com/pub/modules/Pretracker/Silok/shizofrenia.prt  # version 1B, 3548 bytes
+id=170 file=cff9777f11a7cebc77f845ff370831d39fb1e34c1c72ffb79e98857fbc4ab4fa:https://ftp.modland.com/pub/modules/Pretracker/Silok/wizards%20of%20oz.prt  # version 1B, 2502 bytes
+id=170 file=f2d420226411151c207abae255995bf4c4c064574deac8712b9b6697be48f040:https://ftp.modland.com/pub/modules/Pretracker/Speedvicio/Gravastar.prt  # version 1E, 6510 bytes
+id=170 file=af0c80c0c9ec741715e48d7ef7e98a335a783fe1944beb1322e18d78c4766341:https://ftp.modland.com/pub/modules/Pretracker/Speedvicio/gyptrip.prt  # version 1E, 4276 bytes
+id=170 file=0adfb32f58c570f01dd7ae3de4cf29d7bdd5e2d1d73bc0b09173873113a86c2c:https://ftp.modland.com/pub/modules/Pretracker/Speedvicio/into%20the%20hole.prt  # version 1E, 6924 bytes
+id=170 file=9ce78c72a04e58ac90d8c280466b2423c538aba2962edd38d25d30819fad23ae:https://ftp.modland.com/pub/modules/Pretracker/Speedvicio/lov%20in%201a%27s.prt  # version 1E, 9704 bytes
+id=170 file=d8aa2f14cde3bebf75998c9156b23b432862b135ef7dba88a3b29474df76b323:https://ftp.modland.com/pub/modules/Pretracker/Speedvicio/test%20song.prt  # version 1E, 3152 bytes
+id=170 file=ded7d01f239a6a20cc6773dc6ddc71614c8f1456bdfa31449cc50bc58776d0fa:https://ftp.modland.com/pub/modules/Pretracker/Stinsen/the%20little%20things.prt  # version 1B, 8860 bytes
+id=170 file=8a9b8f8405b52b04c81cf01cc3af5b204a6e2196fa286e0b50c0e312a306695e:https://ftp.modland.com/pub/modules/Pretracker/Tecon/cracksteady.prt  # version 1A, 7244 bytes
+id=170 file=5b57e150627974e56fcb100240d8b7a2ba74121c010f4719e6a4c32839d1c1d5:https://ftp.modland.com/pub/modules/Pretracker/Triton/intrepid.prt  # version 1B, 22264 bytes
+id=170 file=39d4faf210cbd0c1932c69e4738e21a67547fe07656f6594f447911346f549c6:https://ftp.modland.com/pub/modules/Pretracker/Triton/leavin%20teramis.prt  # version 1B, 6148 bytes
+id=170 file=d0b567364d6d00ea9ade06c6e3a87ddb9393cd4081acd6d61376888644cb498f:https://ftp.modland.com/pub/modules/Pretracker/Virgill/4kasm.prt  # version 1B, 4836 bytes
+id=170 file=be3906c833def4500208b6589e628d163c0e2b8e682e598069a6fe2f2eebabb9:https://ftp.modland.com/pub/modules/Pretracker/Virgill/angry%20nerds.prt  # version 1B, 13822 bytes
+id=170 file=7aefbc72d542745c2519ba5ff0e8ac04f2f673717b953bc420ef92f678f31fb5:https://ftp.modland.com/pub/modules/Pretracker/Virgill/cheesy_intro.prt  # version 1B, 3966 bytes
+id=170 file=3c5376834366df95db2204d40790b4cc5d0535c3b1b0ebccc5faca4bbf6b8e77:https://ftp.modland.com/pub/modules/Pretracker/Virgill/crispy_cheese.prt  # version 1B, 7396 bytes
+id=170 file=e50c8a89c9461f1c7b44d07d101fb458bf58e2af806452cee23c0d17123f6d3f:https://ftp.modland.com/pub/modules/Pretracker/Virgill/dorfdisko.prt  # version 1B, 3778 bytes
+id=170 file=374a92f9f15809b53f6b86813b5a4fdd451c8a8780a58b00062f2cf462a91b0f:https://ftp.modland.com/pub/modules/Pretracker/Virgill/dreamcatcher.prt  # version 1B, 7936 bytes
+id=170 file=a17aeca7fc573295f1583be214110efedbb8a64b42b4ac74c7f213776c59d530:https://ftp.modland.com/pub/modules/Pretracker/Virgill/fibonacci.prt  # version 1B, 5606 bytes
+id=170 file=85d609d9180451030f862e1d783d8cb3592a18ba003b28383c6a33c5f4b38933:https://ftp.modland.com/pub/modules/Pretracker/Virgill/forsaken.prt  # version 1B, 6046 bytes
+id=170 file=954d645c4d9205c8e6f467491021958e42387d93256b6dc75b0ee2b0f6dda89f:https://ftp.modland.com/pub/modules/Pretracker/Virgill/galvanize.prt  # version 1B, 9030 bytes
+id=170 file=58b73dcf9464fdcf6077add869b22c7eeb36d06dffb659382888842891664286:https://ftp.modland.com/pub/modules/Pretracker/Virgill/game_over_man.prt  # version 1B, 7678 bytes
+id=170 file=39e233fbf127af911baa7a12938a588f8151b7296f832de4f59a197e2b8afd05:https://ftp.modland.com/pub/modules/Pretracker/Virgill/gimme_lemonade.prt  # version 1B, 21626 bytes
+id=170 file=94564ead8519591d77d988b3e0a6f1b37e71800ceb537ae55dd79b1a12ce6f6b:https://ftp.modland.com/pub/modules/Pretracker/Virgill/korolev.prt  # version 1B, 7650 bytes
+id=170 file=aee7078d099dc11579559c291af48ddb268d77493b0701415225a49711fb25d5:https://ftp.modland.com/pub/modules/Pretracker/Virgill/lords%20of%20the%20chords.prt  # version 1B, 23550 bytes
+id=170 file=df392e8e07a1d2c83a1c2c992cb4a7f64053261a41e3b4918e48146d0565c081:https://ftp.modland.com/pub/modules/Pretracker/Virgill/number%20cruncher.prt  # version 1B, 9492 bytes
+id=170 file=31c07c20047b3c3bc665c8ea209440192c86655e20a86be9b61b454d9cfc6f5d:https://ftp.modland.com/pub/modules/Pretracker/Virgill/coop-Tecon/down%20the%20drain.prt  # version 1B, 12456 bytes
