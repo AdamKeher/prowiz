@@ -270,6 +270,19 @@ files.
   `amifilemagic.c` (GPL/PD).
 - **Test files:** Modland has 107.
 
+- **Implementation** (`src/formats/new/SidMon2.c`, ID 146 `Sidmon2`):
+  - Triggered at the `S` of the ID; the module starts 3A bytes earlier.
+  - Checks: 06 = 1C, 0A = 4, PT = NT = IT = 4·(byte 02 + 1), I a non-zero
+    multiple of 32, WL/A/V multiples of 16, SI = u16[04] and a multiple of
+    64, TT even and ≥ 2, T > 0, every block ≤ 1 MB, the track table
+    ascending from 0 and below T, every position < TT/2, every
+    instrument's waveform list < WL/16. The long at 36 is ignored.
+  - Size as above (exact on 101/107 Modland files).
+  - Tests (`tests/newformats/SidMon2.txt`): 2 synthetic files (with and
+    without the pad byte) and 106 Modland files (101 exact, 5 with
+    `size=` for bytes after the module); the truncated copy is not
+    listed.
+
 ## Delta Music 2
 
 - **Origin:** Bent Nielsen.
@@ -296,7 +309,8 @@ files.
 - **Do not** use max(offset + length): the offsets are garbage in 4/98
   files.
 - **Trigger:** trigger on `.FNL` with start = i − BC6, then check the period
-  table and the code prefix.
+  table and the code prefix. Check bytes 4-F of the code only: one Modland
+  rip (`coutesy.dm2`) has bytes 0-3 cleared.
 - **Other checks:**
   - BL a multiple of 64, IL of 88, WL of 256;
   - the 32 bytes after the length table are 0;
@@ -307,6 +321,19 @@ files.
 - **References** (reusable): NostalgicPlayer `DeltaMusic20` (MIT) and its
   format description.
 - **Test files:** Modland has 98.
+
+- **Implementation** (`src/formats/new/DeltaMusic2.c`, ID 171, `.dm2`):
+  - Checks: `.FNL`; the 85-word period table at AE2; bytes 4-F of the
+    replayer; track lengths even with the loop inside; every track step
+    names a block < BL/64; BL a multiple of 64; IL a multiple of 88 and
+    the used instrument offsets multiples of 88 below IL; sampled
+    instruments use samples 0-7; WL a multiple of 256; the 32 bytes after
+    the length table are 0; every part ≤ 1 MB.
+  - Size: end of the offset table + the 8 sample lengths (93/98 exact).
+  - Tests (`tests/newformats/DeltaMusic2.txt`): 2 synthetic files (their
+    replayer area is zero apart from the 16 checked bytes) and 95 Modland
+    files (93 exact, 2 with `size=`); the 3 truncated copies are not
+    listed.
 
 ## Art of Noise
 
@@ -717,22 +744,64 @@ files.
   are never triggered. FLT8 needs 1024 × (max(order) + 2) bytes of patterns
   for even orders (libxmp `flt_load.c`).
 - **`.nt` header:** 000 is `ST1.2 ModuleINFO`, `ST1.3 ModuleINFO` or
-  `AudioSculpture10`.
+  `AudioSculpture10`. 010-08F are settings: in all 49 Modland files 32 ×
+  u16 below 100 (`0018`), 32 bytes `04` and 32 × `"0"`.
 - **`.nt` records:** 090 + 78·i holds instrument i+1 for i < 31. Each
   record is `AM` + 4 zero bytes + parameters (waveform ≤ 3).
 - **ST1.3 and AS only:** 16 macro slots × 110 bytes at F90 (`ABCD` at +10
   means empty).
-- **`.nt` size:**
-  - Use 2090 for `AudioSculpture10`, or for `ST1.3` with macros.
-  - Otherwise use 1008 if the input has room.
-  - At least 090 + 78 × (highest AM index) bytes are needed.
-  - Truncated copies exist and players accept them.
-- **Pairing:** nothing links the two files. The `.nt`'s AM indices must be
-  a subset of the mod's instruments with length 0 and volume > 0.
+- **`.nt` size** (corrected): 1008 for every `ST1.2` file, 2090 for every
+  `ST1.3` and `AudioSculpture10` one.
+  - Exact for 33 of the 49 Modland `.nt`/`.as` files (ST1.2 17/27, ST1.3
+    12/18, AS 4/4).
+  - The 5 ST1.2 files of 8336 bytes hold a second `ST1.2 ModuleINFO`
+    block or editor memory after 1008; one more ST1.2 file and two ST1.3
+    ones have a few bytes more; 3 ST1.3 files are 2 bytes short and 5
+    files are cut (264-1824 bytes). Players accept cut copies.
+- **Pairing:** nothing links the two files. Corrected: the `.nt`'s AM
+  instruments are *not* always empty with a volume in the module (some
+  have volume 0, a few a length of up to 32 words).
 - **References** (reusable): libxmp `flt_load.c` (MIT), OpenMPT
   `Load_mod.cpp` (BSD), NostalgicPlayer ModTracker (MIT).
 - **Test files:** Modland has 47 mods (44 with `.nt`), plus 5 Audio
   Sculpture pairs.
+
+- **Implementation** (`src/formats/new/StartrekkerAM.c`):
+  - **Companion** (`pw_new_StartrekkerAM_companion`): after the 1.70a
+    handler ripped a FLT4 or EXO4 module (EXO4 is new, through the same
+    1.70a test), every unclaimed `.nt`/`.as` in the input is looked at. It
+    fits if it has at least one AM instrument, all of them have at most 32
+    words in the module and at least one has length 0. The AM sets of most
+    songs look alike, so where the file is decides: the nearest fitting
+    `.nt` starting within 4 KB after the module, else the nearest one
+    ending within 4 KB before it, else the only fitting one in the input.
+    With the Modland files concatenated in name order this gives 38 right
+    companions and 1 wrong one (`kingkeldon.mod`, whose own `.nt` has no
+    AM instrument, takes the only other one that fits); scoring by AM sets
+    instead paired fewer than half right. It is saved as `N.mod.nt`
+    (`<mod extension>.nt`), cut to the input end when every AM record is
+    still there. The IDs are located with `memchr()` inside the input
+    buffer, so a big input with many FLT4 modules stays fast.
+  - **Standalone** (`pw_new_StartrekkerNT`, ID 174, `.nt`): an ID the
+    companion search did not claim, with the settings check above (it
+    keeps the ID string inside the Startrekker program out) and valid AM
+    records (`AM`, 4 zero bytes, waveform ≤ 3). The scan does not skip
+    the `.nt` after saving it: with cut copies the next module can start
+    inside its editor size (this hid 5 FLT4 modules in the concatenated
+    Modland files). A `.nt` stored before its module is saved twice: on its
+    own, then as the module's companion.
+  - **8 channels** (`pw_new_Startrekker8`, ID 175, `.mod`): FLT8 / EXO8 at
+    438, 31 instruments checked like the 1.70a MOD test, played orders
+    even, note data checked in the played patterns only (the one Modland
+    FLT8 file has garbage in unused ones). Size = 1084 + 1024 × 2 ×
+    ((max order >> 1) + 1) + samples, as libxmp and OpenMPT load it
+    (exact on that file). Its `.nt` is saved as companion too.
+  - Tests (`tests/newformats/Startrekker.txt`): 9 synthetic lines (FLT4 +
+    ST1.2, EXO4 + ST1.3, FLT4 + AS, FLT8 + ST1.3, EXO8, and the `.nt`
+    files alone), 52 Modland modules (id 22; 25 with their `.nt` as
+    companion; the others have a `.nt` of another size, without an AM
+    instrument, or extra bytes), 41 Modland `.nt`/`.as` files alone (8 with
+    `size=`; the 8 cut or short ones are not listed) and the FLT8 file.
 
 ## TFMX
 
@@ -746,7 +815,7 @@ files.
 
 | Off | Content |
 |---|---|
-| 000 | `TFMX-SONG `, `tfmxsong` or `TFMX ` + `00 00 01` |
+| 000 | `TFMX-SONG ` (once `TFMX-SONG` + 00), `tfmxsong` or `TFMX ` + `00 00 01` |
 | 010 | 6 × 40 characters of text |
 | 100/140/180 | 32 × u16 song start, end, tempo |
 | 1D0/1D4/1D8 | u32 trackstep, pattern table and macro table offsets; all 0 means 800/400/600 |
@@ -763,7 +832,9 @@ files.
   - This is a lower bound: exact on 53/74, with misses up to 47 KB.
 - **Checks:**
   - Unpacked: 200-3FF and 1DC-1FF are zero; the tables ascend and are even.
-  - Packed: trackstep < patterns < macros.
+  - Packed: trackstep < patterns ≤ macros (equal in SFX-only files without
+    patterns).
+  - Unpacked: the macro table need not ascend (`mdat.z-out`).
   - Songs: start ≤ end ≤ 1FF.
   - Macro command bytes < 40. Higher values mean Atari ST TFMX, which is
     out of scope.
@@ -777,6 +848,41 @@ files.
   Tfmx (MIT, derived from it), UADE `amifilemagic.c`.
   - The libxmp `tfmx-format.txt` gets the fixed offsets wrong.
 - **Test files:** Modland has 368 mdat/smpl pairs.
+
+- **Checked on all 368 Modland pairs:** mdat size exact for 226/230 packed
+  and 120/138 unpacked files; 13 files have 4-8268 bytes after the module
+  and 9 unpacked ones are cut before their last macro ends. The smpl
+  bound is exact for 277/368; 365/368 smpl files start with 4 zero bytes.
+- **Implementation** (`src/formats/new/TFMX.c`; mdat: ID 179 `.mdat`,
+  smpl: companion `N.smpl`; TFHD / TFMXPAK: ID 180 `.tfx`):
+  - mdat checks: a tag; first song start ≤ end ≤ 1FF. Unpacked: 200-3FF
+    zero, the pattern table ascending, even, from 800, the macro entries
+    even and ≥ 800, a `07000000` within 64 KB of macro 127. Packed: 200 ≤
+    trackstep < patterns ≤ macros < 1 MB, at most 128 patterns at even
+    ascending offsets between trackstep and pattern table; the macro
+    table ends at the first entry that is 0, odd, smaller than the one
+    before (or the last pattern), or not below the pattern table. Mixed
+    zero / non-zero offsets (little-endian PC conversions) are rejected.
+  - An mdat cut by the end of the input is reported as truncated (at
+    least macro 127 + 8 bytes).
+  - smpl: only right after the mdat, ending at the macro bound; it must
+    start with 4 zero bytes, fit in the input and contain no valid mdat
+    (Modland's `smpl.z-out level 4` contains a stray header copy, which
+    does not count). The scan goes on right after the mdat (the bound can
+    reach a little past the real samples).
+  - Names: "TFMX 7V module" (trackstep uses `EFFE 0003`), "TFMX 1.5
+    module" (old tag, or unpacked with an `(Empty)` text), "TFMX Pro
+    module".
+  - TFHD: header size 12-400, version hint ≤ 3 (bit 7 free), byte 9 = 0;
+    TFMXPAK: two decimal sizes and `>>>` within 32 bytes. Both need a
+    valid mdat after the header; size = header + mdat + smpl sizes.
+  - Not supported: an smpl anywhere else (the player keeps its address in
+    its own variables), mdats without header, TFMX-MOD files.
+  - Tests (`tests/newformats/TFMX.txt`): 7 synthetic files (unpacked Pro,
+    old 1.5 tag, 7V, packed, `tfmxsong`, TFHD, TFMXPAK) and 359 Modland
+    mdats: 267 with their smpl as companion (`gap=0`), 92 alone (13 with
+    `size=`; the smpl is longer or shorter than the macros reach in 86);
+    the 9 cut files are not listed.
 
 ## David Whittaker
 
