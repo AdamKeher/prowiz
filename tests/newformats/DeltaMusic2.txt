@@ -1,0 +1,104 @@
+# Delta Music 2 (src/formats/new/DeltaMusic2.c), ID 171.
+# Synthetic modules (gen_synth.py; the replayer area is zero apart from
+# the 16 bytes the handler checks, the period table is a list of numbers).
+id=171 file=663870f10c4f8dc65b403f2ff750b354f6f392f467a525a6ff590e2e760404fb:tests/newformats/files/DeltaMusic2/synth-1smp.dm2
+id=171 file=efd3af808534651bd3d53eb2f0b060cd492c95b063846055bc10f0dc275ca098:tests/newformats/files/DeltaMusic2/synth-2smp.dm2
+# Modland "Delta Music 2", every file (2026-11-21).
+id=171 file=32e09d817f565856d433d39505dbbe221d5d3a934b769225af049db91e6266df:https://ftp.modland.com/pub/modules/Delta%20Music%202/Acute/bytesystem-u.b.editor-2.dm2
+id=171 file=a6cfe500d3d40addf63a1b1a75665033be877eac2ed9969f75def544e0ad2e23:https://ftp.modland.com/pub/modules/Delta%20Music%202/Archon/arkanoid.dm2
+id=171 file=0a6148bb254946dabbfa12b2b87457fd9f4e33da63c86d9cf6c62b4427a05936:https://ftp.modland.com/pub/modules/Delta%20Music%202/Archon/loadertune.dm2
+id=171 file=da2beebb5a6aed45f7b77cad258d8d24db45a48a9b23b230451a2bca17b621f6:https://ftp.modland.com/pub/modules/Delta%20Music%202/Archon/the%20last%20v8.dm2
+id=171 file=df319c7172ec5a72b33629af0b9b89d95597ba8c2ad8f881b69c04d6fc4e2dc9:https://ftp.modland.com/pub/modules/Delta%20Music%202/Archon/warhawk.dm2
+id=171 file=607a7964393de539359302027ce5d1df4cbc2c1cff69861ce5be4332b49c5649:https://ftp.modland.com/pub/modules/Delta%20Music%202/Archon/zoids.dm2
+id=171 file=93c11d56aa5d4c8a6e862dd9b186e47492284eb34e3f31b0f9f6e534a8762b80:https://ftp.modland.com/pub/modules/Delta%20Music%202/Beat%20Boy/zenith-zenpack7intro.dm2
+id=171 file=e42740e7e8de74db1a2d37a4cb97ea55b10b77383b140393a5ed12a9ea8d80a4:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-agressive%20alien.dm2
+id=171 file=baac99918b2fc48b5b4e1bf4a728ade3c0edd98390a3d965960a8f7bb8e7338a:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-airsubgame.dm2
+id=171 file=f558a2df0a67459cf9cd70799d1088559afcbfc7daebe57d5a8f8bd3e2a980cf:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-demon%20dungeon.dm2
+id=171 file=62d21fa3fb909d0f27c91e281efcf0a86cf34733cdcf023cfc3a0c32ae32833d:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-egypt%20elevator.dm2
+id=171 file=7c58b423cd6ffe031c845a717027b2d1bb9d6f9cc55c3f33e61eebcb09434d31:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-final%20funny.dm2
+id=171 file=37c055d0e692b4f912a02f94e662b0149975016c7724f3efa010cb0c3645132d:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-hardy%20hitech.dm2
+id=171 file=2d477024c28fd4f9f0f30456f93deccb00a5a82d67f3bec17e4e15778b0bb8d3:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-landsubgame.dm2
+id=171 file=d230330b81c44368559899d1bdb68e193469826a056beacaf08a4a48647efee3:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-smooth%20satisfaction.dm2
+id=171 file=9ea1dbc4acc304ca800414f74c4ea9bec0822445282df8bb9b2a42fad7aaeb75:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-water%20warriors.dm2
+id=171 file=fa3f6da506fd06a078fa0a704eecfaa6e6d8512fddf3917a3643eef814a6bc76:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-watersubgame.dm2
+id=171 file=3134652ba68418898ebf876fda395bc29c7e0bfd714e3f21f437893608c81370:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/nebulus2-winter%20wish.dm2
+id=171 file=efef77c7066d5c71e61cffaacd481bd63290c3ea78d0221f3ac38378e2617fd5:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/shogunmix.dm2
+id=171 file=b58d88ded09e2879c389828cc0f791f60c66d8018af6c091702dfd1fd5c21686:https://ftp.modland.com/pub/modules/Delta%20Music%202/Bent%20Nielsen/thecooperation.dm2
+id=171 file=ab086cda92d5a986a7abf978a28bfd92d5cfda62eb0b149e44bba1b0b903f2c5:https://ftp.modland.com/pub/modules/Delta%20Music%202/Boz/willy%20in%20the%20castle%20of%20dreams%20-%20hiscore.dm2 size=9010  # 24387 bytes after the module
+# not listed: https://ftp.modland.com/pub/modules/Delta%20Music%202/Boz/willy%20in%20the%20castle%20of%20dreams%20-%20menu.dm2 is a truncated copy (47 bytes missing)
+# not listed: https://ftp.modland.com/pub/modules/Delta%20Music%202/Boz/willy%20in%20the%20castle%20of%20dreams%20-%20title.dm2 is a truncated copy (47 bytes missing)
+id=171 file=0e6b5612a70428384a9e85d1fbce0c4b7868d81a8d9737e73a121406b579ac40:https://ftp.modland.com/pub/modules/Delta%20Music%202/Captain/beyond%20music.dm2
+id=171 file=1c3405db411d264796c1bff80a8aaafdef7816a5fe273f0c42148d2f448e3cd3:https://ftp.modland.com/pub/modules/Delta%20Music%202/DD/angels%20cracktro.dm2
+id=171 file=03d6db79e5042ecb0b0581c1669814d5e0432df49570633d1322c8cbfc8f6b7e:https://ftp.modland.com/pub/modules/Delta%20Music%202/DD/dd.dm2
+id=171 file=218fabcd97e6b10b584afe92c67be062addc15d33ef64dd681f0013fa470c57d:https://ftp.modland.com/pub/modules/Delta%20Music%202/Dr.%20Gang/dr%20gang.dm2
+id=171 file=f7b507b41d1777f511c631b37c1a16b0e96d6d5ce768bbcf6b0fb3b9e04517e7:https://ftp.modland.com/pub/modules/Delta%20Music%202/Dr.%20Gang/paradox-1.dm2
+id=171 file=ac23e050c87285c11a946f1c77b015860feab69cdadc5259ccc2a3ba981e37a8:https://ftp.modland.com/pub/modules/Delta%20Music%202/Einstein/betrayal%20sineintro.dm2
+id=171 file=3fa953bab6aae66713e53b76910f2ab93df754df513c97474e264f9151ef6bbb:https://ftp.modland.com/pub/modules/Delta%20Music%202/Einstein/funkyhouse.dm2
+id=171 file=299cb0153ae54006f2828015c0178e5dab67e6c1e06976e0acea9266d5dc6154:https://ftp.modland.com/pub/modules/Delta%20Music%202/Einstein/punisherscrack.dm2
+id=171 file=d7543c597c1dead7af1f170561557f47ea84e734fadf5cd84952fd448f303bc9:https://ftp.modland.com/pub/modules/Delta%20Music%202/Einstein/radical-crackintro.dm2
+id=171 file=ce9972c92cc59581974bb36bac2f88740ef3fe881ac4bdf2a40de45826160b9f:https://ftp.modland.com/pub/modules/Delta%20Music%202/Einstein/sound%20ripper%20intro.dm2
+id=171 file=3c7a1562a422d43ec35944e4666c987ec4cc9cd8b1b90c7f68ecae2734647f85:https://ftp.modland.com/pub/modules/Delta%20Music%202/Einstein/warfalcons-intromusik-2.dm2
+id=171 file=eb58730762b326a8a7e7ab74ed499173dfb5e18e61aee69d9a723037618bf975:https://ftp.modland.com/pub/modules/Delta%20Music%202/Einstein/warfalcons.dm2
+id=171 file=384610ee1c033918f07684c099d9aff45db818c5ad40b6ae42cbbbb7e17e1a36:https://ftp.modland.com/pub/modules/Delta%20Music%202/Fab/deltaintro.dm2
+id=171 file=0fd9d27883af890f34911cd4e6bd90d38a0863098e9035b8b432d25814cda736:https://ftp.modland.com/pub/modules/Delta%20Music%202/Fab/rebels-candyland34-menu.dm2
+id=171 file=5bc70ed532931d71e8d8155c1c805a0b551fc77972c35988b9a69a779d6e0383:https://ftp.modland.com/pub/modules/Delta%20Music%202/Fajser/amaze.dm2
+id=171 file=15d671ac3c96423e11e3ce3fef7a81eb9c3233a8c37168086252f875fa6eb596:https://ftp.modland.com/pub/modules/Delta%20Music%202/Fajser/reflectors-mutter.dm2
+id=171 file=6772e7449da50853c01e4bd37d88ae89496b95528fe89847eeb0e48596137970:https://ftp.modland.com/pub/modules/Delta%20Music%202/GTS/gts-tsb-ud-03.dm2
+id=171 file=c5958d862c66017b4e67f8dc602b7b4163bec8d9f96dc4325eb425d1575c05b1:https://ftp.modland.com/pub/modules/Delta%20Music%202/GTS/gts-tsb-ud-12.dm2
+id=171 file=cd5ad3175a29a70da8b66c3e31dbb20da0854b533bc338bffa1f3ae1835802e5:https://ftp.modland.com/pub/modules/Delta%20Music%202/GTS/gts-tsb-ud-15.dm2
+id=171 file=b869f0f8acea9d7d980d7f2614d3da89e72959f193b9bae0deec805968e0b65d:https://ftp.modland.com/pub/modules/Delta%20Music%202/GTS/tsb-choppingbytes07-selector.dm2
+id=171 file=61f3b1ea665a8ca5c5637b1bcf4a66b81322f4d6d5503220070fe1b9c656861f:https://ftp.modland.com/pub/modules/Delta%20Music%202/GTS/utility%20dream%202.dm2
+id=171 file=f3402135b403d6d07204884ef48f672b375a096d4c9497fc6de8b187094ff18a:https://ftp.modland.com/pub/modules/Delta%20Music%202/GTS/utility%20dream%205.dm2
+id=171 file=d7a52360bf166ae894da8ca5acb14ba77cfe39da7e04b465606b428d0d46f94a:https://ftp.modland.com/pub/modules/Delta%20Music%202/Kreator/decay-blibverts01.dm2
+id=171 file=9a78953a7deb90a3d14ed250781701111b7491a097f38b5ba0f9f87977b04c54:https://ftp.modland.com/pub/modules/Delta%20Music%202/Lancer/cave-mc68000.dm2
+id=171 file=e6f0e3bcb8f40049830acce07b63dadb21bf857a5eb40888a840978c79217a20:https://ftp.modland.com/pub/modules/Delta%20Music%202/Mantronix/mute101-colour.dm2
+id=171 file=a0fd2c4f17478f54ed80c22bbf8b6bde28fae917c0b49b84fc88ddb42d3a280f:https://ftp.modland.com/pub/modules/Delta%20Music%202/Mindstorm/in%20stereo%20intro.dm2
+id=171 file=39d088f7cc67e66e55616f01af601982fcab77866bd25df096c6d97c85287dc0:https://ftp.modland.com/pub/modules/Delta%20Music%202/Moby/impact-compils.dm2
+id=171 file=135a50f7326b44e9956d33c0eaf0c3377ee38cec95d571e83436358843cd1cfb:https://ftp.modland.com/pub/modules/Delta%20Music%202/SLL/wonderland-bbs.dm2
+id=171 file=82d128fcfe84d9bd3b0222ed581be2f83c9d2866dddd2a3c7e289b2dd8057e9f:https://ftp.modland.com/pub/modules/Delta%20Music%202/Samplemixer/angels%20intro.dm2
+# not listed: https://ftp.modland.com/pub/modules/Delta%20Music%202/Samplemixer/midnight%20express.dm2 is a truncated copy (30 bytes missing)
+id=171 file=9e35348fdc40cf33c153307339d8ac9bc80d6ce3a23c5b273ff71b79c420d2aa:https://ftp.modland.com/pub/modules/Delta%20Music%202/Samplemixer/nova-hungrypack2-menu.dm2
+id=171 file=6ab1ca7aee7170ff928f4276e627cc020c3f182a3549e58ca9281728e1a8f716:https://ftp.modland.com/pub/modules/Delta%20Music%202/Sid%20%28NL%29/ep-megademo-endpart.dm2
+id=171 file=d92c125e2229b41760c69026c0e67d4c8bf1c6bd67b96fd08b94a88b9dcfefd1:https://ftp.modland.com/pub/modules/Delta%20Music%202/Silkie/cerberos-cool.dm2
+id=171 file=f12bc5931e05d1a2ae5f9544209e2fca45b10626078f6f276c234dc3a1fe07a0:https://ftp.modland.com/pub/modules/Delta%20Music%202/Starray/frantic-firstaidkit%233-menu.dm2
+id=171 file=ca59c703f8d7ec39e2b440c5622b94b6344282c1174876224c3dbd1753bf62c1:https://ftp.modland.com/pub/modules/Delta%20Music%202/Static/therebellion-bbs.dm2
+id=171 file=8039f941f5b7a63195aef596febf9b8f82124ee8b01c47255bdc6f352026263c:https://ftp.modland.com/pub/modules/Delta%20Music%202/Top/asperity%20megademo%203.dm2
+id=171 file=f0b6b6c08b3e4401a0e882405d163b97fc3877555da10a4167834e93b8bc861f:https://ftp.modland.com/pub/modules/Delta%20Music%202/Top/asperity%20megademo%204.dm2
+id=171 file=6a50c0b268e248784e7b0c18db0c6823e246442435728707417a4e5ea98cc47d:https://ftp.modland.com/pub/modules/Delta%20Music%202/Top/asperity%20megademo%205.dm2
+id=171 file=deacc19ab481e7ad2001ae327ad4912d35d9f219255f4feed7b134f2f2808401:https://ftp.modland.com/pub/modules/Delta%20Music%202/Top/asperity%20megademo%20menu.dm2
+id=171 file=9d89023c3ab1f47eccf5067c8a3c1444b40b76ef1a46785bf6d75ebba8d62458:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/calypso%20mono.dm2
+id=171 file=8541998778b33031010e30819bef1d65028103f077d17d6ce942b18b5d4ada76:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/cave-johnny.dm2
+id=171 file=4a3e69f745c483c7552fd97938f01fd1cb1d9e177cd2d980714503c3d659d640:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/china%20force.dm2
+id=171 file=af404a435ff4935eed8b84fed075e0a925671344d56aab55a131030dbf7e19a1:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/deep%20heat.dm2
+id=171 file=99223519e3e165ae7da7ec32da11810567d9b36b18b4465d5247b763c7469661:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/deepheatiii.dm2
+id=171 file=0ab4fab9b0fca0d299f9de35088d2bf66070093c9558dff5ef7ccf4a03f6a598:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/killingfields.dm2
+id=171 file=f1f37e9469ecfc3c72d3dbf482e15fad0a3f861fa5b0739a642e5ece57c1d7b1:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/lowwavefilter.dm2
+id=171 file=63c27dc68f678db861a50e8237a65c7f57d3a55e945aac5fdd486d8ca72e6cfe:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/planet%20e.dm2
+id=171 file=db7e5227bddbb455734d8b3005ba83f8c0cf520e6cf54e208d3555e2774044ae:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/r.a.w.dm2
+id=171 file=45d351352375de71b76326245e382762c6ff656a6bd95c5076ed9f13a3765a28:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/rambow.dm2
+id=171 file=8da847e2f91c7f1b298191460c69cf6e71cdffa82c65574a9b7ecc330e4d9879:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/sound%20of%20color.dm2
+id=171 file=f0ec6c94ac03e502c2f774c17e840c1f6db73cb1da672f2edda5be1de95c5b53:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/sound%20of%20delta.dm2
+id=171 file=0a30cdf4c5d74ce8e9770adf96b57d7ee553e4cd3e9eb1fffe4e315a1f8cfcb4:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/soundofcolor.dm2
+id=171 file=5c37cd53054b0d690c1556c6ebba9f9f2be1882187f387824a36c239be192a6c:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/the%20golden%20bug.dm2
+id=171 file=f98b7d6ebf611150a44f246bd2fd40138850fd9459b6e04e70749f86510dea8d:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/theforce.dm2
+id=171 file=182f90f8fa79574959a6b65d3c322e758d2b55de36148d25c8784760a1a9921d:https://ftp.modland.com/pub/modules/Delta%20Music%202/Tronic/trance%20advance.dm2
+id=171 file=863e0229c93e1aeb9a56e733cc801d0f48e672e95b83ec1d79be250122618e8e:https://ftp.modland.com/pub/modules/Delta%20Music%202/Yodelking/sanxion%20loader.dm2
+id=171 file=683d9e879f599d117e75be1bee69e35e782a7bcbd88eca1b34c90aa5eaa68be1:https://ftp.modland.com/pub/modules/Delta%20Music%202/Yodelking/strulen%20gok-88.dm2
+id=171 file=04c679274ce176842feddcc3372b7d91669574daaac5cbd54f66c970ef2ab5a3:https://ftp.modland.com/pub/modules/Delta%20Music%202/Yodelking/wonder.dm2
+id=171 file=7e3f901dedd30bb2509cca4060eb7e76f2134d37db729cf1e482ad7eede3444b:https://ftp.modland.com/pub/modules/Delta%20Music%202/Yodelking/zaxxon.dm2
+id=171 file=4049955aebb6bca073d813e0cad52290c79aff9aa98e324355731ad6d18e16ac:https://ftp.modland.com/pub/modules/Delta%20Music%202/Zetrix/angels%20intro%203.dm2
+id=171 file=328a86ef96d7a6c353211cdb781700a2ece127d0f2738e0b118d98e7120470ba:https://ftp.modland.com/pub/modules/Delta%20Music%202/Zetrix/arcane-enjoystick.dm2
+id=171 file=2d7eedf83dd785555868c4d09aaee09a3d90f5e721e7ad9efa16799b731c5165:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/Anthrox-SineIntroV2.dm2
+id=171 file=2012384aea78fb20ebd81033c31345f9ea2d1467b72231ad9c23e554877a3b02:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/Triangle-Intro01.dm2
+id=171 file=48d1fe763648bef3af8adfa79f050f3c5f549db66a35611360db23fb3474a1dd:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/arpeggiotune.dm2
+id=171 file=573b8f581907cbf715c6d00036888bc4e23130f520ccc93d9bafbf6b57cc9a29:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/cascade.dm2
+id=171 file=c791e7d7b18b92bec09fa4063167518b09564f2ab0d240aa5529a16fafbca47c:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/chinaboy.dm2
+id=171 file=9c71295f531ddd612365c625b6f09ebfd2e350e3493545ad51950da34c8692a5:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/coutesy.dm2 size=28568  # 5130 bytes after the module
+id=171 file=8830184900ef887bc5979249d662326d2bcd5a85cf053924bcd539258118b162:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/delta-decay-blipverts.dm2
+id=171 file=5992ac28934f675a7d6c5f3c864a84321f126c8aabfe34b07d32044a40149b83:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/gametune1.dm2
+id=171 file=579ee240026e07cbfe5693e22dc898665d451d041c626834084f2919fd272096:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/ion-cannon4.dm2
+id=171 file=d26465d5e259a58f57800fad77fc22511e310af712708838549e235237f77145:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/monday.dm2
+id=171 file=2b538bb0e3c5c52a4312cfd4740636364dfe5dc4a754cfd427a99a0b6e133dda:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/sanxion.dm2
+id=171 file=b7d19103fc2ab5a58313b34d712a672604128f15d0d9966b264a59dad5c3fd02:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/strangers-bbsintro.dm2
+id=171 file=57a8ad233403cddc05c91c3274b414a773e7234c2983f1b274a25179d094eb54:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/sweetest%20perfection.dm2
+id=171 file=dc68b26e66b374c41c78bdafd2d348da90993cedab50a813439ed9fdb87825d3:https://ftp.modland.com/pub/modules/Delta%20Music%202/_unknown/warfalcons-intromusik-3.dm2
