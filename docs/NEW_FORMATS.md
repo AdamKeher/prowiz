@@ -559,6 +559,9 @@ files.
   - **LSP1:** the first input position holding the music's ID wins. It must
     not be inside the music, after `LSP1` (another copy of a music) or after
     `20 3C`.
+  - **An earlier copy of the same music,** met first, has already searched
+    the whole input, so its claimed bank is reused. The input is then
+    scanned about once per distinct music, not once per copy.
   - **Otherwise,** for a relocated music: at B, as in a dump of memory from
     address 0. For lack of an ID, every one-shot sample (repeat length 0
     or 1) must start with two zero bytes there. LSPConvert clears them from
