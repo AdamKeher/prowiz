@@ -598,19 +598,27 @@ files.
 - **Implementation** (`src/formats/new/StartrekkerAM.c`):
   - **Companion** (`pw_new_StartrekkerAM_companion`): after the 1.70a
     handler ripped a FLT4 or EXO4 module (EXO4 is new, through the same
-    1.70a test), every unclaimed `.nt`/`.as` in the input is scored. It
+    1.70a test), every unclaimed `.nt`/`.as` in the input is looked at. It
     fits if it has at least one AM instrument, all of them have at most 32
-    words in the module and at least one has length 0; the score counts
-    the AM instruments with length 0 (twice when they have a volume). The
-    best score wins, then the nearest. It is saved as `N.mod.nt`
+    words in the module and at least one has length 0. The AM sets of most
+    songs look alike, so where the file is decides: the nearest fitting
+    `.nt` starting within 4 KB after the module, else the nearest one
+    ending within 4 KB before it, else the only fitting one in the input.
+    With the Modland files concatenated in name order this gives 38 right
+    companions and 1 wrong one (`kingkeldon.mod`, whose own `.nt` has no
+    AM instrument, takes the only other one that fits); scoring by AM sets
+    instead paired fewer than half right. It is saved as `N.mod.nt`
     (`<mod extension>.nt`), cut to the input end when every AM record is
     still there. The IDs are located with `memchr()` inside the input
     buffer, so a big input with many FLT4 modules stays fast.
   - **Standalone** (`pw_new_StartrekkerNT`, ID 174, `.nt`): an ID the
     companion search did not claim, with the settings check above (it
     keeps the ID string inside the Startrekker program out) and valid AM
-    records (`AM`, 4 zero bytes, waveform ≤ 3). A `.nt` stored before its
-    module is saved twice: on its own, then as the module's companion.
+    records (`AM`, 4 zero bytes, waveform ≤ 3). The scan does not skip
+    the `.nt` after saving it: with cut copies the next module can start
+    inside its editor size (this hid 5 FLT4 modules in the concatenated
+    Modland files). A `.nt` stored before its module is saved twice: on its
+    own, then as the module's companion.
   - **8 channels** (`pw_new_Startrekker8`, ID 175, `.mod`): FLT8 / EXO8 at
     438, 31 instruments checked like the 1.70a MOD test, played orders
     even, note data checked in the played patterns only (the one Modland
@@ -689,7 +697,8 @@ files.
   - smpl: only right after the mdat, ending at the macro bound; it must
     start with 4 zero bytes, fit in the input and contain no valid mdat
     (Modland's `smpl.z-out level 4` contains a stray header copy, which
-    does not count). The scan then goes on after the smpl.
+    does not count). The scan goes on right after the mdat (the bound can
+    reach a little past the real samples).
   - Names: "TFMX 7V module" (trackstep uses `EFFE 0003`), "TFMX 1.5
     module" (old tag, or unpacked with an `(Empty)` text), "TFMX Pro
     module".

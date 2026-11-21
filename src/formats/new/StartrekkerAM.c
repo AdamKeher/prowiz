@@ -17,9 +17,10 @@
  * Saved sizes (Modland files): 1008 for ST1.2 (the last 78 bytes are editor
  * memory), 2090 for ST1.3 and Audio Sculpture.
  *
- * Nothing in the module points at its .nt: the companion is the .nt in the
- * input whose AM instruments are instruments the module leaves empty (see
- * nt_score). A .nt no module claimed is saved on its own.
+ * Nothing in the module points at its .nt: the companion is a .nt whose AM
+ * instruments the module leaves empty, next to the module or the only one
+ * in the input (see save_nt_companion). A .nt no module claimed is saved on
+ * its own.
  *
  * Copyright (C) 2026 the Pro-Wizard port contributors
  * Licensed under the GNU GPL version 2. See COPYING.
@@ -84,34 +85,33 @@ static uint32_t nt_am_mask(const pw_ctx *c, int64_t off, int *bad)
     return mask;
 }
 
-static int popcount31(uint32_t m)
+/* A .nt fits a module when it has AM instruments, every one of them is
+ * (nearly) empty in the module and at least one is empty: AM instruments
+ * have length 0 (once 32 words) and usually, not always, volume 64. */
+static int nt_fits(uint32_t am, uint32_t small, uint32_t zero)
 {
-    int n = 0;
-    for (; m != 0; m &= m - 1)
-        n++;
-    return n;
-}
-
-/* A .nt fits a module when every one of its AM instruments is (nearly) empty
- * in the module, and at least one is empty: AM instruments have length 0
- * (once 32 words) and usually volume 64. Score: AM instruments that look
- * like AM slots in the module, counting those with a volume twice. */
-static int nt_score(uint32_t am, uint32_t small, uint32_t zero, uint32_t zerovol)
-{
-    if (am == 0 || (am & ~small) != 0 || (am & zero) == 0)
-        return -1;
-    return 2 * popcount31(am & zerovol) + popcount31(am & zero);
+    return am != 0 && (am & ~small) == 0 && (am & zero) != 0;
 }
 
 /* Find and save the .nt of the module just saved (c->start .. + c->out_size;
- * its 31 instrument headers at + 20 + 30 * i) as companion "<n>.<ext>". */
+ * its 31 instrument headers at + 20 + 30 * i) as companion "<n>.<ext>".
+ *
+ * Which .nt: the AM sets of most songs look alike ({1,2,3,4}), so they do
+ * not tell pairs apart; where the files are does. The choice is the nearest
+ * fitting .nt starting at most NT_NEAR bytes after the module, else the
+ * nearest one ending at most NT_NEAR bytes before it, else the only fitting
+ * .nt in the whole input. With the Modland files concatenated in name order
+ * this pairs 43/44 right; in random order it rarely finds the right one, so
+ * a .nt far away from its module among several others is left alone (and
+ * saved on its own by pw_new_StartrekkerNT). */
+#define NT_NEAR 4096
+
 static void save_nt_companion(pw_ctx *c, const char *ext)
 {
     int64_t  mstart = c->start, mend = (int64_t)c->start + c->out_size;
-    int64_t  p, best = -1;
-    uint64_t bestdist = 0;
-    uint32_t small = 0, zero = 0, zerovol = 0, am, size, avail, need, i;
-    int      score, bestscore = -1, bad, pass;
+    int64_t  p, after = -1, before = -1, only = -1, best;
+    uint32_t small = 0, zero = 0, am, size, avail, need, i, nfit = 0;
+    int      bad, pass;
 
     if (c->save_status != PW_GOOD)
         return;
@@ -122,19 +122,15 @@ static void save_nt_companion(pw_ctx *c, const char *ext)
         if (len <= 32)
             small |= 1u << i;
         if (len == 0)
-        {
             zero |= 1u << i;
-            if (pw_rd8(c, mstart + 45 + 30 * i) != 0)
-                zerovol |= 1u << i;
-        }
     }
     if (zero == 0)
         return;
 
-    /* every .nt in the input: the best score, then the nearest. This runs
-     * once per FLT4 / EXO4 / FLT8 / EXO8 module, so the first bytes of the
-     * IDs are located with memchr() inside the input buffer (in bounds:
-     * [0, in_size)); everything else reads through pw_rd*(). */
+    /* every .nt in the input. This runs once per FLT4 / EXO4 / FLT8 / EXO8
+     * module, so the first bytes of the IDs are located with memchr()
+     * inside the input buffer (in bounds: [0, in_size)); everything else
+     * reads through pw_rd*(). */
     for (pass = 0; pass < 2; pass++)
     {
         const int ch = pass == 0 ? 'S' : 'A';
@@ -143,7 +139,6 @@ static void save_nt_companion(pw_ctx *c, const char *ext)
         while (from < n)
         {
             const uint8_t *hit = (const uint8_t *)memchr(c->in + from, ch, n - from);
-            uint64_t dist;
 
             if (hit == NULL)
                 break;
@@ -151,23 +146,21 @@ static void save_nt_companion(pw_ctx *c, const char *ext)
             from = (size_t)p + 1;
             if (p >= mstart && p < mend)
                 continue;
-            if (nt_kind(c, p) == 0 || pw_claimed(c, (uint32_t)p) || !nt_settings_ok(c, p))
+            size = nt_kind(c, p);
+            if (size == 0 || pw_claimed(c, (uint32_t)p) || !nt_settings_ok(c, p))
                 continue;
             am = nt_am_mask(c, p, &bad);
-            if (bad)
+            if (bad || !nt_fits(am, small, zero))
                 continue;
-            score = nt_score(am, small, zero, zerovol);
-            if (score < 0)
-                continue;
-            dist = (uint64_t)(p < mstart ? mstart - p : p - mstart);
-            if (score > bestscore || (score == bestscore && dist < bestdist))
-            {
-                best = p;
-                bestscore = score;
-                bestdist = dist;
-            }
+            nfit++;
+            only = p;
+            if (p >= mend && p - mend <= NT_NEAR && (after < 0 || p < after))
+                after = p;
+            if (p + size <= mstart && mstart - (p + size) <= NT_NEAR && p > before)
+                before = p;
         }
     }
+    best = after >= 0 ? after : before >= 0 ? before : nfit == 1 ? only : -1;
     if (best < 0)
         return;
 
@@ -229,7 +222,9 @@ int pw_new_StartrekkerNT(pw_ctx *c)
     c->out_size = size;
     c->convert = PW_BAD;
     pw_save_rip(c, name, PWF_StartrekkerNT);
-    pw_skip_rip(c);
+    /* No pw_skip_rip(): the size is the editor's, and cut copies are common
+     * (5 of 49 on Modland), so the next module may start inside it. The
+     * scan goes on at the next byte; nothing else matches inside a .nt. */
     return 1;
 }
 

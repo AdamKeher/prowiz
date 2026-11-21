@@ -28,7 +28,8 @@
  * 277 of the 368 Modland pairs; for the others the smpl file holds more
  * (sample sets shared by several songs) or less (damaged copies) than the
  * macros reach. It must start with 4 zero bytes (365/368; the player clears
- * them anyway), fit in the input and not run into another TFMX header.
+ * them anyway), fit in the input and not run into another TFMX header. The
+ * scan goes on right after the mdat.
  *
  * Variant names: "7V" when the trackstep uses the 7-voice command EFFE 0003,
  * "1.5" for the old header or an unpacked "(Empty)" text (as UADE decides),
@@ -109,8 +110,9 @@ static uint32_t tfmx_smpl_bound(const pw_ctx *c, int64_t start, const tfmx_info 
     return best;
 }
 
-/* Validate an mdat at 'start' and work out its size. 0 if it is not one. */
-static int tfmx_parse(const pw_ctx *c, int64_t start, tfmx_info *t)
+/* Validate an mdat at 'start' and work out its size. 0 if it is not one.
+ * 'quick': the header and tables only (no size, no sample bound). */
+static int tfmx_parse(const pw_ctx *c, int64_t start, tfmx_info *t, int quick)
 {
     uint32_t k, v, prev;
     int      tag = tfmx_tag(c, start);
@@ -156,6 +158,8 @@ static int tfmx_parse(const pw_ctx *c, int64_t start, tfmx_info *t)
             if (v < 0x800 || (v & 1) != 0 || v >= TFMX_MAXOFF)
                 return 0;
         }
+        if (quick)
+            return 1;
         m127 = pw_rd32(c, start + 0x7FC);
         avail = (int64_t)c->in_size - start;
         t->complete = 0;
@@ -193,6 +197,8 @@ static int tfmx_parse(const pw_ctx *c, int64_t start, tfmx_info *t)
                 return 0;
             prev = lastpat = v;
         }
+        if (quick)
+            return 1;
         /* macro table: ascending offsets below the pattern table, up to the
          * first entry that is not one (or the end of the input) */
         prev = lastpat;
@@ -250,7 +256,7 @@ static uint32_t tfmx_find_smpl(const pw_ctx *c, int64_t at, uint32_t size)
     {
         uint32_t  b = pw_rd8(c, p);
         tfmx_info t;
-        if ((b == 'T' || b == 't') && tfmx_tag(c, p) != 0 && tfmx_parse(c, p, &t))
+        if ((b == 'T' || b == 't') && tfmx_tag(c, p) != 0 && tfmx_parse(c, p, &t, 1))
             return 0;
     }
     return size;
@@ -308,7 +314,7 @@ static int tfmx_single(pw_ctx *c)
 
     if (msize < 0x200 || msize > TFMX_MAXOFF || ssize == 0 || ssize > 0x2000000u)
         return 0;
-    if (!tfmx_parse(c, start + hdr, &t) || (t.complete && t.size > msize))
+    if (!tfmx_parse(c, start + hdr, &t, 0) || (t.complete && t.size > msize))
         return 0;
 
     snprintf(name, sizeof name, "TFMX %s module (%s single file)", tfmx_variant(&t), kind);
@@ -331,7 +337,7 @@ int pw_new_TFMX(pw_ctx *c)
         return 0;
     if (tfmx_single(c))
         return 1;
-    if (!tfmx_parse(c, c->i, &t))
+    if (!tfmx_parse(c, c->i, &t, 0))
         return 0;
 
     snprintf(name, sizeof name, "TFMX %s module", tfmx_variant(&t));
@@ -345,13 +351,8 @@ int pw_new_TFMX(pw_ctx *c)
         if (smpl != 0)
             pw_save_companion_in(c, "smpl", (uint32_t)c->start + t.size, smpl);
     }
+    /* past the mdat only: the smpl size is a bound from the macros, which
+     * can reach a little further than the real samples */
     pw_skip_rip(c);
-    if (smpl != 0 && c->save_status == PW_GOOD)
-    {
-        /* go on after the samples too */
-        uint32_t next = (uint32_t)c->start + t.size + smpl - 1;
-        if (next > c->i && next < (uint32_t)c->in_size)
-            c->i = next;
-    }
     return 1;
 }
