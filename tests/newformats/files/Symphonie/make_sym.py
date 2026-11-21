@@ -1,0 +1,189 @@
+#!/usr/bin/env python3
+"""
+make_sym.py - builds the small synthetic Symphonie files of this directory
+(no music: a few notes, generated waveforms), laid out as Symphonie Pro's
+SaveActualModule writes them.
+
+  python make_sym.py [OUTDIR]       (default: this directory)
+
+  synth.symmod   8 sample slots: a raw sample, an 8-bit delta sample, a
+                 16-bit delta stereo pair (the right half has no hunk), empty
+                 and killed slots; packed instrument list and positions
+  plain.symmod   the same with nothing packed and 4 slots
+  song.symsong   a song (-7): no sample hunks, instruments named by file
+"""
+import math
+import os
+import struct
+import sys
+
+
+def pack(data):
+    """Symphonie's RLE ("PACK" FF FF, u32 unpacked length): runs of zeros
+    (type 3), repeated longwords (type 1) and raw bytes (type 0), then -1"""
+    out = bytearray(b'PACK\xff\xff' + struct.pack('>I', len(data)))
+    k, raw = 0, bytearray()
+
+    def flush():
+        while raw:
+            n = min(255, len(raw))
+            out.extend(bytes([0, n]) + raw[:n])
+            del raw[:n]
+
+    while k < len(data):
+        z = 0
+        while k + z < len(data) and data[k + z] == 0 and z < 255:
+            z += 1
+        if z >= 8:
+            flush()
+            out.extend(bytes([3, z]))
+            k += z
+            continue
+        if k + 8 <= len(data):
+            dw, n = data[k:k + 4], 1
+            while k + 4 * (n + 1) <= len(data) and data[k + 4 * n:k + 4 * n + 4] == dw and n < 255:
+                n += 1
+            if n >= 3 and dw != b'\0\0\0\0':
+                flush()
+                out.extend(bytes([1, n]) + dw)
+                k += 4 * n
+                continue
+        raw.append(data[k])
+        k += 1
+    flush()
+    out.append(0xFF)
+    return bytes(out)
+
+
+def value(t, v):
+    return struct.pack('>iI', t, v & 0xFFFFFFFF)
+
+
+def block(t, data):
+    return struct.pack('>iI', t, len(data)) + data
+
+
+def instrument(name, itype=0, channel=0, volume=100):
+    r = bytearray(256)
+    r[0:len(name)] = name
+    r[0x80] = itype & 0xFF
+    r[0x84] = channel
+    r[0x86] = volume
+    return bytes(r)
+
+
+def notes(channels, lines, patterns):
+    out = bytearray()
+    for p in range(patterns):
+        for ln in range(lines):
+            for ch in range(channels):
+                if (ln + 3 * ch + p) % 8 == 0:
+                    out += bytes([0, 24 + (ln + p) % 24, 100, ch % 3])  # key on, pitch, vol, instr
+                else:
+                    out += bytes([0, 0xFF, 0xFF, 0xFF])
+    return bytes(out)
+
+
+def positions(n):
+    out = b''
+    for k in range(n):
+        e = bytearray(32)
+        struct.pack_into('>HHHHHHhH', e, 4, 1, 0, k % 2, 0, 64, 6, 0, 0)
+        out += bytes(e)
+    return out
+
+
+def sequences():
+    s = struct.pack('>HHHhh', 0, 2, 0, 0, 0) + bytes(6)
+    end = struct.pack('>HHHhh', 0, 0, 0, -1, 0) + bytes(6)
+    return s + end
+
+
+def wave8(n):
+    return bytes((int(100 * math.sin(2 * math.pi * k / 50)) & 0xFF) for k in range(n))
+
+
+def delta8(data):
+    out, last = bytearray(), 0
+    for b in data:
+        out.append((b - last) & 0xFF)
+        last = b
+    return bytes(out)
+
+
+def delta16(data):
+    """Symphonie's 16-bit delta coding: per 4096-byte block, the low bytes
+    then the high bytes, each as running differences"""
+    out = bytearray(data)
+    for blk in range(len(data) // 4096):
+        o = blk * 4096
+        lo = [data[o + 2 * i + 1] for i in range(2048)]
+        hi = [data[o + 2 * i] for i in range(2048)]
+        last = 0
+        for i, b in enumerate(lo + hi):
+            out[o + i] = (b - last) & 0xFF
+            last = b
+    return bytes(out)
+
+
+def header(channels, slots, song=False, pro=True):
+    h = b'SymM' + struct.pack('>I', 1)
+    h += value(-1, channels) + value(-2, 64) + value(-3, (2 << 16) | 2)
+    h += value(-4, (100 << 16) | slots) + value(-5, (100 << 16) | 4) + value(-6, 83)
+    if pro:
+        h += value(10, 1500) + value(11, 0) + value(12, 0)
+    if song:
+        h += value(-7, 0)
+    return h
+
+
+def build(packed, slots, song=False):
+    channels = 4
+    names = [instrument(b'raw sample'), instrument(b'delta sample'),
+             instrument(b'stereo left', channel=1), instrument(b'stereo right', channel=2),
+             instrument(b''), instrument(b'killed', itype=-4)]
+    names += [instrument(b'') for _ in range(slots - len(names))]
+    names = names[:slots]
+    if song:
+        names = [instrument(b'Work:Samples/bass.8svx'), instrument(b'Work:Samples/lead.8svx')]
+        names += [instrument(b'') for _ in range(slots - 2)]
+    instr = b''.join(names)
+    out = header(channels, slots, song)
+    out += block(-14, pack(instr) if packed else instr)
+    pos = positions(2)
+    out += block(-10, pack(pos) if packed else pos)
+    nt = notes(channels, 64, 2)
+    out += block(-13, pack(nt) if packed else nt)
+    sq = sequences()
+    out += block(-15, pack(sq) if packed else sq)
+    out += block(-16, b'Generated by make_sym.py.\nNo music in here.\n')
+    if song:
+        obj = b'some info object'
+        out += block(-20, obj) + block(-19, b'TEXT'.ljust(16, b'\0'))
+        return out
+    pcm16 = b''.join(struct.pack('>h', 200 * (k % 120) - 12000) for k in range(4096))
+    for k, rec in enumerate(names):
+        multi, itype = rec[0x84], struct.unpack('b', rec[0x80:0x81])[0]
+        if rec[0] == 0 or itype == -4 or multi == 3:
+            out += struct.pack('>i', -12)
+        elif multi == 2:
+            continue                              # the right half of a stereo pair
+        elif k == 0:
+            out += block(-11, wave8(300))
+        elif k == 1:
+            out += block(-17, delta8(wave8(500)))
+        else:
+            out += block(-18, delta16(b'16BT' + pcm16[4:]))
+    return out
+
+
+def main():
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
+    for name, data in (('synth.symmod', build(True, 8)), ('plain.symmod', build(False, 4)),
+                       ('song.symsong', build(True, 8, song=True))):
+        with open(os.path.join(out, name), 'wb') as f:
+            f.write(data)
+
+
+if __name__ == '__main__':
+    main()
