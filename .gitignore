@@ -4,3 +4,4 @@
 __pycache__/
 *.o
 /.claude/settings.local.json
+/tests/newformats/cache/

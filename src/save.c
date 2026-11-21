@@ -19,8 +19,8 @@ static void found_begin(pw_ctx *c, const char *format, int fmt_id)
     strncpy(c->cur_format, format, sizeof c->cur_format - 1);
     c->cur_format[sizeof c->cur_format - 1] = 0;
     c->cur.format = c->cur_format;
-    c->cur.ext = (fmt_id >= 0 && fmt_id <= PWF_COUNT) ? PW_EXT(c, fmt_id) : "";
-    c->cur.kind = (fmt_id >= 0 && fmt_id < PWF_COUNT) ? (pw_kind)pw_format_kinds[fmt_id] : PW_KIND_DATA;
+    c->cur.ext = pw_ext_of(c, fmt_id);
+    c->cur.kind = pw_kind_of(fmt_id);
     c->cur.offset = (uint32_t)c->start;
     c->cur.size = c->out_size;
 }
@@ -91,7 +91,7 @@ static int save_prologue(pw_ctx *c, const char *format, int fmt_id)
     }
 
     memset(c->out_name, 0, sizeof c->out_name);
-    snprintf(c->out_name, sizeof c->out_name, "%d.%s", c->file_counter, PW_EXT(c, fmt_id));
+    snprintf(c->out_name, sizeof c->out_name, "%d.%s", c->file_counter, pw_ext_of(c, fmt_id));
     pw_printf(c, "  saving in file \"%s\" ... ", c->out_name);
     c->cur.index = c->file_counter;
     c->cur.status = PW_STATUS_SAVED;
@@ -152,6 +152,99 @@ void pw_save_rip_special(pw_ctx *c, const char *format, int fmt_id,
         pw_printf(c, "  WARNING !: it's a fake header in this case !!\n");
     c->amiga_exe_header = PW_GOOD;
     c->save_status = PW_GOOD;
+}
+
+/* ------------------------------------- formats added by the port */
+
+void pw_save_rip_data(pw_ctx *c, const char *format, int fmt_id,
+                      const uint8_t *data, size_t size, int restored)
+{
+    if (!save_prologue(c, format, fmt_id))
+        return;
+    c->cur.restored = restored ? 1 : 0;
+    found_emit(c);
+    emit_rip(c, data, size);
+    if (c->fatal)
+        return;
+    pw_printf(c, "done\n");
+    if (restored)
+        pw_printf(c, "  It was found as prepared by its player in memory: restored !\n");
+    c->save_status = PW_GOOD;
+}
+
+void pw_save_companion(pw_ctx *c, const char *ext, const uint8_t *data, size_t size)
+{
+    char name[PW_NAME_MAX];
+
+    if (c->fatal || c->save_status != PW_GOOD || c->cur.index < 0)
+        return;
+    snprintf(name, sizeof name, "%d.%s", c->cur.index, ext);
+    pw_printf(c, "  saving its companion file \"%s\" ... ", name);
+    c->result.files++;
+    if (c->cb.file != NULL &&
+        c->cb.file(c->cb.user, name, data, size, PW_FILE_COMPANION, &c->cur) != 0)
+    {
+        pw_printf(c, "!!couldn't create the file \"%s\"!\nexiting...", name);
+        c->fatal = PW_ERR_OUTPUT;
+        return;
+    }
+    pw_printf(c, "done\n");
+}
+
+void pw_save_companion_in(pw_ctx *c, const char *ext, uint32_t start, uint32_t size)
+{
+    uint8_t *buf;
+    uint32_t k;
+
+    if (c->fatal || c->save_status != PW_GOOD || c->cur.index < 0)
+        return;
+    buf = (uint8_t *)malloc(size ? size : 1);
+    if (buf == NULL)
+    {
+        c->fatal = PW_ERR_NOMEM;
+        return;
+    }
+    for (k = 0; k < size; k++)
+        buf[k] = IN((int64_t)start + k);
+    pw_save_companion(c, ext, buf, size);
+    free(buf);
+    pw_claim(c, start, size);
+}
+
+void pw_claim(pw_ctx *c, uint32_t start, uint32_t size)
+{
+    if (c->nclaimed == c->capclaimed)
+    {
+        uint32_t ncap = c->capclaimed ? c->capclaimed * 2 : 16;
+        void *p = realloc(c->claimed, (size_t)ncap * sizeof *c->claimed);
+        if (p == NULL)
+            return; /* only costs a duplicate rip */
+        c->claimed = p;
+        c->capclaimed = ncap;
+    }
+    c->claimed[c->nclaimed].start = start;
+    c->claimed[c->nclaimed].size = size;
+    c->nclaimed++;
+}
+
+int pw_claimed(const pw_ctx *c, uint32_t start)
+{
+    uint32_t k;
+    for (k = 0; k < c->nclaimed; k++)
+        if (c->claimed[k].start == start)
+            return 1;
+    return 0;
+}
+
+void pw_skip_rip(pw_ctx *c)
+{
+    uint32_t next;
+
+    if (c->save_status != PW_GOOD || c->out_size == 0)
+        return;
+    next = (uint32_t)c->start + c->out_size - 1; /* the scan loop adds 1 */
+    if (next > c->i && next < (uint32_t)c->in_size)
+        c->i = next;
 }
 
 void pw_report_unrippable(pw_ctx *c, int fmt_id, const char *format, uint32_t offset)

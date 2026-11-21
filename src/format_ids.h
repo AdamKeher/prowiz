@@ -175,7 +175,32 @@ enum pw_format_id
     PWF_BHC2CruncherData,        /* 166 */
     PWF_Pac1,                    /* 167 */
 
-    PWF_COUNT /* _KNOWN_FORMATS */
+    PWF_COUNT, /* _KNOWN_FORMATS: the 1.70a formats, i.e. the rows of "_types_" */
+
+    /* Formats added by this port (not in Pro-Wizard 1.70a; scanned unless
+     * PW_FORMATS_170A). "_types_" does not cover them: their extensions are
+     * fixed (pw_new_ext). SidMon 2 keeps the 1.70a ID PWF_Sidmon2, which the
+     * original reserved but never detected. */
+    PWF_MMD2 = PWF_COUNT,        /* 168 OctaMED Pro MMD2                        */
+    PWF_MMD3,                    /* 169 OctaMED Soundstudio MMD3                */
+    PWF_PreTracker,              /* 170 PreTracker                              */
+    PWF_DeltaMusic2,             /* 171 Delta Music 2                           */
+    PWF_ArtOfNoise,              /* 172 Art of Noise (AON4 / AON8)              */
+    PWF_LSP,                     /* 173 LightSpeedPlayer music (+ .lsbank)      */
+    PWF_StartrekkerNT,           /* 174 Startrekker AM / Audio Sculpture .nt    */
+    PWF_Startrekker8,            /* 175 Startrekker 8 channels (FLT8 / EXO8)    */
+    PWF_DigiBoosterPro,          /* 176 DigiBooster Pro (DBM0)                  */
+    PWF_Musicline,               /* 177 Musicline Editor                        */
+    PWF_Symphonie,               /* 178 Symphonie / Symphonie Pro               */
+    PWF_TFMX,                    /* 179 TFMX mdat (+ smpl)                      */
+    PWF_TFMXSingle,              /* 180 TFMX single file (TFHD, TFMXPAK)        */
+    PWF_RobHubbard,              /* 181 Rob Hubbard                             */
+    PWF_BenDaglish,              /* 182 Ben Daglish                             */
+    PWF_DavidWhittaker,          /* 183 David Whittaker                         */
+
+    PWF_ALL_COUNT
 };
+
+#define PWF_NEW_COUNT (PWF_ALL_COUNT - PWF_COUNT)
 
 #endif

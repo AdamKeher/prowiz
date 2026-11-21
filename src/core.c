@@ -222,6 +222,7 @@ int pw_scan(const uint8_t *data, size_t size, const pw_options *opt,
     if (cb != NULL)
         c->cb = *cb;
     c->modes = (opt != NULL && opt->modes != 0) ? (opt->modes & PW_MODE_ALL) : PW_MODE_ALL;
+    c->new_formats = !(opt != NULL && opt->formats == PW_FORMATS_170A);
     c->save_status = PW_GOOD;
     c->convert = PW_BAD;
     c->amiga_exe_header = PW_GOOD;
@@ -251,27 +252,35 @@ int pw_scan(const uint8_t *data, size_t size, const pw_options *opt,
     free(c->outside.key);
     free(c->outside.val);
     free(c->last_rip);
+    free(c->claimed);
     free(c);
     return rc;
 }
 
 int pw_format_count(void)
 {
+    return PWF_ALL_COUNT;
+}
+
+int pw_format_count_170a(void)
+{
     return PWF_COUNT;
 }
 
 const char *pw_format_ext(int format_id)
 {
-    if (format_id < 0 || format_id >= PWF_COUNT)
+    if (format_id < 0 || format_id >= PWF_ALL_COUNT)
         return NULL;
+    if (format_id >= PWF_COUNT)
+        return pw_new_ext[format_id - PWF_COUNT];
     return pw_default_ext[format_id];
 }
 
 pw_kind pw_format_kind(int format_id)
 {
-    if (format_id < 0 || format_id >= PWF_COUNT)
+    if (format_id < 0 || format_id >= PWF_ALL_COUNT)
         return PW_KIND_MUSIC;
-    return (pw_kind)pw_format_kinds[format_id];
+    return pw_kind_of(format_id);
 }
 
 const char *pw_version(void)

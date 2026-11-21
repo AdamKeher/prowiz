@@ -14,6 +14,7 @@
  */
 #include "pw_internal.h"
 #include "formats/formats.h"
+#include "formats/new/new_formats.h"
 
 /* byte at offset k from the scan position; like in_data[PW_i+k], the index
  * is computed in 32 bits and wraps */
@@ -22,6 +23,8 @@
 /* scan mode filters (all enabled by default, as in the original) */
 #define WANT_MUSIC ((c->modes & PW_MODE_MUSIC) != 0)
 #define WANT_DATA  ((c->modes & PW_MODE_DATA) != 0)
+/* formats the original never had (src/formats/new/); off with PW_FORMATS_170A */
+#define NEW_FORMATS (c->new_formats)
 
 void pw_scan_run(pw_ctx *c)
 {
@@ -836,6 +839,26 @@ void pw_scan_run(pw_ctx *c)
         break;
 
       case 'E': /* 0x45 */
+          /* not in the original: "EXO4" / "EXO8" : StarTrekker (Exolon) */
+        if ( NEW_FORMATS &&
+             (B(1) == 'X') &&
+             (B(2) == 'O') &&
+             (B(3) == '4') )
+        {
+          if ( WANT_MUSIC && pw_test_MOD(c, 4) != PW_BAD )
+          {
+            pw_rip_MOD(c, 4);
+            pw_new_StartrekkerAM_companion(c);
+          }
+        }
+        if ( NEW_FORMATS &&
+             (B(1) == 'X') &&
+             (B(2) == 'O') &&
+             (B(3) == '8') )
+        {
+          if ( WANT_MUSIC )
+            pw_new_Startrekker8(c);
+        }
           /* "EMOD" : ID of Quadra Composer */
         if ( (B(1) == 'M') &&
              (B(2) == 'O') &&
@@ -886,7 +909,19 @@ void pw_scan_run(pw_ctx *c)
           if ( WANT_MUSIC && pw_test_MOD(c, 4) != PW_BAD )
           {
             pw_rip_MOD(c, 4);
+            /* not in the original: its Startrekker AM synth file (.nt) */
+            if ( NEW_FORMATS )
+              pw_new_StartrekkerAM_companion(c);
           }
+        }
+          /* not in the original: "FLT8" : StarTrekker 8 channels */
+        if ( NEW_FORMATS &&
+             (B(1) == 'L') &&
+             (B(2) == 'T') &&
+             (B(3) == '8') )
+        {
+          if ( WANT_MUSIC )
+            pw_new_Startrekker8(c);
         }
           /* "FC14" : Future Composer 1.4 */
         if ( (B(1) == 'C') &&
@@ -1702,6 +1737,19 @@ void pw_scan_run(pw_ctx *c)
           {
             pw_rip_MMD0(c);
           }
+          /* not in the original: an MMD0/1 a player has relocated in memory */
+          else if ( NEW_FORMATS && WANT_MUSIC )
+            pw_new_MMD_relocated(c);
+        }
+        /* not in the original: MMD2 / MMD3 (OctaMED Pro, Soundstudio) */
+        else if ( NEW_FORMATS &&
+             (B(1) == 'M') &&
+             (B(2) == 'D') &&
+             ((B(3) == '2') ||
+              (B(3) == '3')) )
+        {
+          if ( WANT_MUSIC && !pw_new_MMD23(c) )
+            pw_new_MMD_relocated(c);
         }
 
          /* Defjam Cruncher 3.2 pro */
@@ -2691,5 +2739,10 @@ void pw_scan_run(pw_ctx *c)
         break;
 
     } /* end of switch */
+
+    /* not in the original: the formats it never had, at the position the
+     * checks above leave (the original's handlers always come first) */
+    if ( NEW_FORMATS && !c->fatal )
+      pw_scan_new(c);
   }
 }

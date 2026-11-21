@@ -346,3 +346,51 @@ const unsigned char pw_format_kinds[PWF_COUNT] =
     PW_KIND_DATA , /* BHC2CruncherData */
     PW_KIND_DATA , /* Pac1 */
 };
+
+/* Formats added by the port (format_ids.h, from PWF_COUNT on). */
+const char *const pw_new_ext[PWF_NEW_COUNT] =
+{
+    "mmd2",                  /* 168 MMD2 */
+    "mmd3",                  /* 169 MMD3 */
+    "prt",                   /* 170 PreTracker */
+    "dm2",                   /* 171 DeltaMusic2 */
+    "aon",                   /* 172 ArtOfNoise */
+    "lsmusic",               /* 173 LSP */
+    "nt",                    /* 174 StartrekkerNT */
+    "mod",                   /* 175 Startrekker8 */
+    "dbm",                   /* 176 DigiBoosterPro */
+    "ml",                    /* 177 Musicline */
+    "symmod",                /* 178 Symphonie */
+    "mdat",                  /* 179 TFMX */
+    "tfx",                   /* 180 TFMXSingle */
+    "rh",                    /* 181 RobHubbard */
+    "bd",                    /* 182 BenDaglish */
+    "dw",                    /* 183 DavidWhittaker */
+};
+
+const unsigned char pw_new_kinds[PWF_NEW_COUNT] =
+{
+    PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC,
+    PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC,
+    PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC,
+    PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC, PW_KIND_MUSIC,
+};
+
+/* extension of any format ID: "_types_" rows for the 1.70a formats */
+const char *pw_ext_of(const pw_ctx *c, int fmt_id)
+{
+    if (fmt_id >= 0 && fmt_id < PWF_COUNT)
+        return PW_EXT(c, fmt_id);
+    if (fmt_id >= PWF_COUNT && fmt_id < PWF_ALL_COUNT)
+        return pw_new_ext[fmt_id - PWF_COUNT];
+    return "";
+}
+
+pw_kind pw_kind_of(int fmt_id)
+{
+    if (fmt_id >= 0 && fmt_id < PWF_COUNT)
+        return (pw_kind)pw_format_kinds[fmt_id];
+    if (fmt_id >= PWF_COUNT && fmt_id < PWF_ALL_COUNT)
+        return (pw_kind)pw_new_kinds[fmt_id - PWF_COUNT];
+    return PW_KIND_DATA;
+}

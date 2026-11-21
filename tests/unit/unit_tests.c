@@ -257,9 +257,12 @@ static void test_edge_inputs(void)
     CHECK(pw_scan(NULL, 0, NULL, NULL, &res) == PW_OK && res.found == 0);
     CHECK(pw_scan(NULL, 5, NULL, NULL, NULL) == PW_ERR_ARG);
     CHECK(pw_scan(small, sizeof small, NULL, NULL, &res) == PW_OK && res.found == 0);
-    CHECK(pw_format_count() == PWF_COUNT);
+    CHECK(pw_format_count() == PWF_ALL_COUNT);
+    CHECK(pw_format_count_170a() == PWF_COUNT);
     CHECK(strcmp(pw_format_ext(PWF_Noisepacker2), "NoisePacker2") == 0);
-    CHECK(pw_format_ext(-1) == NULL && pw_format_ext(PWF_COUNT) == NULL);
+    CHECK(strcmp(pw_format_ext(PWF_PreTracker), "prt") == 0);
+    CHECK(pw_format_ext(-1) == NULL && pw_format_ext(PWF_ALL_COUNT) == NULL);
+    CHECK(pw_format_kind(PWF_LSP) == PW_KIND_MUSIC);
     CHECK(pw_format_kind(PWF_Powerpacker3) == PW_KIND_DATA);
     CHECK(pw_format_kind(PWF_P61A) == PW_KIND_MUSIC);
     CHECK(strcmp(pw_version(), PROWIZ_VERSION) == 0);
