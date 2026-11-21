@@ -1,70 +1,69 @@
-# New formats: research notes
+# Formats Pro-Wizard 1.70a never had
 
-These are formats Pro-Wizard 1.70a never had, researched on 2026-11-21 before
-adding them to prowiz. Plan: the new formats are on by default, and a command
-line flag restores the 1.70a set (and so its exact output, which the
-difftest/fuzzdiff comparisons keep checking).
+prowiz finds these formats on top of the original's. They were researched
+and implemented on 2026-11-21. They are on by default; `-c`
+(`PW_FORMATS_170A`) turns them off, and the engine is then exactly the 1.70a
+one (difftest and fuzzdiff run the port that way).
 
-The research used each format's own loader and replayer sources. A **Checked**
-figure means a script ran the size algorithm on real files (mostly from
-Modland, plus each tool's own examples) and the computed end matched the file
-size. Offsets are hex and relative to the module start; all fields are
-big-endian.
+Each section below gives the format's layout, the size rule, the checks,
+what players change in memory, the reference code, where the test files come
+from, and implementation notes. Offsets are hex and relative to the module
+start; all fields are big-endian.
+
+**Exact** counts the real files (mostly from Modland, plus each tool's own
+examples) whose rip has exactly the file's size. The others are listed with
+the reason (data after the module, files cut short, variants not handled) in
+the format's test list, `tests/newformats/<Format>.txt`.
 
 ## Summary
 
-| Format | Signature | Files | Size from | Checked | In memory dumps | Verdict |
-|---|---|---|---|---|---|---|
-| OctaMED MMD2/MMD3 | `MMD2`/`MMD3` at 0 | 1 | `modlen` at 04 | 15/15 | pointers relocated (as for MMD0/1 today) | easy (file images) |
-| PreTracker | `PRT` + version byte | 1 | header walk | 83/83 | verbatim | easy (done) |
-| SidMon 2 | `SIDMON II - THE MIDI VERSION` at 3A | 1 | header sums + sample table | 101/107 | intact; sample bytes may be negated | easy |
-| Delta Music 2 | `.FNL` at BC6 | 1 (contains its player) | sample length table | 93/98 | player globals, waveform 0 change | easy |
-| Art of Noise | `AON4`/`AON8` + known chunks | 1 | chunk walk | 209/211 | verbatim | easy (done) |
-| DigiBooster Pro | `DBM0` + version 2/3 | 1 | chunk walk | 4/4 | rare (loaded into structures) | easy |
-| Musicline Editor | `MLEDMODL` | 1 | chunk walk | 102/104 | rare (loaded into structures) | easy (done) |
-| Rob Hubbard | 5 × `bra.w` + code | 1 (player code + data) | sample walk to `4E71` | 12/12 | - | easy |
-| Ben Daglish | `bra.w` table + init code | 1 (player code + data) | instrument tables | 28/44 exact, 34/44 within 34 bytes | offsets, probably intact | easy-moderate |
-| LightSpeedPlayer | `LSP1` / `LSPm` | 2 (music + bank) | stream walk; bank from instrument table | 38/38 music, 32/32 banks | relocated: undone; ADPCM bank packed again | moderate |
-| Symphonie | `SymM` + version 1 | 1 (`.SymSONG`: plus samples) | hunk walk + slot count | 4/4 | rare | moderate |
-| Startrekker AM | `.nt`: `ST1.x ModuleINFO` | 2 (mod + `.nt`) | `.nt` sizes are near fixed | 44 `.nt` | no link between the two | moderate |
-| TFMX | `TFMX-SONG ` and others | 2 (mdat + smpl) | mdat: walk; smpl: lower bound | mdat 69/74, smpl 53/74 | smpl found only via player variables | hard |
-| David Whittaker | 3 code prologues | 1 (player code + data) | sample sets + 64 zero bytes | 92/121 | initialised copies | moderate-hard |
+| Format | ID | Signature | Files saved | Exact | In memory dumps |
+|---|---|---|---|---|---|
+| OctaMED MMD2/MMD3 | 168, 169 | `MMD2`/`MMD3` | `.mmd2` / `.mmd3` | 41/41 MMD2, 51/51 MMD3 | relocated MMD0-MMD3 restored (164/164 test relocations exact) |
+| PreTracker | 170 | `PRT` + version | `.prt` | 83/83 | verbatim; Raspberry Casket patch undone |
+| SidMon 2 | 146 | `SIDMON II - THE MIDI VERSION` at 3A | `.Sidmon2` | 101/107 | intact; sample bytes may be negated |
+| Delta Music 2 | 171 | `.FNL` at BC6 | `.dm2` | 93/98 | player globals, waveform 0 change |
+| Art of Noise | 172 | `AON4`/`AON8` + known chunks | `.aon` | 209/211 | verbatim |
+| DigiBooster Pro | 176 | `DBM0` + version 2/3 | `.dbm` | 58/58 (+3 libxmp) | rare (loaded into structures) |
+| Musicline Editor | 177 | `MLEDMODL` | `.ml` | 102/104 | rare (loaded into structures) |
+| Symphonie | 178 | `SymM` + version 1 | `.symmod` | 29/29 | rare |
+| LightSpeedPlayer | 173 | `LSP1` / `LSPm` | `.lsmusic` + `.lsbank` | 38/38 music, 32/32 banks | relocation undone; ADPCM bank packed again |
+| Startrekker AM | 22 + 174 | `.nt`: `ST1.x ModuleINFO`, `AudioSculpture10` | `.mod` + `.mod.nt` | every `.nt` exact | `.nt` paired with its mod by position |
+| Startrekker 8 ch. | 175 | `FLT8` / `EXO8` | `.mod` (+ `.mod.nt`) | 1/1 | - |
+| TFMX | 179, 180 | `TFMX-SONG ` and others; TFHD, TFMXPAK | `.mdat` + `.smpl`; `.tfx` | mdat 346/368, smpl 277/368 | smpl found only right after its mdat |
+| Rob Hubbard | 181 | 5 × `bra.w` + code | `.rh` | 12/12 (2 effect banks not handled) | - |
+| Ben Daglish | 182 | `bra.w` table + init code | `.bd` | 28/44 (15 have data after the module) | offsets, intact |
+| David Whittaker | 183 | 3 code prologues | `.dw` | 92/121 (7 variants not handled) | initialised copies |
+
+Also new: Startrekker `EXO4` modules (the original found only `FLT4`).
 
 Packed productions: LSP and PreTracker songs in released demos and intros are
 almost always inside crunched executables (Shrinkler, Cranker, LDOS packers).
 They will mostly be found in memory dumps, decrunched files and plain data
 files.
 
-## Work shared by several formats
+## How they fit in
 
-1. **The 1.70a-only flag.** This is a CLI option plus a field in the library
-   options. New handlers run only when the flag is off. difftest.py and
-   fuzzdiff.py pass the flag to the port.
-2. **Several files from one finding.**
-   - LSP needs `N.lsmusic` + `N.lsbank`.
-   - TFMX needs `mdat.N` + `smpl.N`.
-   - Startrekker AM needs `N.mod` + `N.mod.nt`.
-
-   File names are now always `"%d.%s"` (`save_prologue`), so this needs a
-   companion-file role in `pw_file_role`. The JSON `files` list already
-   handles several files.
-3. **Undoing relocation in memory images.**
-   - **Who needs it:**
-     - LSP: instrument pointers and the flag at 0A.
-     - MMD0-MMD3: the whole pointer graph.
-     - PreTracker: the Raspberry Casket header patch.
-   - **What it takes:** inferring the load address (the "base"), which is
-     simply the file offset in a flat chip-RAM dump starting at address 0.
-   - **Bonus:** for MMD this also fixes an existing 1.70a limitation, where
-     relocated MMD0/1 modules are rejected or saved still relocated.
-4. **Test files.** Modland files cannot be committed.
-   - Fetch a pinned list into the git-ignored `tests/corpus/`, like
-     `tests/fetch_corpus.py` does.
-   - Commit small synthetic files.
-   - Per format, check that:
-     - each real file is found standalone, at the exact size;
-     - it is found again at odd and even offsets inside noise;
-     - nothing is found in the existing corpus.
+- **Code:** `src/formats/new/`. `new_formats.h` states the conventions.
+  `pw_scan_new()` runs after the original's checks at each scan position,
+  and `scan.c` has a few hooks inside the original's MMD and Startrekker
+  checks (grep `NEW_FORMATS`).
+- **IDs:** 168-183 come after the 1.70a table, so `_types_` files keep their
+  meaning; their extensions are fixed (`pw_new_ext`). SidMon 2 reuses ID 146,
+  which 1.70a reserved but never used.
+- **Second files:** saved as `<n>.<ext>` with the role `companion`
+  (`pw_save_companion*()`), and claimed so they are not ripped again.
+- **Restored copies:** a rip rebuilt from a copy a player prepared in memory
+  is flagged `restored` (`pw_save_rip_data()`).
+- **Tests:**
+  - `tests/newformats.py` runs the lists in `tests/newformats/`. Each module
+    is checked alone and embedded in noise, for its exact rip and companions,
+    and the run fails on any false positive in the noise.
+  - Real files are referenced by URL and sha256 and downloaded into a
+    git-ignored cache. The small synthetic files under
+    `tests/newformats/files/` are committed, with the scripts that make them,
+    and CI runs those (`--offline`).
+  - `tests/fuzznew.py` hunts crashes and hangs with a sanitizer build.
 
 ---
 

@@ -2742,7 +2742,7 @@ void pw_scan_run(pw_ctx *c)
 
     /* not in the original: the formats it never had, at the position the
      * checks above leave (the original's handlers always come first) */
-    if ( NEW_FORMATS && !c->fatal )
+    if ( NEW_FORMATS && !c->fatal && pw_new_first_byte[B(0)] )
       pw_scan_new(c);
   }
 }

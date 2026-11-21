@@ -128,7 +128,9 @@ extension table) and the format table functions.
 
 ## Formats
 
-About 90 music formats and 80 cruncher variants (158 format IDs), the full
+### The original's formats
+
+About 90 music formats and 80 cruncher variants (168 format IDs), the full
 set of the original's scanner:
 
 * **Modules:** Protracker / Startrekker / FastTracker 1 (any channel count),
@@ -160,6 +162,27 @@ set of the original's scanner:
 
 `docs/upstream/KNOWN_FORMATS.txt` is the original's own list.
 
+### Formats the original never had
+
+Off with `-c`. Their layouts, size rules, test results and limits are in
+[docs/NEW_FORMATS.md](docs/NEW_FORMATS.md).
+
+* **Modules:** OctaMED Pro MMD2 / Soundstudio MMD3 (also multi-song),
+  DigiBooster Pro (DBM0), Symphonie / Symphonie Pro, Musicline Editor,
+  Startrekker 8 channels (FLT8 / EXO8) and EXO4.
+* **Synth formats:** PreTracker, Art of Noise (AON4 / AON8), SidMon 2,
+  Delta Music 2, Startrekker AM (the `.nt` synth file is saved with its
+  module as `<n>.mod.nt`).
+* **Two-file formats:** LightSpeedPlayer (`<n>.lsmusic` with its sample bank
+  `<n>.lsbank`), TFMX 1.5 / Pro / 7V (`<n>.mdat` with `<n>.smpl` when the
+  samples follow the song; TFHD and TFMXPAK single files).
+* **Game music with its replay code:** Rob Hubbard, Ben Daglish, David
+  Whittaker.
+* **Found as a player left them in memory:** relocated MED/OctaMED modules
+  (MMD0-MMD3), initialised LightSpeedPlayer music (with an ADPCM bank packed
+  again) and PreTracker songs patched by the Raspberry Casket replayer are
+  restored to the original file (`"restored": true` in the JSON).
+
 ## Accuracy
 
 The original is the specification. `tests/reference/` holds its last source
@@ -175,7 +198,7 @@ The inputs are the libxmp test suite's real modules (`tests/fetch_corpus.py`,
 285 files) and `tests/corpus/synthetic/` (165 small hand-built files for the
 many formats without public samples, each confirmed to be detected by the
 original). `sh tests/run_difftest.sh` builds everything and runs the full
-comparison.
+comparison. Both tools run the port with `-c`.
 
 Current results (Windows, against the original built from its source):
 
@@ -192,6 +215,16 @@ Current results (Windows, against the original built from its source):
   exception is inherited: the original's StoneCracker 2.70 extension ends in
   a space, which Windows drops from file names). An AddressSanitizer/UBSan
   build runs the corpus and 5,800 fresh mutants without a single report.
+
+The formats the original never had are tested against real files instead:
+`tests/newformats.py` rips each module of the lists in `tests/newformats/`
+(about 1,500 real and synthetic modules) on its own and embedded in random
+data, checks every rip and companion file byte for byte, and fails on any
+false positive. None of these formats is found anywhere in the 460-file
+corpus except in its real modules of them. Nor are any found in 179 MB of
+Aminet demos, games and players, or in 64 MB of random data.
+`tests/fuzznew.py` runs sanitizer builds on mutants of those modules: more
+than 80,000 runs so far, with no crash or hang.
 
 Where the original misbehaves, the port does something defined instead (all
 documented in [docs/PORTING.md](docs/PORTING.md)):

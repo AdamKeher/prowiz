@@ -33,8 +33,15 @@ uint8_t *pw_copy_in(pw_ctx *c, int64_t off, uint32_t size)
     return p;
 }
 
-/* Called once per scan position, after the original's checks. All of these
- * are music formats. A handler that saves something moves c->i past it. */
+/* the first bytes pw_scan_new() dispatches on (keep in step with it) */
+const uint8_t pw_new_first_byte[256] = {
+    ['.'] = 1, ['A'] = 1, ['D'] = 1, ['L'] = 1, ['M'] = 1, ['P'] = 1, ['S'] = 1,
+    ['T'] = 1, ['t'] = 1, [0x60] = 1, [0x08] = 1, [0x47] = 1, [0x48] = 1,
+};
+
+/* Called after the original's checks at the scan positions whose byte is in
+ * pw_new_first_byte. All of these are music formats. A handler that saves
+ * something moves c->i past it. */
 void pw_scan_new(pw_ctx *c)
 {
     if ((c->modes & PW_MODE_MUSIC) == 0)

@@ -17,6 +17,7 @@ did not own (see "Undefined behaviour" below).
 | `include/*.h` globals | fields of `pw_ctx` (`src/pw_internal.h`) |
 | `r/<Name>.c` | `src/formats/<Name>.c` (same base name) |
 | `_types_` handling | `pw_types_load()` in `src/core.c` |
+| (not in the original) | `src/formats/new/`: the formats 1.70a never had, see [NEW_FORMATS.md](NEW_FORMATS.md) |
 
 Files of the original that its build never compiled (`NTK4.c`,
 `TreasurePattern.c`, `Viruz2.c`, `DefjamCruncher32-pro.c`) and handlers its

@@ -247,5 +247,6 @@ void pw_types_load(pw_ctx *c, const uint8_t *data, size_t size, int report);
 /* the scanner (scan.c) and its hook for the port's formats (formats/new/) */
 void pw_scan_run(pw_ctx *c);
 void pw_scan_new(pw_ctx *c);
+extern const uint8_t pw_new_first_byte[256]; /* bytes pw_scan_new() looks at */
 
 #endif /* PW_INTERNAL_H */
