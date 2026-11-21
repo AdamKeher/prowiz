@@ -56,7 +56,7 @@
 #define LSP_MAX_MICRO 256u        /* instrument numbers are bytes in -micro */
 #define LSP_MAX_TABLE 768u        /* 765 codes + 3 reserved zeros           */
 #define LSP_MAX_SEQ   128u        /* MOD positions                          */
-#define LSP_MAX_SIZE  0x400000u   /* far above any real score               */
+#define LSP_MAX_SIZE  0x200000u   /* LSPConvert stops at 30 min of 100 Hz ticks */
 #define LSP_CHIP_END  0x200000u   /* the bank lives in (at most 2 MB of) chip RAM */
 #define LSP_MIN_BASE  0x400u      /* a bank is never loaded below this      */
 
@@ -368,6 +368,8 @@ static int lsp_walk(pw_ctx *c, lsp *h)
         int32_t off;
         int ext = 0;
 
+        if (q - bstart > LSP_MAX_SIZE)
+            return 0; /* no frame count to stop 1.00-1.03 on garbage */
         if (q >= h->avail)
             goto truncated;
         b = R8(q++);
@@ -626,21 +628,37 @@ static uint8_t *lsp_restored(pw_ctx *c, const lsp *h)
 static int lsp_find_bank_id(pw_ctx *c, const lsp *h, uint32_t *at)
 {
     const uint32_t id = R32(4);
-    uint32_t x, end;
+    uint32_t x, k, end;
 
     if (id == 0 || h->bank_size > (uint32_t)c->in_size)
         return 0;
     end = (uint32_t)c->in_size - h->bank_size;
-    for (x = 0; x <= end; x++)
+    for (x = 0; x + 4 <= (uint32_t)c->in_size; x++)
     {
-        if (pw_in8(c, x) != (id >> 24) || pw_rd32(c, x) != id)
+        if (pw_rd8(c, x) != (id >> 24) || pw_rd32(c, x) != id)
             continue;
         if (x >= h->base && x < h->base + h->size)
             continue;
-        if (x >= 2 && pw_in8(c, x - 2) == 0x20 && pw_in8(c, x - 1) == 0x3C)
+        if (x >= 2 && pw_rd8(c, x - 2) == 0x20 && pw_rd8(c, x - 1) == 0x3C)
             continue;
         if (x >= 4 && pw_match(c, x - 4, "LSP1", 4))
-            continue;
+        {
+            /* An earlier copy of this music already searched the whole
+             * input, and claimed the bank it found: reuse that (this keeps
+             * an input full of copies from costing copies x size). */
+            if (x >= h->base)
+                continue;
+            for (k = 0; k < c->nclaimed; k++)
+                if (c->claimed[k].size == h->bank_size &&
+                    pw_rd32(c, c->claimed[k].start) == id)
+                {
+                    *at = c->claimed[k].start;
+                    return 1;
+                }
+            return 0;
+        }
+        if (x > end)
+            return 0; /* a bank that would run past the input */
         *at = x;
         return 1;
     }
@@ -665,7 +683,7 @@ static int lsp_find_bank_ptr(pw_ctx *c, const lsp *h, uint32_t *at)
         if (R16(o + 10) <= 1)
         {
             uint32_t r = R32(o + 6) - h->bank_addr;
-            if (pw_in8(c, (int64_t)x + r) != 0 || pw_in8(c, (int64_t)x + r + 1) != 0)
+            if (pw_rd8(c, (int64_t)x + r) != 0 || pw_rd8(c, (int64_t)x + r + 1) != 0)
                 return 0;
         }
     }
@@ -689,7 +707,7 @@ static uint8_t *lsp_repack(pw_ctx *c, const lsp *h, uint32_t at)
         return NULL;
     }
     for (k = 0; k < 4; k++)
-        d[k] = pw_in8(c, (int64_t)at + k);
+        d[k] = (uint8_t)pw_rd8(c, (int64_t)at + k);
     w = 4 + R32(h->adpcm);
     for (k = 0; k < h->nadpcm; k++)
     {
@@ -699,13 +717,13 @@ static uint8_t *lsp_repack(pw_ctx *c, const lsp *h, uint32_t at)
         if (mask & (0x80000000u >> k))
         {
             for (j = 0; j < len; j++)
-                d[w++] = pw_in8(c, (int64_t)r + j);
+                d[w++] = (uint8_t)pw_rd8(c, (int64_t)r + j);
             r += len;
             continue;
         }
         for (j = 0; j < len; j++)
         {
-            const int target = (int8_t)pw_in8(c, (int64_t)r + j);
+            const int target = (int8_t)pw_rd8(c, (int64_t)r + j);
             int nib;
 
             for (nib = 0; nib < 16 && s + lsp_dpcm[nib] != target; nib++)
@@ -767,15 +785,15 @@ int pw_new_LSP(pw_ctx *c)
 
     /* "LSP1" with version 01xx at 08, or "LSPm" with 01xx at 04; this also
      * rejects the copies of "LSP1" inside every LSP player's code */
-    if (pw_in8(c, (int64_t)c->i + 1) != 'S' || pw_in8(c, (int64_t)c->i + 2) != 'P')
+    if (pw_rd8(c, (int64_t)c->i + 1) != 'S' || pw_rd8(c, (int64_t)c->i + 2) != 'P')
         return 0;
-    k3 = pw_in8(c, (int64_t)c->i + 3);
+    k3 = pw_rd8(c, (int64_t)c->i + 3);
     if (k3 == '1')
     {
-        if (pw_in8(c, (int64_t)c->i + 8) != 0x01)
+        if (pw_rd8(c, (int64_t)c->i + 8) != 0x01)
             return 0;
     }
-    else if (k3 != 'm' || pw_in8(c, (int64_t)c->i + 4) != 0x01)
+    else if (k3 != 'm' || pw_rd8(c, (int64_t)c->i + 4) != 0x01)
         return 0;
     if (pw_claimed(c, c->i))
         return 0;
