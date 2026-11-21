@@ -23,12 +23,12 @@ big-endian.
 | DigiBooster Pro | `DBM0` + version 2/3 | 1 | chunk walk | 4/4 | rare (loaded into structures) | easy |
 | Musicline Editor | `MLEDMODL` | 1 | chunk walk | 102/104 | rare (loaded into structures) | easy (done) |
 | Rob Hubbard | 5 × `bra.w` + code | 1 (player code + data) | sample walk to `4E71` | 12/12 | - | easy |
-| Ben Daglish | `bra.w` table + init code | 1 (player code + data) | instrument tables | 28/44 exact, 33/44 within 34 bytes | offsets, probably intact | easy-moderate |
+| Ben Daglish | `bra.w` table + init code | 1 (player code + data) | instrument tables | 28/44 exact, 34/44 within 34 bytes | offsets, probably intact | easy-moderate |
 | LightSpeedPlayer | `LSP1` / `LSPm` | 2 (music + bank) | stream walk; bank from instrument table | 38/38 music, 32/32 banks | relocated: undone; ADPCM bank packed again | moderate |
 | Symphonie | `SymM` + version 1 | 1 (`.SymSONG`: plus samples) | hunk walk + slot count | 4/4 | rare | moderate |
 | Startrekker AM | `.nt`: `ST1.x ModuleINFO` | 2 (mod + `.nt`) | `.nt` sizes are near fixed | 44 `.nt` | no link between the two | moderate |
 | TFMX | `TFMX-SONG ` and others | 2 (mdat + smpl) | mdat: walk; smpl: lower bound | mdat 69/74, smpl 53/74 | smpl found only via player variables | hard |
-| David Whittaker | 3 code prologues | 1 (player code + data) | heuristic: samples + 64 | 88/121 | initialised copies | moderate-hard |
+| David Whittaker | 3 code prologues | 1 (player code + data) | sample sets + 64 zero bytes | 92/121 | initialised copies | moderate-hard |
 
 Packed productions: LSP and PreTracker songs in released demos and intros are
 almost always inside crunched executables (Shrinkler, Cranker, LDOS packers).
@@ -600,22 +600,31 @@ files.
 ## Rob Hubbard
 
 - **What a file is:** raw game player code followed by song data and
-  samples; Modland `RH.`/`.rh`.
-- **Signature:**
-  - `6000` at 00, 04, 08, 0C and 10;
+  samples; Modland `RH.`/`.rh`. Rob Hubbard's 1989-91 Amiga routine.
+- **Signature** (even offsets only):
+  - `6000` at 00, 04, 08, 0C and 10, each with a positive even
+    displacement;
   - `41FA` at 14;
   - `4E75 41FA` at 1C.
 - **Size** (exact on 12/12):
-  1. The sample count is the byte before the first `2418` within 8 words
-     of 40.
-  2. The samples start at the target of the `41FA` within 5 words of 36,
-     plus 40 if `D1FC` follows.
+  1. The sample count is n+1 from the `72nn` (moveq #n,d1) right before the
+     first `2418` within 8 words of 40.
+  2. The samples start at the target of the first `41FA` within 5 words of
+     36, plus the immediate of a `D1FC` (adda.l #imm,a0) right after it
+     (always 40 in the known files).
   3. Walk the `[u32 len][u16 freq][data]` records. Reject len > 10000.
-  4. Add 2 for the closing `4E71`, which must be present.
+  4. Add 2 for the closing `4E71`, which must be present unless the module
+     runs past the input (then it is reported as truncated).
 - **Out of scope:**
-  - sound-effect banks (4 × `bra.w`);
-  - tunes with separate samples;
-  - Rob Hubbard ST (`RHO.`), Steve Bak's routine, which has a heuristic end.
+  - sound-effect banks (4 × `bra.w`): `fxlarge.rh`, `fxsmall.rh`;
+  - tunes with separate samples (Populous and the other Delitracker
+    customs);
+  - Rob Hubbard ST (`RHO.`), Steve Bak's routine, which has a heuristic end;
+  - Hubbard's 1987-88 tunes made with David Whittaker's routine (Leviathan,
+    QBall): see David Whittaker.
+- **Implementation:** `src/formats/new/RobHubbard.c`, as above. Tests:
+  `tests/newformats/RobHubbard.txt`, all 14 Modland files (12 exact; the 2
+  sound-effect banks are listed as not detected) plus a synthetic file.
 - **References:** the Wanted Team EagleRipper and player are not open
   source, so they are spec only. Flod is CC BY-NC-SA, also spec only.
 - **Test files:** Modland has 14 + 3 RHO.
@@ -623,14 +632,38 @@ files.
 ## Ben Daglish
 
 - **What a file is:** raw, position-independent code + data; `BD.`/`.bd`.
-- **Signature:**
+  Colin Dooley's sound player.
+- **Signature** (even offsets only):
   - `6000` at 00, 04 and 0A, each with a positive even displacement;
-  - at the init target: `3F00 6100`, `3D7C` at +6, `41FA` at +C.
-- **Size:**
-  1. Find the instrument table(s) via `D040 D040 D040 41FA`.
-  2. End = table base + max(sample offset + 2 × (length [+ loop length])).
-  3. Bound it by the input: Super Cars' second table points past the
-     file.
+  - at the init target (00's): `3F00 6100`, `3D7C` at +6, `41FA` at +C.
+- **Instrument tables.** A table is a list of longword offsets (from the
+  table) to records: `00` sample offset, `04` loop offset (0: none), `08`
+  length and `0A` loop length in words, `0C` volume (0-40 hex). Its length
+  is the smallest offset. The sample and loop offsets of **both** tables
+  count from table 1: with that base, the second table ends exactly at the
+  file end in 10 files.
+  1. Table 1, the music: after the first `D040 D040 D040 41FA` in the init
+     code, the next `41FA`.
+  2. Table 2, the sound effects (used by the third entry point): the first
+     `D040 D040` there, if `41FA` follows and its target starts with a zero
+     word.
+- **Size:** the end of the last sample (or loop), over both tables.
+  - Table 1 must fit in the input: if it does not, the module is reported
+    as truncated.
+  - Table 2's samples count only as far as they fit in the input. Some rips
+    lack the last effects: Super Cars' table describes samples up to 126010,
+    the file has 70404 bytes.
+- **Checked:** 28/44 exact. Of the other 16:
+  - 6 differ by padding of 1-34 bytes;
+  - 8 have more data after the last sample (78 bytes to 40 KB; Axel's Magic
+    Hammer carries 20 KB of unrelated data);
+  - Super Cars (see above);
+  - Rick Dangerous 2 "patched" is 150 bytes shorter than its effects table,
+    so its size depends on what follows it in the input. It is not in the
+    test list.
+- **Implementation:** `src/formats/new/BenDaglish.c`. A table with more
+  than 256 records, an odd record offset, a record outside the input, a
+  volume above 64 or a zero sample offset is not a table.
 - **References** (reusable): EaglePlayer 2.04's ripper
   `Src/Engines/Eaglerippers/Benn Daglish.s` (GPL-2+), and NostalgicPlayer
   BenDaglish (MIT).
@@ -1047,20 +1080,57 @@ files.
 
 - **What a file is:** raw game player code, data and samples; `DW.`.
   - There are many player variants, plus the old 1987 format `DWOLD`.
-  - Other composers used the same routine.
-- **Prologues:**
-  - `48E7 F1FE 6100`: 99 of 121 files;
-  - `47FA` with a target at the module start: 9;
-  - `08F9 0001 00BF E001`: 8.
-
-  Confirm with a NostalgicPlayer-style scan of the init code.
-- **End:** the end of the `[u32 len][u16 freq][data]` sample chain + 64 zero
-  bytes. That is exact for 88/121 files; 24 have extra waveform data after
-  the chain.
-- **Start:** in some variants a variable area precedes the code (−1090
-  bytes in Bubble Bobble).
+  - Other composers used the same routine: Rob Hubbard (1987-88), J.C.
+    Brooke, Paul Robotham.
+- **Prologues** (even offsets only; the Wanted Team player accepts the same):
+  - A `48E7 F1FE 6100`, where the bsr.w target has `47FA` (lea x(pc),a3)
+    within 10 words: 99 of 121 files;
+  - B `08F9 0001 00BF E001` (bset #1,$bfe001), then `47FA` at 08 or 0A
+    pointing at or before 00: 8;
+  - C `47FA` pointing at most 8 bytes back, i.e. at the module start, after
+    up to 4 words such as `7000`: 12 (`47FA FFFE` itself, `7000 47FA FFFC`,
+    `303C 0000 47FA FFFA`, `48E7 F0F0 4240 47FA FFF8`);
+  - a module that starts with `47FA` pointing further back, followed by
+    `6100` or `4A2B` (Grimblood); not when it points at an A or B prologue
+    (then it is the init code of that module).
+- **Confirmation:** the sample set-up code, `41FA dddd [D1FC imm32 |
+  2748 xxxx D0FC imm16 xxxx xxxx D0FC imm16] 4BFA dddd 72nn`, followed by
+  `2418 3618` (the music samples) or `3428 0002 C4FC 0032` (a second set:
+  the sound effects). The scan covers the first 16 KB of the module and
+  stops at the first sample data seen; set-ups always come before the data
+  (checked on all 121 files). The first music set-up whose records check
+  out is the module's. A record: `[u32 len][u16 freq][data]`, len up to
+  20000, freq 1000-60000 (the files use 3000-33500).
+- **Size rule:**
+  1. the end of the music samples;
+  2. or the end of a second set that starts at or after that end and lies
+     entirely in the input, if it ends later (the rips that include the
+     effects stop exactly there);
+  3. when the end comes from the music samples, plus 64 bytes if they are
+     zero (85 of the 121 files end that way).
+- **Checked:** 92/121 exact, 22 with size overrides, 7 not detected.
+  - The overrides: a block of about 3.8 KB of waveforms that sits between
+    the music samples and the effects, kept without the effects (5 files);
+    unknown data after the samples (Krusty 46 KB, Snow Strike 11 KB, and 640
+    bytes in 3 files); 64 non-zero bytes where the zeros would be (2); part
+    of an effects set that runs past the file (Arcade Quizz); a few bytes of
+    padding or junk (8).
+  - Grimblood's samples end with the file: zero bytes after it in the input
+    count as the 64-byte pad.
+  - Not detected: the 1987 player (Feud, Leviathan and Xenon effects, QBall)
+    and the effects-only files (Anarchy, Blood Money, Spellbound).
+- **Start:** in some variants a variable area precedes the code: the
+  `47FA` base is up to a few KB before the first instruction (Bubble Bobble
+  −1090, Grimblood −906, Krusty −3284, Snow Strike −14). The rip starts at
+  the first instruction, like the existing rips; the area is zeros on disk
+  and live variables in memory, and is not saved.
 - **In memory:** copies may be initialised, with absolute sample addresses
-  written into the sample table.
+  written into the sample information table. The handler reads only the
+  sample records, which the player does not change, so it rips such copies
+  the same way.
+- **Known limitation:** a module whose own set-up is not found (e.g. an
+  effects-only module) would take the set-up of a module that follows
+  within 16 KB, before that one's samples. No such case is known.
 - **References:** NostalgicPlayer DavidWhittaker (MIT) is reusable. The UADE
   player is binary only; ExoticRipper is closed source.
 - **Test files:** Modland has 121.

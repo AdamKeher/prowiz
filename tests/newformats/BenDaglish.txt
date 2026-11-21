@@ -1,0 +1,52 @@
+# Ben Daglish (id 182): every file of the Modland "Ben Daglish" directory (listed 2026-11-21),
+# plus synthetic files made by files/BenDaglish/make_synthetic.py. See docs/NEW_FORMATS.md.
+# size= marks a rip that legitimately differs from the file; the comment says why.
+
+id=182 file=b648da4045c78c453a48864ae22c2ad7d89f1efe9ee2c63978906af57fd6c87b:tests/newformats/files/BenDaglish/synthetic.bd
+
+id=182 file=29041f5d5265b8cb964f74a2ec13fd8338d430466e5ae387dd955aaac44126b8:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/3d%20galax.bd size=275736  # 6408 more bytes after the last sample
+id=182 file=4066b4085577d575e1d075b0609310c49573f4815beabb9e483061b2d6b30067:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/artura.bd size=47028  # 144 more bytes after the last sample
+id=182 file=1119b81fac6d48bced09b9def7fc31a0bf6008d0f4a808e6dfcb844d199bf5cd:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/axel%27s%20magic%20hammer.bd size=39210  # 20314 bytes of unrelated data after the module (the title rip is the module alone)
+id=182 file=c069211cbf6e5518b9ee5e8cc659ea4789cde9d4d5fd1d684e9f33c6c7af873e:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/axel%27s%20magic%20hammer%20title.bd
+id=182 file=54e37ae60c1f6a8ee4bec188631c963165d222acda59fc54d4422d144bfbfbee:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/blasteroids-2.bd
+id=182 file=5f6ac1254c82eba12515f1de595e9155c92ab05eaaa2e7432592edf95bcc8a60:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/blasteroids.bd
+id=182 file=11edaacc5d2b5bbd7149a10c99ea2e83eef89fca20f44ec6c66252c57c281d70:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/butcher%20hill%20ingame%201.bd
+id=182 file=c74d2f4ab8dd46eec8cc6f81a8b7f987299a44c2fb09458b0f9609a6146aae05:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/butcher%20hill%20ingame%202.bd
+id=182 file=1aaf4b56ddcdd3338c13bf55c1d6f4f9ff36fee1c312056d7bd1600292f43317:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/butcher%20hill%20ingame%203.bd
+id=182 file=dec685ca117d4025b969396b11c6d351e1c2ea4b5f76b81dacce7db00e46d21d:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/butcher%20hill%20title.bd
+id=182 file=1c5aee56928c417e4fafa8880f0b4aa9cd753d230d476025af366b9387740f4a:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/continental%20circus.bd size=63410  # 78 more bytes after the last sample
+id=182 file=790976f1aaa03de636ad4278f9065a63cd33d5c7f9bc3fd6ed36e099da3e3741:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/corporation.bd size=245772  # 10750 more bytes after the last sample
+id=182 file=03e0d4acdc95dd96b22ca12b02158fff27401d464d5ee2faa77cca9ace482772:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/dark%20fusion.bd
+id=182 file=a2cf568181fcdf8dc00cd2c3f73a3bf7753bc70f3ec6326e6b12ea0086e79b8b:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/deflektor.bd size=60112  # 11318 more bytes after the last sample
+id=182 file=2b5a68e36aecf43709e06f7ab10dd862af95bbc4f759ae2cc35b15c1001e3776:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/foft%20ingame%201.bd
+id=182 file=28cd9ec22d962f65548c34a5ee2b18ef38d0a874dd8c32d76b9d7bccc2be5452:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/foft%20ingame%202.bd
+id=182 file=fd6ca334981a9469cfca542e2b997d5ed53fd9f026fdeb3d5b51786f3883aa46:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/foft%20ingame%203.bd
+id=182 file=4b47d0810f5294f58f5cefebcb93ea62c3c9ae7c52acc903d4e435550e9d949c:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/foft%20ingame%204.bd
+id=182 file=5133158ea4628cb2f26e74e897823093daeb6ce0c2a558b874a683adbd3d0686:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/foft%20ingame%205.bd
+id=182 file=da80e4bc00b2126e441adbd92896fd44ee4ecfb6554f7ba5f60a0de39847de2a:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/foft%20title.bd
+id=182 file=d8bb5c55ae105aff1eec538573e0fc49fccd91ce26c4c326d16432e4cec0dec1:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/footballer%20of%20the%20year%202%20ingame.bd size=23994  # 40116 more bytes after the last sample
+id=182 file=ed6963b2142cdb4de9aa950f6a86911bd2bf72683574bbaa255b00549fb24447:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/footballer%20of%20the%20year%202%20title.bd size=226848  # 2874 more bytes after the last sample
+id=182 file=7170e31dcc3f9bc5e17b3b4ebd659a4e2479aac77d1114dc47601e12589a1270:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/gary%20linekers%20hot-shot.bd
+id=182 file=35abb618e64656f06a3a8fab90c40f1f079dbfd2d6cc143e8817882046c50984:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/greg%20norman%27s%20ultimate%20golf.bd
+id=182 file=cd646961a49e7ea472a18d5c0c829974c7d25c285be334d18d1ea84f62e63dfa:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/h.a.t.e.bd size=181582  # 2 bytes of padding
+id=182 file=205e94982a2f35e742265fa41aa54926c074e9116ad0027b236e62072a490c2f:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/heroes%20of%20the%20lance.bd size=32215  # 1 byte of padding (odd file size)
+id=182 file=37444735d4fb3309afbb9a30094259ef8ae08766ac85354ed859d3653c901ae7:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/hot%20rod.bd size=47908  # 2 bytes of padding
+id=182 file=a7d581c9f447783441a148a6d49036f9fd07c9ae7418795482f15e202707f565:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/john%20lowes%20ultimate%20darts.bd
+id=182 file=d0ab967fa6b9e9b08a146d09ab11da68eb3c741b74d73c7e1ccabe1540ce858f:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/mickey%20mouse.bd
+id=182 file=052d71f5e1339999d0d3b8ad316e13fed47a454495fafbcf3856843a1281b502:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/motorhead-2.bd
+id=182 file=9f0e1647144d6931ae9fd0224cd6e0fb72e96b28410844179c0343cfc455ab9a:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/motorhead-3.bd
+id=182 file=2d48e0940603912fe2c3ad630636cd2908570d8108d0f58807568f8401c632d1:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/motorhead-4.bd
+id=182 file=8810ecc75804eea14610ceae3cd721e4cb9273813b576945521c78532f6898de:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/motorhead-titleandingame.bd
+id=182 file=57301462c68b73c73cac49634cda970e94fdd6938904e31e2e1cbd89043ed014:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/mth2.bd size=68966  # motorhead-2.bd plus 34 bytes
+id=182 file=8f92fe5aefa1c9b1eadcd2dbaaf8a7b61ca23d0f4ca9da09b9bebf1541c7640e:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/passing%20shot.bd size=28944  # 1158 more bytes after the last sample
+id=182 file=3dac6b539959199922415e6e27f6d2d2a0e2b88b614a33a42c66cd4437b2059a:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/prison.bd
+id=182 file=0813373e7531f8501ff5e066969dc35fbd651dd24fa8c4c1e1291f72938572d2:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/rick%20dangerous%202.bd
+id=182 file=34a2e6a6dc94356d6cc59e25387feb639a0f12b71b659d1d677c886d39dbc0aa:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/skidz.bd size=50510  # 5 bytes of padding (odd file size)
+id=182 file=70e892c0cae56215d40cf0c723b2f1b602450c4048b707b8cc8c183d0dc3d02d:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/skidz%20v2.bd
+id=182 file=d601d05b26d52ae3b96a4626300340027ea9368de472e6cf684a39ba2af0d862:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/super%20cars.bd size=68966  # the effects table describes samples up to 126010; the file stops inside one of them, so the effects count up to the last one that fits
+id=182 file=ef6e29efb68d548521e5171ef7b73837b9df6c68538f39237d6c7935bcd3ce82:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/superscramble-bike0.bd
+id=182 file=2d8c2a365a8e82f6d09124e93bc8e769bbba77e9f45dd0c6703e44da417bdc8f:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/superscramble-jingles.bd
+id=182 file=5a9be3a29a9e0aab01dbf119dc09eda06d67c766182131df456222fec9591bf8:https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/switchblade.bd
+
+# not listed: https://ftp.modland.com/pub/modules/Ben%20Daglish/Ben%20Daglish/rick%20dangerous%202%20patched.bd - the file is 150 bytes shorter than its effects table; the effects
+#   count only as far as they fit in the input, so the size depends on what follows it

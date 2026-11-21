@@ -1,0 +1,21 @@
+# Rob Hubbard (id 181): every file of the Modland "Rob Hubbard" directory (listed 2026-11-21),
+# plus synthetic files made by files/RobHubbard/make_synthetic.py. See docs/NEW_FORMATS.md.
+# size= marks a rip that legitimately differs from the file; the comment says why.
+
+id=181 file=572a35d7da29cede019a4f6f307ed044d07a90621132676a3028f038fdd3bd17:tests/newformats/files/RobHubbard/synthetic.rh
+
+id=181 file=8bc7bef003068cce1763a99e2f29b2bbe836ebf889f6b2500e236c3b71a1eeb6:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/budokan.rh
+id=181 file=f308d0410defd36dd3293c37fc4909a1df07f75ed2c702f802fb39c8a700f1ff:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/centurion%20battle.rh
+id=181 file=3893411ecab04dcb9f655e5cf0bd33e9ae21d593efda8b131e6396cd8f5ee4a3:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/centurion%20cleopatra.rh
+id=181 file=45bbd9e2383dcccb94570371c34be67f59bed2dcc5812ae0f23cb3bdc69c7e27:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/centurion%20games%20fanfares.rh
+id=181 file=882bd24cf7e681c4082374bddf8b66429917bcf978e7200c191b45f3b1ffe2c8:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/centurion%20intro.rh
+id=181 file=e661abe3eebdd4b736b04fc48c755b1b1272e5fdee1ddcb84dcc83c99f866a86:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/centurion%20naval%20battle.rh
+id=181 file=bf941e2a14fc2d8632a3c5a615e59b715f90fde3319bfd291d71e8c8a9c95fe0:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/flymus.rh
+id=181 file=616990e21143832412313ec71ca439c5e8d3e7ebdd8a01c99ff418884c6c5642:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/gmusic.rh
+id=181 file=7b760218aa166fe808e781130736d2cc15cdcafb8c911d565074a5193c2245c2:https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/populous%20title.rh
+id=181 file=33864a8fd72e4e5fd5f8c2c1a19d6989128dda96d1cbc23d02ab4f00bd593bc2:https://ftp.modland.com/pub/modules/Rob%20Hubbard/_unknown/sanxion-demo.rh
+id=181 file=670a76858aa618734b8e2eb8f9bf91e7e3d7d36c7bd174125480eece4cb6c770:https://ftp.modland.com/pub/modules/Rob%20Hubbard/_unknown/sanxion.rh
+id=181 file=ff268a9f12cef27fc705485aa4c2619ccad62a9fd8267af72507c12cec2a2e29:https://ftp.modland.com/pub/modules/Rob%20Hubbard/_unknown/skateordie.rh
+
+# not detected: https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/fxlarge.rh - a sound-effect bank (four bra.w), not a module
+# not detected: https://ftp.modland.com/pub/modules/Rob%20Hubbard/Rob%20Hubbard/fxsmall.rh - a sound-effect bank (four bra.w), not a module
