@@ -29,7 +29,7 @@
 extern "C" {
 #endif
 
-#define PROWIZ_VERSION          "2.0.0"
+#define PROWIZ_VERSION          "2.1.0"
 #define PROWIZ_UPSTREAM_VERSION "1.70a"
 
 /* Scan modes (bit mask). The default, PW_MODE_ALL, matches upstream. */

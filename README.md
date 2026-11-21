@@ -81,7 +81,7 @@ offset     size       status     format
 
 ```json
 {
-  "program": "prowiz", "version": "2.0.0", "engine": "Pro-Wizard 1.70a",
+  "program": "prowiz", "version": "2.1.0", "engine": "Pro-Wizard 1.70a",
   "input": {"path": "demo.bin", "size": 4805776},
   "modes": ["music", "data"], "formats": "all", "scan_only": false, "output_dir": "out",
   "findings": [
