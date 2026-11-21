@@ -1,0 +1,37 @@
+# Symphonie / Symphonie Pro (src/formats/new/Symphonie.c).
+# Synthetic files: tests/newformats/files/Symphonie/make_sym.py
+
+id=178 file=bde25a06f195e488bcd1d781501f2bd6144b2605f53d94d5ed1817a5beb1d98a:tests/newformats/files/Symphonie/synth.symmod
+id=178 file=3c26e6e72d04d919af7e946000e59507fc2feb4ae8071bb29b589a5afa702869:tests/newformats/files/Symphonie/plain.symmod
+id=178 file=b572df39a229d79b1d821480f8a38f10f4c654ae52a5ef11b036cfc0a2e9a1cf:tests/newformats/files/Symphonie/song.symsong
+
+# Modland Symphonie (every n-th file by name)
+id=178 file=6bbe639fb04856c3d0eae0119aa193b8f5f063d0d345fcd1aca83a6228d1580e:https://ftp.modland.com/pub/modules/Symphonie/_unknown/my%20first%20time.symmod
+id=178 file=072e21e5602c13afa076ba5de00989beba8da9f8d725a98718dcd7219f7db951:https://ftp.modland.com/pub/modules/Symphonie/Dr.K.Oss/dance%20of%20the%20clouds.symmod
+id=178 file=094d5cdaf8a22bcfc96ca435d2cc2489712936bcd8f30685ecc7a0a119cfd08c:https://ftp.modland.com/pub/modules/Symphonie/Dr.K.Oss/on%20my%20mind.symmod
+id=178 file=88d123e52ae33d14b13781502b86e8be86e696d2393744b5f2b2feff801e5567:https://ftp.modland.com/pub/modules/Symphonie/Dr.K.Oss/sunshine.symmod
+id=178 file=254725a9348aee1bdaa71398facf37b21610b3bfe0e802fc7a46f0c3119dc98d:https://ftp.modland.com/pub/modules/Symphonie/Expert/bed%20%26%20breakfast.symmod
+id=178 file=8fae49efffc89540879791dd6562c0d2b1470e7a8a25538de96ff5fb584ecc2a:https://ftp.modland.com/pub/modules/Symphonie/Expert/dreams%20%26%20magic%204.symmod
+id=178 file=d8cee0647ef1560921c89dcf0b77e0d9470bf2e082c34ad827cb2fe5890a0104:https://ftp.modland.com/pub/modules/Symphonie/Expert/ghosts%20of%20evil.symmod
+id=178 file=79d83d4ae73e6b5b2e63a0b54d7ada60149b2247c55573c7ff16c9b3042968dc:https://ftp.modland.com/pub/modules/Symphonie/Expert/image%20of%20fantasy%20land.symmod
+id=178 file=cb04cb5d5ec0eb92831b4d993205e432bf7bd43d342a59eec0dde40c7533d265:https://ftp.modland.com/pub/modules/Symphonie/Expert/land%20of%20oblivion%20final.symmod
+id=178 file=23f3dae8b33188983612250a00a71dcd711287b7db38143c9d7831af7315c0a5:https://ftp.modland.com/pub/modules/Symphonie/Expert/no%20name.symmod
+id=178 file=3b6e23a0d2b03dde92984c135452e381af34c1d5f87705d4e85a98359b98bf15:https://ftp.modland.com/pub/modules/Symphonie/Expert/positive%20feelings.symmod
+id=178 file=feeb84dd61b66e3e97e35d00f7c7b1adfb9e2aa52a0d8b68b179ce8fe437b142:https://ftp.modland.com/pub/modules/Symphonie/Johnnyz/hallucinogen.symmod
+id=178 file=9d597765695a1497e1ced6c3d1522e388a6ad93a24869b5f8632c4aa662ecbe8:https://ftp.modland.com/pub/modules/Symphonie/Liteforce/bee%20house%20mix.symmod
+id=178 file=d432ea4d1386971aa661e70de5bd76a807e08e620216e2f19133c8a81b44b7f5:https://ftp.modland.com/pub/modules/Symphonie/Liteforce/flow%20pow.symmod
+id=178 file=b62d0433acbc861c0564a1f6e0cf8ae77f831c3d0ac8a8aa11733b69e624b349:https://ftp.modland.com/pub/modules/Symphonie/Liteforce/jump.symmod
+id=178 file=b70fa87316e197bcefdd41cdb344dff375074f11fd5a9c78877c6f04ef2b02dd:https://ftp.modland.com/pub/modules/Symphonie/Liteforce/promos%20k.symmod
+id=178 file=7ff4c9abada5d7ffca604d5fa92434c6800060d09c814b542a2d4c04c4ada5fc:https://ftp.modland.com/pub/modules/Symphonie/Liteforce/roller.symmod
+id=178 file=543568393ab13e0de93a551024dd7cf6fcea5c09e52f51b8dcaced064cb1b119:https://ftp.modland.com/pub/modules/Symphonie/Liteforce/tanger%20dream%20part%20i.symmod
+id=178 file=50d64cfee38bca1dfe67e1fa7f592164b1164982ac847ead8f0833b0ca4f1ba2:https://ftp.modland.com/pub/modules/Symphonie/Marco%20Ege/boom.symmod
+id=178 file=96afbda7c1a751ea0aad9c9a176a7d880c514d4109817caa69965f39c8ba2c6e:https://ftp.modland.com/pub/modules/Symphonie/Marco%20Ege/cosmic%20flight.symmod
+id=178 file=f280c7821dc831f53174c6d8c0cf42f24380cfcf0d9db2dc788a19c1a87cc3f3:https://ftp.modland.com/pub/modules/Symphonie/Marco%20Ege/new%20talk.symmod
+id=178 file=47cfb385f800bb1d4b3f51058f00853a2157624060a8668917d70f06dec0f36c:https://ftp.modland.com/pub/modules/Symphonie/Marco%20Ege/revenge%20of%20chapell.symmod
+id=178 file=79e74b3360815c9812ef946cc201694d21cd450c63ddfda921abbea9651578a6:https://ftp.modland.com/pub/modules/Symphonie/Marco%20Ege/wild%20canyon.symmod
+id=178 file=c4a740af2755bb6bc042a36a78cc0aef873053a94175aa3c77617b9c5d9c7b7b:https://ftp.modland.com/pub/modules/Symphonie/Mosez/close%20your%20eyes.symmod
+id=178 file=a1316e1148c5fcbf50cad46d2b57c7cfdd5abd01ba73e5f54dc6266ce8e554b2:https://ftp.modland.com/pub/modules/Symphonie/Mosez/flying.symmod
+id=178 file=ccd760dab96afa412929f6b18fdf608ed0ed635f7be50898f3528df6722c528a:https://ftp.modland.com/pub/modules/Symphonie/Mosez/mystique%20melody.symmod
+id=178 file=6eb8e470f2123d2dab0735e7d5663207e9feac756d1d5c1dc984ad49e14f9312:https://ftp.modland.com/pub/modules/Symphonie/Mosez/the%20wind%20is%20whispering.symmod
+id=178 file=5a154673bd0ee9a99742708d8f432aba4be794ac74d8c260ecdb53a4625a09bb:https://ftp.modland.com/pub/modules/Symphonie/Mosez/xerography.symmod
+id=178 file=5edbcb7f579256e50259be09c81aeecca35b7e17289c9551041a110e4a27d658:https://ftp.modland.com/pub/modules/Symphonie/Thunder/space%20crusaders.symmod

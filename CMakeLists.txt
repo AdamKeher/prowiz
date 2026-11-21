@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
-project(prowiz VERSION 2.0.0 LANGUAGES C)
+project(prowiz VERSION 2.1.0 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 file(GLOB PROWIZ_LIB_SOURCES CONFIGURE_DEPENDS
      ${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
-     ${CMAKE_CURRENT_SOURCE_DIR}/src/formats/*.c)
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/formats/*.c
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/formats/new/*.c)
 
 add_library(prowiz_lib STATIC ${PROWIZ_LIB_SOURCES})
 set_target_properties(prowiz_lib PROPERTIES OUTPUT_NAME prowiz)

@@ -115,11 +115,17 @@ typedef struct pw_ctx
 
     /* host side */
     unsigned     modes;
+    int          new_formats; /* 0 with PW_FORMATS_170A: the original engine only */
     pw_callbacks cb;
     int          fatal;     /* PW_ERR_* once the scan must stop */
     pw_found     cur;       /* the detection files belong to   */
     char         cur_format[128]; /* copy of cur.format (handlers pass stack buffers) */
     pw_result    result;
+
+    /* formats added by the port: input ranges already saved as companion
+     * files, so their own signature is not ripped a second time */
+    struct { uint32_t start, size; } *claimed;
+    uint32_t     nclaimed, capclaimed;
 } pw_ctx;
 
 /* ---------------------------------------------------------------- input */
@@ -197,13 +203,50 @@ void    pw_report_unrippable(pw_ctx *c, int fmt_id, const char *format, uint32_t
 extern const int16_t pw_tuning[16][36];          /* tuning.h */
 extern const char *const pw_default_ext[PWF_COUNT + 1];
 extern const unsigned char pw_format_kinds[PWF_COUNT];
+extern const char *const pw_new_ext[PWF_NEW_COUNT];
+extern const unsigned char pw_new_kinds[PWF_NEW_COUNT];
+
+/* extension / kind of any format ID (1.70a ones through the "_types_" table) */
+const char *pw_ext_of(const pw_ctx *c, int fmt_id);
+pw_kind     pw_kind_of(int fmt_id);
+
+/* ------------------------------------- formats added by the port
+ *
+ * Handlers of formats Pro-Wizard 1.70a never had (src/formats/new/). They
+ * only run when c->new_formats is set, so with PW_FORMATS_170A the engine is
+ * the original one. They report through the same pw_save_rip() as the
+ * original handlers, plus these: */
+
+/* Like pw_save_rip(), but the file gets 'size' bytes of 'data' instead of the
+ * input bytes at c->start (c->start and c->out_size still say where, and how
+ * much, was found in the input). 'restored' sets pw_found.restored: the data
+ * was rebuilt from a copy a player had prepared in memory. */
+void pw_save_rip_data(pw_ctx *c, const char *format, int fmt_id,
+                      const uint8_t *data, size_t size, int restored);
+
+/* A second file of the detection just saved (call only right after a rip
+ * with c->save_status == PW_GOOD): "<index>.<ext>", role PW_FILE_COMPANION.
+ * pw_save_companion_in() takes the bytes from the input and claims that
+ * range (see pw_claimed()). */
+void pw_save_companion(pw_ctx *c, const char *ext, const uint8_t *data, size_t size);
+void pw_save_companion_in(pw_ctx *c, const char *ext, uint32_t start, uint32_t size);
+
+/* input ranges saved as companions; a handler skips data starting there */
+void pw_claim(pw_ctx *c, uint32_t start, uint32_t size);
+int  pw_claimed(const pw_ctx *c, uint32_t start);
+
+/* after a successful rip: continue scanning after the module
+ * (c->start + c->out_size), never backwards */
+void pw_skip_rip(pw_ctx *c);
 
 /* types / extensions */
 void pw_types_default(pw_ctx *c);
 void pw_types_load(pw_ctx *c, const uint8_t *data, size_t size, int report);
 #define PW_EXT(c, id) (&(c)->ext_flat[(size_t)(id) * PW_EXT_LEN])
 
-/* the scanner (scan.c) */
+/* the scanner (scan.c) and its hook for the port's formats (formats/new/) */
 void pw_scan_run(pw_ctx *c);
+void pw_scan_new(pw_ctx *c);
+extern const uint8_t pw_new_first_byte[256]; /* bytes pw_scan_new() looks at */
 
 #endif /* PW_INTERNAL_H */

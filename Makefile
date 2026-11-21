@@ -21,7 +21,7 @@ else
 EXE :=
 endif
 
-LIB_SRCS := $(wildcard src/*.c) $(wildcard src/formats/*.c)
+LIB_SRCS := $(wildcard src/*.c) $(wildcard src/formats/*.c) $(wildcard src/formats/new/*.c)
 LIB_OBJS := $(patsubst %.c,$(O)/%.o,$(LIB_SRCS))
 CLI_OBJS := $(O)/cli/main.o
 DEPS     := $(LIB_OBJS:.o=.d) $(CLI_OBJS:.o=.d) $(O)/tests/unit/unit_tests.d

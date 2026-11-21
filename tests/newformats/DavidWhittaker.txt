@@ -1,0 +1,129 @@
+# David Whittaker (id 183): every file of the Modland "David Whittaker" directory (listed 2026-11-21),
+# plus synthetic files made by files/DavidWhittaker/make_synthetic.py. See docs/NEW_FORMATS.md.
+# size= marks a rip that legitimately differs from the file; the comment says why.
+
+id=183 file=5a2003b24f80fa876c53d06319565c48c7f4da112245213eab74076c5b6b4679:tests/newformats/files/DavidWhittaker/synthetic_a.dw
+id=183 file=60bb7f037436694aa34bef20afb9e298c4d007acc3e67038c73fa32bbfdf6c5d:tests/newformats/files/DavidWhittaker/synthetic_c.dw
+
+id=183 file=ae0a30b54bad582600ac0cfe1e36dca0cc07969d2a3839744ad198a076c0b44f:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/alfred%20chicken.dw
+id=183 file=3181a245bd77c466aaf362f94f482333cad8cddeab96a3ce53d56d1de645bd1c:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/alien%20syndrome.dw
+id=183 file=1d353d9f2e36c631036c08bf4d27b9bdcad98a5b43b6c5bd379a43993a4c12f4:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/apb%2B.dw
+id=183 file=e8b0d88ce61d54993e8a4d871fbe727ed2faf95fe5888bf3cff2035f1d931f5b:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/apb.dw
+id=183 file=bd68b86f813e46a48239e82485ad14fa76e75bd02c48031d01f0e516f107ee08:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/aquaventura.dw
+id=183 file=99f0efb0efe977f76d5f1fd624bef21c127d2985c572438d7e841161d3d7fbad:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/arcade%20quizz.dw size=6332  # 8068 more bytes: part of an effects set that runs past the file
+id=183 file=c5a9cc49ccabf95ad6c25f9097e95601452deca4656d98dcdc1f93d872d68775:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/archipelagos.dw
+id=183 file=b9e68d3a3923773bd2aed0c32961491d5ced0820d96e95ef77ebb4bb8f33e4ce:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/army%20moves.dw size=43442  # 4190 more bytes after the 64 zero bytes (waveforms)
+id=183 file=042d3424268d31ad5e0af3cb68caf566ea569f622a6e0c84448ce9212af22c2c:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/back%20to%20the%20future%202.dw
+id=183 file=29e71e8cf2038b318c0ed7a312e6b7233284f19258d8be4a9e1b18c23c5593c0:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/back%20to%20the%20future.dw
+id=183 file=b3785753dd1dfa51bf9aca330b48d210528b961cf0efe0fe5b4685336ac791fd:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/bad%20company.dw
+id=183 file=a7b7215a85745dd8acf8ff043bb51a66f4203f44fdca3d98459e8bb97e1d5cd2:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/battle%20of%20the%20ashes.dw size=62334  # 3772 more bytes after the 64 zero bytes (waveforms)
+id=183 file=7d7cae505b751a4645eb373f8d4c3da03d44b7727399fe3f75602e62abd11686:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/beast1.04.dw
+id=183 file=da864bfe4dc09789372cf49227aa636e7753aed8e684070210b60a06770735c6:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/beast1.castle.dw
+id=183 file=aec78a46c475739ee893007af5a6a11f0a23e5515841b6bbbb793d6f658722cc:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/beast1.forest.dw
+id=183 file=98cedfee78847935ddca4ce412357b6b93c130b36c1e94ac0d501833a782ae7c:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/beast1.gameover.dw
+id=183 file=458193329a3ecc12b6ac76648df250576998259b80f4ce4a2a3ea95030a4a55a:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/beast1.title.dw
+id=183 file=facbf37b34025f2c18717e43ffc2da0304c9fe63c494572f386c94fa2525b019:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/beast1.underground.dw
+id=183 file=94ec508f14efa7194803a6574186846d70e60a3912502712f9e3dbb5a3421cc1:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/beyond%20the%20ice%20palace.dw
+id=183 file=5eee64a7ebf2b6e81317eb102a9465d723018a92319c0956aeb5bfdf16f68f9f:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/bmx%20simulator.dw
+id=183 file=30610a8aef5410ebb02eca2aaed6d8bd1c6deb3ab8e8d9cb84230f1e29371ca9:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/bond%2B.dw
+id=183 file=ad0c703c057751c7a99674a5fa1e2aebe0a9368ba043389bda81bf310b051022:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/bubble%20bobble.dw
+id=183 file=590c788c1a59296c92c8f96f518772dd6025b32584e8857841c715a9b9fbe70d:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/buffalo%20bills%20rodeo%20games.dw
+id=183 file=8bca23625044061e05b4a58c1cd32f029c358c59428b4d7e13f0f4039c14fcae:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/carrier%20command.dw
+id=183 file=28a640f576837d52a9e548ce6b9d3302fe7765bd7763cf5631776cc00fb224e8:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/chip%27s%20challenge.dw
+id=183 file=dbf907817c8eee92c708c4df82517125e597624aeae3c41c8bf7ea1c926544b8:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/chronos%20quest.dw
+id=183 file=ba8893b0c424546033723fe4c74779643401036fa4b8c98acb3e6255da5ca34c:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/cloud.dw size=80936  # 64 non-zero bytes after the samples instead of the zero bytes
+id=183 file=a14ed77dbeb107eaaf1a572e75e46619320b8f73dc29f465d6021bda8514cd14:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/cloud%20kingdoms.dw
+id=183 file=03abaafb83f4944e649df1cd83888351cd2480a9d98c74094db90c06fc7c462a:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/cloud%20over%2B.dw
+id=183 file=725a6e9a367c961e9ac9fac8a9a078d9154d0ea561b8ea206f930275acb04704:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/cosmic%20pirate.dw
+id=183 file=05c1edce1f475e8a7750b7670e9e0422d701f25cd013382acab0100ec98c99da:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/crossbow-ingame.dw
+id=183 file=00067367a5ba2c68d367e693f857a1593e7d908a87f25f5cdf75d8ad3f188419:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/crossbow-title.dw
+id=183 file=808b46c35a091a9c3dfa37ee30db5fa963946e63bb1153f67fd9ad73ef0f7313:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/custodian.dw
+id=183 file=823965861cf46e1e076388a6545936ef0da36fb3d1eb1ac830b17e81161fd8a0:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/dan%20dare%203.dw size=164546  # 2 bytes of padding
+id=183 file=faaf2ed2eb6553a13c1ceefa184319ac88792ebcf22b40abb4c66268de7951cc:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/days%20of%20thunder.dw
+id=183 file=ad4f10a944447600b5e9d7913b72c836806fd7b71aa8d43f82e07a6bfee1e42b:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/dogs%20of%20war.dw
+id=183 file=f3708bd7bbf737d87661bd97fa7140d39facfcd6f705c669b1361c2ce4b9a870:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/emlyn%20hughes%20arcade%20quiz.dw
+id=183 file=1007728ac0ecfa16a50743938ca9809a0acf2e2e322d3297483a1df4a2c8c005:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/emlyn%20hughes%20int%20soccer.dw
+id=183 file=f59ff701b971a570e3d685ca8649f85d305aaa97ff34c8d3e9e2f9a089e0a969:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/exotic%20210%20intro.dw
+id=183 file=ccd92d1a2b564d4bfa91317456f440c85c41036eb921da25aceb476d2b83a741:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/eye%20of%20horus.dw
+id=183 file=d3f54bf90aca46758c74bb50bd885022489d9168c015e582d436ca69d9daba3d:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/fireandbrimstone-ingame.dw size=14960  # 3770 more bytes after the 64 zero bytes (waveforms)
+id=183 file=8c226a341cc8309491e4973b084b1f8dc9716e485cc0b9eda2073228695d64d8:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/fireandbrimstone-title.dw size=45434  # 3770 more bytes after the 64 zero bytes (waveforms)
+id=183 file=78343cb89cac203411c9718dc81781e4e0a792ce831d6e5805236cfabfed4bd5:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/fright%20night.dw
+id=183 file=a97b25631c493203422027a48e790c38288637b61f944faa6fbcbe867f07776b:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/garfield1%2B.dw
+id=183 file=07f18a9185a024dfd8d249d89a5c1b8bf29e01310ae143808f7151919548adec:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/garfield2%2B.dw
+id=183 file=a1335410d4d91c2843b590a021a8a2f0d0c7d93146302a48e520b59655916dca:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gazza%202.dw size=54630  # 3780 more bytes after the 64 zero bytes (waveforms)
+id=183 file=d4f378b7c79827273e061a313a92a824a925e5bd0c0bf6f8186143bd3e5c473d:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/ggcricket.dw
+id=183 file=88f7a32cfba3d02621caa0227e4349f0854aed7db9671579cf718a6d0012b713:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/ghostbusters.dw
+id=183 file=1d58fa35afab1bec351c9f2450ca3ce43cf1cf3d957de402750c62ac2780c6d3:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/golden%20axe.dw
+id=183 file=3c678b2ceeb4f24805d8c9e8eb597e93fcfcee82cf1e275e44db4463e8ddf581:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gold%20of%20the%20aztecs-game%20over.dw
+id=183 file=5dacaf364418ab85071be5a8731d6b1c870e0cfe8117a627b2c7bef1703b07f9:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gold%20of%20the%20aztecs-ingame%201.dw
+id=183 file=e1b7339ae2c91bb2f69ca6876c050bff75f96f747181f6134ed4084bd2e2bd7c:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gold%20of%20the%20aztecs-ingame%202.dw
+id=183 file=fb8002aa55a2abf7100a188aa48ff337e8211c74ce24cf258890d9b799674d51:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gold%20of%20the%20aztecs-intro.dw
+id=183 file=4c214ca5567c2ad2c28a583ce8df96d4fed6b1b236d1cbe87f5f749663fcf288:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gold%20of%20the%20aztecs-map.dw
+id=183 file=ed26854adc72673fa088a12a446a7b9110dc6188763d488bcba32aaf53287145:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gold%20of%20the%20aztecs-options.dw
+id=183 file=80cc0dddbd983a42c9bf9bc18c3f9feb00d299074c66861e15cdd8ba4b88f006:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/grimblood.dw alone=0  # the samples end with the file; zeros appended after it would count as the 64-byte pad
+id=183 file=e413a535e46f6bb1126dcabc5e27d6b5465014c0ffd6741f9cc355d01e5a5332:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/gunship2000.dw
+id=183 file=1225929a7c23ade78afab239a6ab3a28609491408a535520ade56ef1e9693681:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/int%20soccer%20challenge.dw size=41616  # 3772 more bytes after the 64 zero bytes (waveforms)
+id=183 file=d2e09b4f79f7d869afd1a03aeeb4417541e751fc46abed088e1d3ee8af782c83:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/jaws.dw size=65972  # 78 more bytes after the effects set
+id=183 file=1222766d5fb5c2d370e484ef481bdf90e7a70bcfd476772d9a17ed7d39e67423:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/jupitermaster1.dw
+id=183 file=73b7551ac1d057749fe3021ba6336dfaffd3628baf7bd63ef85b11a8676d8023:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/jupitermaster2.dw
+id=183 file=b4f365c1852762b7a0941baa1960210b76d9ce8e7b19d26dd7a3bac0ab2c94c7:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/jupitermaster3.dw
+id=183 file=91c7c378bef786a3a52681ffe635dfcd870bf320eab4ee05e90468984b519177:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/kickstart%20ii.dw
+id=183 file=39d181a160908519d6b3d2d96805f6972afb9d6ccc898a2e8df3782ccdca989d:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/kidgloves.dw
+id=183 file=2a127a4e8144222a037b5f6f25ce82ae35079eb9c9d7c99e5f5cc340a49e1085:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/krustyssuperfunhouse.dw size=33660  # 46304 more bytes after the 64 zero bytes (unknown data)
+id=183 file=97bbde81050d4ebadf70742c7190ef423839e5a0770173e585a8a4abd346ccf2:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/leathernecks.dw size=41588  # 640 more bytes after the 64 zero bytes
+id=183 file=1e35e33f11eda4e75863540dc9624737208bb2b4468adea519809256d5731dec:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/leviathan-deabs.dw
+id=183 file=c56e712f8f809e10b8364df9365124d3fff86bb115f8f02243872d3a203fa8ba:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/licencetokill.dw
+id=183 file=e2e534f06e5a216b920c2d06a80892ef69e1aafa920e32e3b41a128d1852bf85:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/loopz.dw
+id=183 file=30ace57cb96d49d88a7ea3060dd9ea9b81ed05a2737bd088afa01c192e20dfb5:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/menace.dw size=34550  # 16 more bytes after the 64 zero bytes
+id=183 file=c039dc17a2a457e24218d7028e115826b53a6ecacabba8028bd3f678b42bfbe0:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/millennium.dw size=113162  # 38 more bytes after the 64 zero bytes
+id=183 file=f9a266a5935361304a57ca9065aa110bc323bdea744d4ac335c2336b39139b95:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/obliterator-ingame.dw
+id=183 file=f4b2add33978cef953e28c57cf78dd207cdf0e2e8432257257766dc8916570f6:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/obliterator-title.dw
+id=183 file=8a9fdc41530aac918435103b80bfc772f2fa9ca01bf8fdfe3e5a8b76d8335dad:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/pandora.dw size=30828  # 640 more bytes after the 64 zero bytes
+id=183 file=32a6b06cc34d10ed8719561acf1f328229a8db3599ce4d8fa9c9d796509fa190:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/platoon.dw
+id=183 file=c87326f953a4f4eb413a03d6d138daffcecbdafe7faec3490bccfec0e00903cb:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/quadralien.dw
+id=183 file=66d02cfb45ddc35e61a398d5ffee40c460443d7fc58543b2880543fa5fc3d606:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/renaissance%201.dw
+id=183 file=58c97dfd6edc0e70bb5b2376ad0cba690bcc33e55d5d89e94963e6005694a50e:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/returntogenesis.dw
+id=183 file=1c99e44be693f2af945c1db8159848614090d6f7cd53bab4e1fe8e9aa1d8f9f0:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/road%20blasters.dw
+id=183 file=b567eea6ad05d5cdfae08388c2bf6460ae188b24aefadf60024cd065e519083f:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/rugby%20league.dw
+id=183 file=8675238c0c1e043846752d2341a738be38e71b84ee8de248a2808ad38d338282:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/sentinel.dw size=27856  # 640 more bytes after the 64 zero bytes
+id=183 file=59d2ef706cd4be97931b8a0767e566c346506dff5f9ec7c4907a0bd156264639:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/sidewinder.dw
+id=183 file=83d4099d38077da8c48c6f7a1b0530a82effdde60d1f60bd2444ee4e359ee6ad:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/snoopy%20and%20peanuts.dw
+id=183 file=69552aba705bacd4ae55e2dae4571ca980520b191a920b6464edcb8bdbd58a26:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/snow%20strike.dw size=48154  # 10702 more bytes after the 64 zero bytes (unknown data)
+id=183 file=e0977f5035ee597ddba60901abf30dcc2af9244704065af756b418aab188e182:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/speedball.dw size=21932  # 16 more bytes after the 64 zero bytes
+id=183 file=c558134efc8cd52a3deb2124a0ebc540c0e6c38697fee115303d8beb5d582c0b:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/spitting%20image.dw
+id=183 file=c5726d00a36942dddc5a99b5b2830044af3169cade1c63b910d3ac612b46e891:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/sportingtriangle.dw
+id=183 file=76a60e4b6f36ca05d8fd64a25d90c15175cafb42bfae0467cffb3bbfefee0d1b:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/starblaze.dw size=97400  # 4 more bytes after the effects set
+id=183 file=1d1650691eb4dddc0d3aa1f311634a134b672d6bb0facc0d300a3a2e30bf71b9:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/stormtrooper.dw
+id=183 file=bcc303586c014d54ed83d49dc018ba4213c4092a4e26854d702b09d8ddb88b4b:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/superleaguemanager%201.dw
+id=183 file=dbd3666d5f2e50fc0f7b4c8994079240978f9f82037f55956188cecf97a0cede:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/superleaguemanager%202.dw
+id=183 file=3913a402d2b54a98876f0add5bb977db07c054236c9e285a245b9f811c476dee:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/super%20wonderboy.dw
+id=183 file=91f485bbd642af74ae419339764748c012146c8b9bf59a8c96fccbaeeda92d3c:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/tetris.dw
+id=183 file=d11abc15163f3c5458db03eba562180c1f89c06056227044b2e95f0cc14bcc05:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/the%20empire%20strikes%20back.dw
+id=183 file=956b31811998e665f7f84a84254efea778be310b4f22ba640e1ac857114313b4:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/the%20hunt%20for%20red%20october.dw
+id=183 file=784322d81e921a76632eb18295ea2e0b65192f4697313178a824685ffabc52da:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/thekillingcloud-sfx.dw
+id=183 file=ccac7d3f5e97f154f8d98580cd8f81eae9de5f8768f72443d620a3f63b712e57:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/thunder%20cats.dw
+id=183 file=6772fee88a4c00f10f72bb59fea71c68560da6bc9db71659145cdad9fdb98773:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/totalrecall-game%20over.dw
+id=183 file=ea752fcfd6a4e4c97adea8abbd6a0721292c4c322895ca3f760a8e82e65783e1:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/totalrecall-ingame%201.dw size=65036  # 64 non-zero bytes after the samples instead of the zero bytes
+id=183 file=88dc9d8cd29a56ed744f96ca6c85e41412d373f3cd016309ab18cd345919d04d:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/totalrecall-ingame%202.dw
+id=183 file=454cf6eae1abd8e691e96d459b5d763adfd876721d53071ed4d3ad80253fdb03:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/totalrecall-ingame%203.dw
+id=183 file=e47538d596d37a5e9905a6717b29dc602ed675cea988c672633af53b490bf5d2:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/totalrecall-ingame%204.dw
+id=183 file=fa5b9b7c5c0c765aacefa16b78fd9c40314e4fe3124f307b3badf912868346ff:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/totalrecall-ingame%205.dw
+id=183 file=f31aba1ca2be0d7ff0baccbbc4e8541b52a02ee520188a7e11051daff024e57b:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/wanderer%203d.dw
+id=183 file=4293eb8e70899ef492fbfe0bc2c61399967744eddd04e0517471cf5eccd95d61:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/weird%20dreams.dw
+id=183 file=9a0cc2354d9d8b241beafb9044e05b0efddce7a9e80337e05db03ee63e10c6db:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/wizzcat.dw size=34550  # 103 more bytes after the 64 zero bytes (odd file size)
+id=183 file=2a94dbbc0dd982f49fa884b19ea0cac69a6c42de478e1df24c4a791778548eb4:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/world%20class%20rugby%2095.dw
+id=183 file=9e13bc78d46f96db5a579d8b806ec7199af4cb50be528bcf899a79b48fa83592:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/wrath%20of%20the%20demon.dw
+id=183 file=ece97b278bf1ed0d6042a64adbac41f55a937ef78003c3912f396cb1d9109f37:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/wreckers%20-%20ingame.dw
+id=183 file=e8eb9d21afbff2f37adf7fbf5172e18468ab18488d7ce2ecb0e665ef7d9b641d:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/wreckers%20-%20title.dw
+id=183 file=eedda00219761dbd053bc5400b6bfc7ba49becb9694761e94e2d5951a527cc25:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/xenon2%20%28ingame%29.dw
+id=183 file=9c13467e501b50ca4f978987bdfb13b0c3c0005cb35a8cb95d3a04308a9558b6:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/xenon2%20%28title%29.dw
+id=183 file=84a2ab2f14343d983c33d15fae327f9afaba778b1bd2e6e32c94a24a8b258d6f:https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/xenon.dw
+id=183 file=609305e977195761a5d373ba302d6c1f37ce99f6cbae371594f59c1c189aabd2:https://ftp.modland.com/pub/modules/David%20Whittaker/Paul%20Robotham/whirligig.dw
+
+# not detected: https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/anarchy%20sfx.dw - sound effects only (no music sample set)
+# not detected: https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/blood%20money%20sfx.dw - sound effects only (no music sample set)
+# not detected: https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/feud%20fake.dw - the 1987 player
+# not detected: https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/leviathan-sfx.dw - the 1987 player
+# not detected: https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/qball.dw - Rob Hubbard's 1987 player (QBall)
+# not detected: https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/spellbound%20sfx.dw - sound effects only (no music sample set)
+# not detected: https://ftp.modland.com/pub/modules/David%20Whittaker/David%20Whittaker/xenon-sfx.dw - the 1987 player

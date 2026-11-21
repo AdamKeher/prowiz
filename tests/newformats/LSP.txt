@@ -1,0 +1,112 @@
+# LightSpeedPlayer (.lsmusic + .lsbank) - see docs/NEW_FORMATS.md
+#
+# The repository example at every revision whose converter changed
+# (layouts A: 1.00-1.03, B: 1.04-1.05, C: 1.10, D: 1.11-1.33)
+# rink-a-dink, converter 01.00 (LSPlayer 060a082)
+id=173 file=4475ff8807b43cd31414d089135876984b622d1e265e67a0758d8e1269de4d89:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/060a082c31c849387f6b81fe4860b965c5a14b42/Example/rink-a-dink.lsmusic companion=lsbank:62be6bdf9d8439dec5355afeb271fe3870661d764a293097a9267078e0e78022:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/060a082c31c849387f6b81fe4860b965c5a14b42/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.01 (LSPlayer b81b7c7)
+id=173 file=2bc4a1b79e441a6afcd508729c7036514de56b9e177a240d24afc503eb2b647f:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/b81b7c7a6dbeb99c59fa8bef1fe2bfcf8654c027/Example/rink-a-dink.lsmusic companion=lsbank:5c7b76afb8dede2935f37be307bdf1ef72f4ad7570bcf8c147be4f346e8df56f:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/b81b7c7a6dbeb99c59fa8bef1fe2bfcf8654c027/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.02 (LSPlayer 3336a28)
+id=173 file=bb727f3e506c81dbb689ff15b8b19a46177fe8c0a0763ec29665ea3f95631f91:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/3336a280ae0151d1868f5b2267c0727eb7245fe7/Example/rink-a-dink.lsmusic companion=lsbank:2e7fa00364c6a500c9edc7c84f6e8ad635be1fec3d014559a78afe1fdcd55ef3:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/3336a280ae0151d1868f5b2267c0727eb7245fe7/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.03 (LSPlayer 663b89a)
+id=173 file=04d47123566db0e7a7a92fbd7491530f1cedc1478a4251288e9b026a5d690095:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/663b89a4cbb6a261f6631ba322ecda24ef8e83eb/Example/rink-a-dink.lsmusic companion=lsbank:b44d788e8924b6bddc2fae2bb554ff8c012688c8d0ded8fb7ce7c6387d69f5f8:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/663b89a4cbb6a261f6631ba322ecda24ef8e83eb/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.04 (LSPlayer af25c8b)
+id=173 file=bf483799adf702aa6099cf21840a731dede1838443f23689950d4282c8b2da0f:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/af25c8bb7d5f889d9642fc675d7ec5c2587ec829/Example/rink-a-dink.lsmusic companion=lsbank:b4a90c6ac0dd83b7bec28295495fefc07005741ed15970cbcea1830ce315f6d7:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/af25c8bb7d5f889d9642fc675d7ec5c2587ec829/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.05 (LSPlayer c74e352)
+id=173 file=ad3aedc5d6fc50e45a05e0187effe664ba28cd715152cc05ee9157e832777993:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/c74e352520dcce6d6cd4a2ec1385cb959fc310d7/Example/rink-a-dink.lsmusic companion=lsbank:3b5812ddc22a318da1f42e4556a64107afa814802e95c7abda45845523893d90:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/c74e352520dcce6d6cd4a2ec1385cb959fc310d7/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.10 (LSPlayer 55d6777)
+id=173 file=b974ca55abf0ea1324ade359b185d78090de80e1ab8b9d6975628b217919aded:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/55d67775c4195b2d81fd7a84623a1247666dea23/Example/rink-a-dink.lsmusic companion=lsbank:5c8e2694d8c6d9901bc251726ac4c5d2b9a2c3b37eea18f34322e4e579146b90:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/55d67775c4195b2d81fd7a84623a1247666dea23/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.11 (LSPlayer 011100a)
+id=173 file=e8e7d1f46e86b490656059074b72c03c531c9e2728bfd8793b60072e58fcb2bb:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/011100a4584d6b59dfe3e648511f53ce9f5c6bd5/Example/rink-a-dink.lsmusic companion=lsbank:4de7f5ac68c96285c15145054ee38dbaacd05c0c064fce8815cff9b7191bc150:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/011100a4584d6b59dfe3e648511f53ce9f5c6bd5/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.11 (LSPlayer 7192398)
+id=173 file=b03f853b34da0f178ee33c29dbf09186e38abcb2589256c95776e5bb2122ebe1:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/7192398d332e84015c0fa30647d4e39bbd293419/Example/rink-a-dink.lsmusic companion=lsbank:4de7f5ac68c96285c15145054ee38dbaacd05c0c064fce8815cff9b7191bc150:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/7192398d332e84015c0fa30647d4e39bbd293419/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.12 (LSPlayer a01b7c2)
+id=173 file=6e152ae067ba4e978908aca7bd82de31976994dc6522764117f886a5d18197b1:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/a01b7c26da35b1cff7736dd5537a60619c306009/Example/rink-a-dink.lsmusic companion=lsbank:c51f1b736e012637690b88e8ff16ad31dd24e18941f6e119f0d663537757ac7b:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/a01b7c26da35b1cff7736dd5537a60619c306009/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.13 (LSPlayer 2e7241b)
+id=173 file=e9c54246d86659b2fa711e11d3e38804cb6a602905403c175be408767a9ab0c4:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/2e7241b85c928df2deadbb40118369775181a7df/Example/rink-a-dink.lsmusic companion=lsbank:3825e2102652aa41127c473c72e509887884c659eb53c33424c864088931d4fd:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/2e7241b85c928df2deadbb40118369775181a7df/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.22 (LSPlayer 5cc957e)
+id=173 file=3387cfdd1e6452c279a21ef475e567b4c97a51b686619c375bc72fa139ccd51d:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/5cc957e5a3306892f18f09aa3f78ea60d851d1e1/Example/rink-a-dink.lsmusic companion=lsbank:da387f4cf9859a80b4cb8e645d977e97b1ac9da96b6830f83551e462319da97b:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/5cc957e5a3306892f18f09aa3f78ea60d851d1e1/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.23 (LSPlayer b44c88d)
+id=173 file=1b0b0adc24646fc6e136ebcb0631a9f8d8002f6ad72a5d6ee7146f074d786f8f:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/b44c88d4bb6de7dda4c05d7fa6641866914e6114/Example/rink-a-dink.lsmusic companion=lsbank:3657e51e8d466f3a6e9866e160dc612a2795e954e175b817c06c6c22bd55a689:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/b44c88d4bb6de7dda4c05d7fa6641866914e6114/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.30 (LSPlayer 4b8b684)
+id=173 file=53a6f1e63c0dd0011de1ff88fd841ccc85602d8fd7fc022161977abcc93bab7a:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/4b8b68460d1e3cc0f399f915344e7af371bc749f/Example/rink-a-dink.lsmusic companion=lsbank:cd17c541893c7417b5b053340dcbfbb202058dc0b79eec1c4662ce07f4a77465:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/4b8b68460d1e3cc0f399f915344e7af371bc749f/Example/rink-a-dink.lsbank
+# rink-a-dink, converter 01.33 (LSPlayer a6f9868)
+id=173 file=388e9561b2867199d99cb95b331d866ff0bba179458d1eea29750959b20a85f4:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/a6f9868b0c624560e9931882bf7a999ab15d179d/Example/rink-a-dink.lsmusic companion=lsbank:afab4d58b44280cbb222303143448d43632b9565a83b114cdffd95b3069ad296:https://raw.githubusercontent.com/arnaud-carre/LSPlayer/a6f9868b0c624560e9931882bf7a999ab15d179d/Example/rink-a-dink.lsbank
+#
+# Real productions (public demo repositories, pinned commits)
+# DutchRetroGuy/AmigaAudioMixer: 1.11, getpos+setpos
+id=173 file=a71e566b2f7d183d5f146a1a34c1177154a7472d43bd08aa4c161a2dfff31588:https://raw.githubusercontent.com/DutchRetroGuy/AmigaAudioMixer/e132dc03bf19e761aa18c39fe477765770709fde/Examples/Data/SneakyChick.lsmusic companion=lsbank:bb3deb99b2999e77cb7e6880beb09356b0e72b73c53fad0ccf6a7a72f19680d3:https://raw.githubusercontent.com/DutchRetroGuy/AmigaAudioMixer/e132dc03bf19e761aa18c39fe477765770709fde/Examples/Data/SneakyChick.lsbank
+# asimilon/AmigaDemoTemplate: 1.11
+id=173 file=94de5e7d2ce7449e379d1c4a880ccb299f77c65bdd653162dd6d22ed86b9cae2:https://raw.githubusercontent.com/asimilon/AmigaDemoTemplate/66a21087c23f881e736bee176f351e536f12ede3/include_binary/ScrewLevity.lsmusic companion=lsbank:90ef9c509d18419fd9cb30c8d6d154dd69e8f9764e628036601cd2757398e898:https://raw.githubusercontent.com/asimilon/AmigaDemoTemplate/66a21087c23f881e736bee176f351e536f12ede3/include_binary/ScrewLevity.lsbank
+# jobj/Apocalypso-invite: LSPX (writes 1.25): zero-padded code table, odd offsets
+id=173 file=dc175f127b92a2861e2891191f58f5e0177bbc8a9a96ead49b2e7e910a392d26:https://raw.githubusercontent.com/jobj/Apocalypso-invite/f272215a8ed58051808e9e12b9d9f88a8409f5fc/data/apocalypso.lsmusic companion=lsbank:5c63271167ea69322674e464e3f11c5733c05ba302bf12f311c75b360d54d4fa:https://raw.githubusercontent.com/jobj/Apocalypso-invite/f272215a8ed58051808e9e12b9d9f88a8409f5fc/data/apocalypso.lsbank
+# rjobling/AtPartyIntro: 1.26, getpos+setpos
+id=173 file=5a7457cbff617c9ee31d4ef7fa59e225f5a0775d7cf2f49c8e858c7a05292da6:https://raw.githubusercontent.com/rjobling/AtPartyIntro/99b902cf5f1a3428f1a87448cc32bd835f542739/data/cosmic_makeup.lsmusic companion=lsbank:c2753a6899802d5339a38e051f9bac75fc700ad22f84e8d45612da61062e6e72:https://raw.githubusercontent.com/rjobling/AtPartyIntro/99b902cf5f1a3428f1a87448cc32bd835f542739/data/cosmic_makeup.lsbank
+# jokker87/AUGS: 1.25, loop point
+id=173 file=8b8b58cd990b64a7bc38e271f248288e0d4381c049e4b018923d9365a7e93a7f:https://raw.githubusercontent.com/jokker87/AUGS/286f0bb124bee8128b676c1909bf6679cd88bd82/TrackLooped.lsmusic companion=lsbank:dd0d4fd34c37bf1a1e2801a13c1d23eab259c90470f59b308c5d5b5c6a4d52ab:https://raw.githubusercontent.com/jokker87/AUGS/286f0bb124bee8128b676c1909bf6679cd88bd82/TrackLooped.lsbank
+# danamini/aura-tunnel-amiga: 1.31, a period 0
+id=173 file=4ef671e3871b6d931934accf6d7699713b5ea0e238eb38bc4441177da8966ad9:https://raw.githubusercontent.com/danamini/aura-tunnel-amiga/0d35d6d3de72e9f680db1de434325a604ee86bdd/assets/music/robotsound.lsmusic companion=lsbank:f356f0f0ee07a3ab36fc24f93f55266a497d1d1700c8fc2fac4f80c644a257b2:https://raw.githubusercontent.com/danamini/aura-tunnel-amiga/0d35d6d3de72e9f680db1de434325a604ee86bdd/assets/music/robotsound.lsbank
+# grahambates/desire-dfunk: 1.13
+id=173 file=42031f1ddaff7c69f55222ea9beebd6bf0df66aaa569ae49671f4f8b3803f36f:https://raw.githubusercontent.com/grahambates/desire-dfunk/31371f9ebed37a5246a30956f2e7e9d8d07e80a4/data/funky_shuffler.lsmusic companion=lsbank:dbb62eb6ffc84c32b1a031979be7e6658b45a3e678f4ef5f034f31cdb879092d:https://raw.githubusercontent.com/grahambates/desire-dfunk/31371f9ebed37a5246a30956f2e7e9d8d07e80a4/data/funky_shuffler.lsbank
+# roger-wetzel/DMD: 1.13, getpos+setpos
+id=173 file=6c30e00b33bd8f1d832ad137044b7eabeafa8a1b7b04ddc7da75ce41cab2562c:https://raw.githubusercontent.com/roger-wetzel/DMD/f84f90541f31bd61e6de9bf7dd345de2b7459012/virgill-dmd2.lsmusic companion=lsbank:3a7750eaf6f04f6d43da8a3a6991f68da36492b4f0d6533b91f7b635e02074df:https://raw.githubusercontent.com/roger-wetzel/DMD/f84f90541f31bd61e6de9bf7dd345de2b7459012/virgill-dmd2.lsbank
+# roger-wetzel/DefinitelyTouching: 1.25
+id=173 file=ab556e37d5be6139af737ad97a498158220eadccce9f3866c9a5c6b080c0fd14:https://raw.githubusercontent.com/roger-wetzel/DefinitelyTouching/976688210f1c8a4260b666a954886937494c4fd4/virgill-epic.lsmusic companion=lsbank:f6064e470c7558f4afe407f887c0bc09bd6d5b3854d1dc2f087296f8adcf184a:https://raw.githubusercontent.com/roger-wetzel/DefinitelyTouching/976688210f1c8a4260b666a954886937494c4fd4/virgill-epic.lsbank
+# pawelmat/Amiga-Eire: 1.26, getpos+setpos
+id=173 file=53b97e4a3faeb0f3fc57f19cfa0794e8178470f70ba826cf8b9774398ad1be26:https://raw.githubusercontent.com/pawelmat/Amiga-Eire/a41e137a1ef5ac3dc16e7bfa1a70ed069957f7bc/assets/Bartesek%20-%20Hey%20Simone%21.lsmusic companion=lsbank:8c1685a5217e6c695d9a4604b7de49ea4945271d61d49e39186877491fe34688:https://raw.githubusercontent.com/pawelmat/Amiga-Eire/a41e137a1ef5ac3dc16e7bfa1a70ed069957f7bc/assets/Bartesek%20-%20Hey%20Simone%21.lsbank
+# torkildl/gerp25: 1.25, getpos+setpos
+id=173 file=ace0c44dc8641a0d99b10470fa741a9b6ecee3b1b1d8392ad441311e18a5e71d:https://raw.githubusercontent.com/torkildl/gerp25/25926169b3071eb016fa1081aa56dc6abc97a944/assets/funky_vibes.lsmusic companion=lsbank:8d676dc6dc8d8b7ec37a20e8cbe567bedd601eb50adf980f528ec0d6b9755fc3:https://raw.githubusercontent.com/torkildl/gerp25/25926169b3071eb016fa1081aa56dc6abc97a944/assets/funky_vibes.lsbank
+# jokker87/HV23_24: 1.13
+id=173 file=9f25417a672c3f7290444da127b4d31bae4eae99284da28df5e991e4ce5fa6a1:https://raw.githubusercontent.com/jokker87/HV23_24/e76b32a2e5a0a8afd326aacdf9de30e33f63db6e/music/christ_1.lsmusic companion=lsbank:984aa5c00459776dfe75fb20d9bb920b5439809ab213e5fb07a2bc337a326906:https://raw.githubusercontent.com/jokker87/HV23_24/e76b32a2e5a0a8afd326aacdf9de30e33f63db6e/music/christ_1.lsbank
+# nattfalk/ins-gerp24: 1.13
+id=173 file=aab92577763577926d43407d6be70f92e73134cac1adb0ca221849294da6b8a6:https://raw.githubusercontent.com/nattfalk/ins-gerp24/234a8404613f4a6cb459fac365e485824249335f/data/music/we%20are%20back%20timefix.lsmusic companion=lsbank:07912f7f5620954042aba60890ec648764debdf800462fd42ed529de5a4320e1:https://raw.githubusercontent.com/nattfalk/ins-gerp24/234a8404613f4a6cb459fac365e485824249335f/data/music/we%20are%20back%20timefix.lsbank
+# roger-wetzel/PlusEqualsPlus: 1.25, 453 codes
+id=173 file=3fd595adc51b6b1d1ed740f45f7ad63d4d2970adeb6a6316a7d034e9078ae8fc:https://raw.githubusercontent.com/roger-wetzel/PlusEqualsPlus/323fcc9a8375470fe6a83d0c2f5260b747d6d990/aethra_siderea.lsmusic companion=lsbank:dd67960b3b247acbdefeda393e10c63abf05efc700e29086c93bfd8a6a3b096e:https://raw.githubusercontent.com/roger-wetzel/PlusEqualsPlus/323fcc9a8375470fe6a83d0c2f5260b747d6d990/aethra_siderea.lsbank
+# grahambates/desire-sitm-public: 1.26
+id=173 file=646897b9deee6a0dffe605d4e1624d3080d8b901f1ffab5296b00d564e6a8648:https://raw.githubusercontent.com/grahambates/desire-sitm-public/df5efd61501fb5d744285ffed47602a8e19248cf/assets/stuck-in-the-middle.lsmusic companion=lsbank:9eee8ecf4be31ca0ddc56fcb69394f9dee5bba6060e45b6091eddf6ae95afbd5:https://raw.githubusercontent.com/grahambates/desire-sitm-public/df5efd61501fb5d744285ffed47602a8e19248cf/assets/stuck-in-the-middle.lsbank
+# ericde45/mega_JAG: 1.05 (layout B), Atari Jaguar port
+id=173 file=13a5aa98ccdbc2af802c2e98e7c16d2737000c721276d516c132ed680a0fb239:https://raw.githubusercontent.com/ericde45/mega_JAG/b0b415e5d3580b8f382b5f3983f83659b70878ad/art.lsmusic companion=lsbank:3f5a7de4cc3e525b3314a5ba68ee17250bb72c759e214ea5f5153532e8ce328e:https://raw.githubusercontent.com/ericde45/mega_JAG/b0b415e5d3580b8f382b5f3983f83659b70878ad/art.lsbank
+# djh0ffman/TTE_Circumvent, 1.25: tune.lsbank belongs to _tune.lsmusic (same ID);
+# tune.lsmusic has no bank in the repository, so it is saved alone
+id=173 file=6353165ed6f9201722acf0a256f9907ff7b55e37b284480a5f025f3d970b3d73:https://raw.githubusercontent.com/djh0ffman/TTE_Circumvent/b0998c674d1b785d6333160c29f7d1f5400c186a/tunedata/_tune.lsmusic companion=lsbank:92f2151e52f184cbbd7a5f9ed83e4a4629555155af833a1ef6000f0989f02c15:https://raw.githubusercontent.com/djh0ffman/TTE_Circumvent/b0998c674d1b785d6333160c29f7d1f5400c186a/tunedata/tune.lsbank
+id=173 file=ea7c682acc6b293771ab2000ad68defcb0b5139ef055745118201f2cd40c7069:https://raw.githubusercontent.com/djh0ffman/TTE_Circumvent/b0998c674d1b785d6333160c29f7d1f5400c186a/tunedata/tune.lsmusic
+# virgill1974/Alcatraz-Soil, 1.13, getpos+setpos: music only in the repository
+id=173 file=25bb749395f7f4c1af61619c3673e12e60ae598bb29bae06803545b05155f740:https://raw.githubusercontent.com/virgill1974/Alcatraz-Soil/1c0415c19e2c2f1c5d5c2d9c253e355ffe8ebdc1/Alcatraz-Soil-project/sound/soil.lsmusic
+# Ozzyboshi/Planartunnel, micro (LSPm) 1.25: a micro music does not hold the ID of
+# its bank, so on disk the bank cannot be found and the music is saved alone
+id=173 file=bd911c9b578b472eb07850efb96bbe60cd4911d00a73e38b87ee1539e2079dfe:https://raw.githubusercontent.com/Ozzyboshi/Planartunnel/89436d42351208aad91e3db1441316011291851d/musicilario/compact/demo_klang2-3_micro.lsmusic
+id=173 file=18160c6b5096a6cc7d123d1ce401ffb72692a8048e285d6f24be79afb32569c6:https://raw.githubusercontent.com/Ozzyboshi/Planartunnel/89436d42351208aad91e3db1441316011291851d/musicilario/compact/demo_klang_tracks-2-3_micro.lsmusic
+id=173 file=c0c0eb3bf85fee86ed0fbe08bff665720474f1cb1458d33bec666e89a916ef78:https://raw.githubusercontent.com/Ozzyboshi/Planartunnel/89436d42351208aad91e3db1441316011291851d/musicilario/compact/demo_klang_tracks-2_micro.lsmusic
+id=173 file=367f09c57756aeda1c9dc14882c0011207c10a547283288238d045fce0932713:https://raw.githubusercontent.com/Ozzyboshi/Planartunnel/89436d42351208aad91e3db1441316011291851d/musicilario/demo_klang_micro.lsmusic
+#
+# Synthetic files (tests/newformats/files/LSP, made by a generator: synthetic
+# waveforms and a made-up tune), one per layout, and memory images as the
+# players leave them (restored=1: the rip must be the file as on disk)
+# 1.03 (layout A)
+id=173 file=a29c32939700ca590612cfec3e84b58bd22be9aa4fe5b90071fe6f9d1f39f1b6:tests/newformats/files/LSP/synth_a.lsmusic companion=lsbank:9f588491bf9df48988d53d400aff4cbe6180adc48bc8cab68c16fd54f1799bbd:tests/newformats/files/LSP/synth_a.lsbank
+# 1.05 (layout B)
+id=173 file=0d37d41e9eb5f7b98eca48f48085e16143cf3f54ba477ea102042750fd467f33:tests/newformats/files/LSP/synth_b.lsmusic companion=lsbank:ca309857eaefcec6fbd43946741046e87f787c818b4f31ec64768193f6ffc7f8:tests/newformats/files/LSP/synth_b.lsbank
+# 1.10 (layout C)
+id=173 file=8617aed22048a966c1a04be2268c41c80cf056616ac11fb9817204c801591ed7:tests/newformats/files/LSP/synth_c.lsmusic companion=lsbank:e6659f1540c39cdb6e47cd9ab1159a7fc83c9267b34f54f0082ae7a673eb8480:tests/newformats/files/LSP/synth_c.lsbank
+# 1.33, getpos+setpos, BPM changes
+id=173 file=c8391b57d1878625c9bfb9fc4b2bdbdb2279bc9aa7ea24131c0905cbac24faaf:tests/newformats/files/LSP/synth_d.lsmusic companion=lsbank:325909ca331a94bacd49ae76ad61845fbd6c06f6da7c071d0db22f58b2c4065d:tests/newformats/files/LSP/synth_d.lsbank
+# 1.33, ADPCM bank with one lossless sample
+id=173 file=60b9cfd285b252690348a7a0eb743903b48daef21c4a775a7a84d92c550f1fa0:tests/newformats/files/LSP/synth_adpcm.lsmusic companion=lsbank:e60e22597213e0e64b6a25b81e5821857c61a9f474ac40ce8573a8632f3e3ff3:tests/newformats/files/LSP/synth_adpcm.lsbank
+# micro 1.33 and 1.20 (no BPM word): saved alone
+id=173 file=a6d092cf73fbc9d28328015dd10ca55156a453fb63b7c5579a685b0521fa0119:tests/newformats/files/LSP/synth_m.lsmusic
+id=173 file=8b4180add99dd9e0e5c9c761a0892742b476e15148ae74f2d03de8372d0a308a:tests/newformats/files/LSP/synth_m120.lsmusic
+# 1.33 player: flag FF, bank address added, sequence table relocated
+id=173 file=86364f749b17d0c68723cc12f385cd20eb08ab8f227ac5f65940a381993feed5:tests/newformats/files/LSP/mem_d_std.bin size=1212 rip=c8391b57d1878625c9bfb9fc4b2bdbdb2279bc9aa7ea24131c0905cbac24faaf restored=1 companion=lsbank:325909ca331a94bacd49ae76ad61845fbd6c06f6da7c071d0db22f58b2c4065d:tests/newformats/files/LSP/synth_d.lsbank
+# 1.33 player: as above, the ADPCM bank (right after) decoded in place: packed again
+id=173 file=74b94b61bddb39019f90ff5c7783a3dec4f5d11567e936f7acde114967de3292:tests/newformats/files/LSP/mem_adpcm_std.bin size=1196 rip=60b9cfd285b252690348a7a0eb743903b48daef21c4a775a7a84d92c550f1fa0 restored=1 companion=lsbank:e60e22597213e0e64b6a25b81e5821857c61a9f474ac40ce8573a8632f3e3ff3:tests/newformats/files/LSP/synth_adpcm.lsbank
+# 1.33 generated "insane" player: flag FF only, ADPCM bank decoded
+id=173 file=6a2f65d11249054d20146e015919440df1ecf8ee3f09fdc9b0f7fd84896d72cc:tests/newformats/files/LSP/mem_adpcm_insane.bin size=1196 rip=60b9cfd285b252690348a7a0eb743903b48daef21c4a775a7a84d92c550f1fa0 restored=1 companion=lsbank:e60e22597213e0e64b6a25b81e5821857c61a9f474ac40ce8573a8632f3e3ff3:tests/newformats/files/LSP/synth_adpcm.lsbank
+# 1.10 player: flag FF, bank address added
+id=173 file=2c9f46e10c385f295a8999e5de6d62aef343c6f2254fab550ce20fc9edbeda15:tests/newformats/files/LSP/mem_c_std.bin size=695 rip=8617aed22048a966c1a04be2268c41c80cf056616ac11fb9817204c801591ed7 restored=1 companion=lsbank:e6659f1540c39cdb6e47cd9ab1159a7fc83c9267b34f54f0082ae7a673eb8480:tests/newformats/files/LSP/synth_c.lsbank
+# 1.05 player: bit 0 of each start set, then the bank address added
+id=173 file=6acb98174e2bd2440b95fa56192b1873ad8888ebdc832f48cf2d152f4059f897:tests/newformats/files/LSP/mem_b_std.bin size=691 rip=0d37d41e9eb5f7b98eca48f48085e16143cf3f54ba477ea102042750fd467f33 restored=1 companion=lsbank:ca309857eaefcec6fbd43946741046e87f787c818b4f31ec64768193f6ffc7f8:tests/newformats/files/LSP/synth_b.lsbank
+# 1.03 player: bank address added, no flag
+id=173 file=b2ab6071d0f8cea9c70611d599f27efba6149270b6ac951cafc459c4c603653c:tests/newformats/files/LSP/mem_a_std.bin size=673 rip=a29c32939700ca590612cfec3e84b58bd22be9aa4fe5b90071fe6f9d1f39f1b6 restored=1 companion=lsbank:9f588491bf9df48988d53d400aff4cbe6180adc48bc8cab68c16fd54f1799bbd:tests/newformats/files/LSP/synth_a.lsbank
+# micro player, a dump of memory from address 0 with the music at 1000 (where the
+# embedded check puts it) and the bank right after it, found through the pointers
+id=173 file=9f680bf3e40f20b69a5780ece0fe62bb8ead13b1447b9ca6e58b354f5b663116:tests/newformats/files/LSP/mem_m_dump.bin size=1200 rip=a6d092cf73fbc9d28328015dd10ca55156a453fb63b7c5579a685b0521fa0119 restored=1 companion=lsbank:6bc0ace89153fbff2330a350bf6c3453b519b4bbed10bbbe54b9816ea73d54d8:tests/newformats/files/LSP/synth_m.lsbank

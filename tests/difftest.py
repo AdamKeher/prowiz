@@ -49,11 +49,11 @@ def dir_size(path):
     return total
 
 
-def run(exe, inp, workdir, timeout, types=None):
+def run(exe, inp, workdir, timeout, types=None, extra=()):
     if types is not None:
         shutil.copyfile(types, os.path.join(workdir, '_types_'))
     outf = tempfile.TemporaryFile()
-    p = subprocess.Popen([exe, inp], cwd=workdir, stdout=outf, stderr=subprocess.DEVNULL)
+    p = subprocess.Popen([exe, *extra, inp], cwd=workdir, stdout=outf, stderr=subprocess.DEVNULL)
     rc = None
     t = 0.0
     while rc is None:
@@ -108,7 +108,8 @@ def compare(args, inp):
         os.mkdir(dport)
         types = getattr(args, 'types', None)
         rrc, rout, rfiles = run(args.ref, inp, dref, args.timeout, types)
-        prc, pout, pfiles = run(args.port, inp, dport, args.timeout, types)
+        # -c: the port with Pro-Wizard 1.70a's formats only
+        prc, pout, pfiles = run(args.port, inp, dport, args.timeout, types, ('-c',))
         problems = []
         if crashed(prc):
             problems.append(f'port crashed/timed out (rc={prc})')

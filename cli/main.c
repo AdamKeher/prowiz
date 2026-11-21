@@ -1,8 +1,9 @@
 /*
  * main.c - prowiz command line tool.
  *
- * Without options it behaves like Pro-Wizard for PC 1.70a: same console text,
- * same files ("<n>.<ext>" rips and "<n>.mod" conversions) in the current
+ * It finds everything Pro-Wizard for PC 1.70a finds, plus formats the original
+ * never knew. With -c it is exactly the original: same console text, same
+ * files ("<n>.<ext>" rips and "<n>.mod" conversions) in the current
  * directory. Options add mode selection, an output directory, a scan-only
  * listing and a JSON report.
  *
@@ -61,6 +62,7 @@ typedef struct app
     int         json;
     int         scan_only;
     int         quiet;
+    int         only_170a; /* -c */
     unsigned    modes;
     const char *outdir;
     const char *types_path;
@@ -254,6 +256,16 @@ static void json_str(FILE *o, const char *s)
     fputc('"', o);
 }
 
+static const char *role_name(pw_file_role r)
+{
+    switch (r)
+    {
+    case PW_FILE_RIP: return "rip";
+    case PW_FILE_CONVERTED: return "converted";
+    default: return "companion";
+    }
+}
+
 static const char *status_name(pw_status s)
 {
     switch (s)
@@ -279,6 +291,7 @@ static void print_json(const app *a, size_t insize, const pw_result *res, int rc
             (a->modes & PW_MODE_MUSIC) ? "\"music\"" : "",
             (a->modes & PW_MODE_MUSIC) && (a->modes & PW_MODE_DATA) ? ", " : "",
             (a->modes & PW_MODE_DATA) ? "\"data\"" : "");
+    fprintf(o, "  \"formats\": \"%s\",\n", a->only_170a ? "1.70a" : "all");
     fprintf(o, "  \"scan_only\": %s,\n", a->scan_only ? "true" : "false");
     fputs("  \"output_dir\": ", o);
     if (a->scan_only)
@@ -299,7 +312,8 @@ static void print_json(const app *a, size_t insize, const pw_result *res, int rc
         json_str(o, d->ext);
         if (d->f.status == PW_STATUS_TRUNCATED)
             fprintf(o, ", \"missing\": %lu", (unsigned long)d->f.missing);
-        fprintf(o, ", \"header_rebuilt\": %s, \"files\": [", d->f.header_rebuilt ? "true" : "false");
+        fprintf(o, ", \"header_rebuilt\": %s, \"restored\": %s, \"files\": [",
+                d->f.header_rebuilt ? "true" : "false", d->f.restored ? "true" : "false");
         for (k = 0; k < d->nfiles; k++)
         {
             const file_rec *r = &d->files[k];
@@ -312,7 +326,7 @@ static void print_json(const app *a, size_t insize, const pw_result *res, int rc
             else
                 json_str(o, path);
             fprintf(o, ", \"role\": \"%s\", \"size\": %lu, \"written\": %s}",
-                    r->role == PW_FILE_RIP ? "rip" : "converted", (unsigned long)r->size,
+                    role_name(r->role), (unsigned long)r->size,
                     r->written ? "true" : "false");
             free(path);
         }
@@ -364,9 +378,10 @@ static void usage(FILE *o)
             "\n"
             "Finds Amiga music modules, packed modules and crunched files in <input file>,\n"
             "saves each one as <n>.<ext> and converts packed modules to <n>.mod.\n"
-            "Without options the output is identical to Pro-Wizard for PC %s.\n"
+            "With -c the output is identical to Pro-Wizard for PC %s.\n"
             "\n"
             "Options:\n"
+            "  -c          only the formats of Pro-Wizard for PC %s (exactly its output)\n"
             "  -r          music only: modules, packed modules, synth formats\n"
             "  -d          data only: executable and data crunchers\n"
             "  -rd         both (default)\n"
@@ -377,7 +392,8 @@ static void usage(FILE *o)
             "  -q          quiet: no console text\n"
             "  -v          print version and exit\n"
             "  -h          print this help and exit\n",
-            PROWIZ_VERSION, PROWIZ_UPSTREAM_VERSION, PROWIZ_UPSTREAM_VERSION, TYPES_FILENAME);
+            PROWIZ_VERSION, PROWIZ_UPSTREAM_VERSION, PROWIZ_UPSTREAM_VERSION,
+            PROWIZ_UPSTREAM_VERSION, TYPES_FILENAME);
 }
 
 static int make_dir(const char *dir)
@@ -447,6 +463,7 @@ int main(int argc, char **argv)
             {
                 switch (*p)
                 {
+                case 'c': a.only_170a = 1; break;
                 case 'r': a.modes |= PW_MODE_MUSIC; break;
                 case 'd': a.modes |= PW_MODE_DATA; break;
                 case 's': a.scan_only = 1; break;
@@ -534,6 +551,7 @@ int main(int argc, char **argv)
 
     memset(&opt, 0, sizeof opt);
     opt.modes = a.modes;
+    opt.formats = a.only_170a ? PW_FORMATS_170A : PW_FORMATS_ALL;
     if (have_types)
     {
         opt.types_data = types;

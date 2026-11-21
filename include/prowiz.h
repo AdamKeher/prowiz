@@ -8,7 +8,9 @@
  *
  * This library is a portable, re-entrant C99 port of Pro-Wizard for PC 1.70a
  * by Sylvain "Asle" Chipaux. Detection, rip sizes, file naming and conversion
- * output follow the original engine byte for byte.
+ * output follow the original engine byte for byte. On top of that it finds a
+ * set of formats the original never knew (see pw_options.formats); with
+ * PW_FORMATS_170A it is exactly the original engine.
  *
  * Copyright (C) 1997-2016 Sylvain "Asle" Chipaux (original Pro-Wizard for PC)
  * Copyright (C) 2026 the Pro-Wizard port contributors
@@ -27,13 +29,17 @@
 extern "C" {
 #endif
 
-#define PROWIZ_VERSION          "2.0.0"
+#define PROWIZ_VERSION          "2.1.0"
 #define PROWIZ_UPSTREAM_VERSION "1.70a"
 
 /* Scan modes (bit mask). The default, PW_MODE_ALL, matches upstream. */
 #define PW_MODE_MUSIC 0x1u /* music modules, packed modules, synth formats */
 #define PW_MODE_DATA  0x2u /* executable and data crunchers                */
 #define PW_MODE_ALL   (PW_MODE_MUSIC | PW_MODE_DATA)
+
+/* Format sets (pw_options.formats). */
+#define PW_FORMATS_ALL  0 /* everything this library knows (default)              */
+#define PW_FORMATS_170A 1 /* only Pro-Wizard 1.70a's formats: output identical to it */
 
 /* Return codes of pw_scan(). */
 #define PW_OK          0
@@ -54,7 +60,9 @@ typedef enum pw_status {
 
 typedef enum pw_file_role {
     PW_FILE_RIP       = 0, /* the raw data as found (exe header possibly rebuilt) */
-    PW_FILE_CONVERTED = 1  /* the conversion to Protracker (or similar)          */
+    PW_FILE_CONVERTED = 1, /* the conversion to Protracker (or similar)          */
+    PW_FILE_COMPANION = 2  /* a second file the format needs next to the rip
+                              (LSP sample bank, TFMX samples, Startrekker .nt)   */
 } pw_file_role;
 
 /* One detection. */
@@ -70,6 +78,9 @@ typedef struct pw_found {
     uint32_t    missing;        /* bytes missing when status is TRUNCATED           */
     int         header_rebuilt; /* an Amiga hunk header was synthesised             */
     int         converting;     /* a conversion file will follow                    */
+    int         restored;       /* found as a player had prepared it in memory
+                                   (pointers relocated, ...); the rip file is the
+                                   data as it was before (formats not in 1.70a)     */
 } pw_found;
 
 typedef struct pw_callbacks {
@@ -93,7 +104,9 @@ typedef struct pw_callbacks {
 typedef struct pw_options {
     unsigned       modes;      /* PW_MODE_*; 0 means PW_MODE_ALL                 */
     const uint8_t *types_data; /* contents of a "_types_" extension file, or NULL */
-    size_t         types_size; /* for the built-in extensions                     */
+    size_t         types_size; /* for the built-in extensions. It covers the
+                                  1.70a formats; the others keep their own.      */
+    int            formats;    /* PW_FORMATS_*; 0 means PW_FORMATS_ALL            */
 } pw_options;
 
 typedef struct pw_result {
@@ -114,8 +127,11 @@ int pw_scan(const uint8_t *data, size_t size, const pw_options *opt,
  * built-in ones, or PW_ERR_NOMEM. */
 int pw_types_report(const uint8_t *data, size_t size, const pw_callbacks *cb);
 
-/* Format table (index = pw_found.format_id). */
+/* Format table (index = pw_found.format_id). IDs below pw_format_count_170a()
+ * are Pro-Wizard 1.70a's (the rows of a "_types_" file); the rest were added
+ * by this library. */
 int         pw_format_count(void);
+int         pw_format_count_170a(void);
 const char *pw_format_ext(int format_id);  /* built-in extension, NULL if out of range */
 pw_kind     pw_format_kind(int format_id);
 

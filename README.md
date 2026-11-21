@@ -6,12 +6,14 @@ crunched executables or data inside any binary (disk images, memory dumps,
 intros, games), saves each one, and converts packed modules back to
 Protracker.
 
-For every input the port prints the same text and writes the same files as
-the original Windows build, byte for byte. It is tested that way: see
-[Accuracy](#accuracy). Underneath it is a library with no global state, bounds
-checked memory access and a callback API, plus a command line tool with a few
-optional extras (mode selection, an output directory, a scan-only listing and
-JSON output).
+With `-c` the port prints the same text and writes the same files as the
+original Windows build, byte for byte, for every input. It is tested that
+way: see [Accuracy](#accuracy). By default it also finds formats the original
+never knew, such as PreTracker, LightSpeedPlayer, TFMX, OctaMED MMD2/MMD3 and
+SidMon 2 (see [Formats](#formats)). Underneath it is a library with no global
+state, bounds checked memory access and a callback API, plus a command line
+tool with a few optional extras (mode selection, an output directory, a
+scan-only listing and JSON output).
 
 ## Downloads
 
@@ -44,6 +46,7 @@ Tested with MinGW-w64 gcc 16 (Windows) and gcc 13 (Linux).
 ```text
 prowiz [options] <input file>
 
+  -c          only the formats of Pro-Wizard 1.70a (exactly its output)
   -r          music only: modules, packed modules, synth formats
   -d          data only: executable and data crunchers
   -rd         both (default)
@@ -55,10 +58,14 @@ prowiz [options] <input file>
   -v, -h      version, help
 ```
 
-Without options it behaves exactly like the original: classic console text,
-and for each hit a raw rip `<n>.<ext>` plus, for packed modules, a converted
-`<n>.mod` in the current directory. An optional `_types_` file in the current
-directory renames the extensions, one line per format, as in the original.
+It prints the original's classic console text and writes, for each hit, a
+raw rip `<n>.<ext>` plus, for packed modules, a converted `<n>.mod` in the
+current directory. Some of the formats the original never had need a second
+file next to the rip (a sample bank, a sample file, a synth file): it is
+saved as `<n>.<ext2>`, e.g. `3.lsmusic` with `3.lsbank`. With `-c` it behaves
+exactly like the original. An optional `_types_` file in the current
+directory renames the extensions of the original's formats, one line per
+format, as in the original.
 
 ```text
 $ prowiz -s demo.bin
@@ -74,13 +81,13 @@ offset     size       status     format
 
 ```json
 {
-  "program": "prowiz", "version": "2.0.0", "engine": "Pro-Wizard 1.70a",
+  "program": "prowiz", "version": "2.1.0", "engine": "Pro-Wizard 1.70a",
   "input": {"path": "demo.bin", "size": 4805776},
-  "modes": ["music", "data"], "scan_only": false, "output_dir": "out",
+  "modes": ["music", "data"], "formats": "all", "scan_only": false, "output_dir": "out",
   "findings": [
     {"index": 0, "format": "NoisePacker v2 module", "format_id": 31, "kind": "music",
      "status": "saved", "offset": 500000, "size": 111180, "ext": "NoisePacker2",
-     "header_rebuilt": false,
+     "header_rebuilt": false, "restored": false,
      "files": [{"name": "0.NoisePacker2", "path": "out/0.NoisePacker2", "role": "rip", "size": 111180, "written": true},
                {"name": "0.mod", "path": "out/0.mod", "role": "converted", "size": 123914, "written": true}]}
   ],
@@ -92,7 +99,10 @@ offset     size       status     format
 `status` is `saved`, `truncated` (the data runs past the end of the input:
 nothing is written, `missing` says how many bytes are absent) or `unrippable`
 (recognised, but Pro-Wizard cannot rip it, e.g. The Player 6.1A with packed
-samples).
+samples). A file's `role` is `rip`, `converted` or `companion` (the second file
+some formats need). `restored` is true when the module was found as a player
+had prepared it in memory (pointers relocated and so on) and the rip is the
+module as it was before; `formats` is `"1.70a"` with `-c`.
 
 ## Library
 
@@ -118,7 +128,9 @@ extension table) and the format table functions.
 
 ## Formats
 
-About 90 music formats and 80 cruncher variants (158 format IDs), the full
+### The original's formats
+
+About 90 music formats and 80 cruncher variants (168 format IDs), the full
 set of the original's scanner:
 
 * **Modules:** Protracker / Startrekker / FastTracker 1 (any channel count),
@@ -150,6 +162,27 @@ set of the original's scanner:
 
 `docs/upstream/KNOWN_FORMATS.txt` is the original's own list.
 
+### Formats the original never had
+
+Off with `-c`. Their layouts, size rules, test results and limits are in
+[docs/NEW_FORMATS.md](docs/NEW_FORMATS.md).
+
+* **Modules:** OctaMED Pro MMD2 / Soundstudio MMD3 (also multi-song),
+  DigiBooster Pro (DBM0), Symphonie / Symphonie Pro, Musicline Editor,
+  Startrekker 8 channels (FLT8 / EXO8) and EXO4.
+* **Synth formats:** PreTracker, Art of Noise (AON4 / AON8), SidMon 2,
+  Delta Music 2, Startrekker AM (the `.nt` synth file is saved with its
+  module as `<n>.mod.nt`).
+* **Two-file formats:** LightSpeedPlayer (`<n>.lsmusic` with its sample bank
+  `<n>.lsbank`), TFMX 1.5 / Pro / 7V (`<n>.mdat` with `<n>.smpl` when the
+  samples follow the song; TFHD and TFMXPAK single files).
+* **Game music with its replay code:** Rob Hubbard, Ben Daglish, David
+  Whittaker.
+* **Found as a player left them in memory:** relocated MED/OctaMED modules
+  (MMD0-MMD3), initialised LightSpeedPlayer music (with an ADPCM bank packed
+  again) and PreTracker songs patched by the Raspberry Casket replayer are
+  restored to the original file (`"restored": true` in the JSON).
+
 ## Accuracy
 
 The original is the specification. `tests/reference/` holds its last source
@@ -165,7 +198,7 @@ The inputs are the libxmp test suite's real modules (`tests/fetch_corpus.py`,
 285 files) and `tests/corpus/synthetic/` (165 small hand-built files for the
 many formats without public samples, each confirmed to be detected by the
 original). `sh tests/run_difftest.sh` builds everything and runs the full
-comparison.
+comparison. Both tools run the port with `-c`.
 
 Current results (Windows, against the original built from its source):
 
@@ -182,6 +215,16 @@ Current results (Windows, against the original built from its source):
   exception is inherited: the original's StoneCracker 2.70 extension ends in
   a space, which Windows drops from file names). An AddressSanitizer/UBSan
   build runs the corpus and 5,800 fresh mutants without a single report.
+
+The formats the original never had are tested against real files instead:
+`tests/newformats.py` rips each module of the lists in `tests/newformats/`
+(about 1,500 real and synthetic modules) on its own and embedded in random
+data, checks every rip and companion file byte for byte, and fails on any
+false positive. None of these formats is found anywhere in the 460-file
+corpus except in its real modules of them. Nor are any found in 179 MB of
+Aminet demos, games and players, or in 64 MB of random data.
+`tests/fuzznew.py` runs sanitizer builds on mutants of those modules: more
+than 80,000 runs so far, with no crash or hang.
 
 Where the original misbehaves, the port does something defined instead (all
 documented in [docs/PORTING.md](docs/PORTING.md)):

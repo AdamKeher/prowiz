@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v5
       - name: build and unit tests
         run: make -j4 test CFLAGS="-O2 -Werror"
+      - name: formats added by the port (committed test files)
+        run: python3 tests/newformats.py --offline --port build/prowiz
 
   cmake:
     strategy:
