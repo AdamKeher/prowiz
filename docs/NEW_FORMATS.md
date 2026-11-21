@@ -24,7 +24,7 @@ big-endian.
 | Musicline Editor | `MLEDMODL` | 1 | chunk walk | 4/4 | rare (loaded into structures) | easy |
 | Rob Hubbard | 5 × `bra.w` + code | 1 (player code + data) | sample walk to `4E71` | 12/12 | - | easy |
 | Ben Daglish | `bra.w` table + init code | 1 (player code + data) | instrument tables | 28/44 exact, 33/44 within 34 bytes | offsets, probably intact | easy-moderate |
-| LightSpeedPlayer | `LSP1` / `LSPm` | 2 (music + bank) | stream walk; bank from instrument table | 34/34 music, 32/32 banks | relocated, can be undone | moderate |
+| LightSpeedPlayer | `LSP1` / `LSPm` | 2 (music + bank) | stream walk; bank from instrument table | 38/38 music, 32/32 banks | relocated: undone; ADPCM bank packed again | moderate |
 | Symphonie | `SymM` + version 1 | 1 (`.SymSONG`: plus samples) | hunk walk + slot count | 4/4 | rare | moderate |
 | Startrekker AM | `.nt`: `ST1.x ModuleINFO` | 2 (mod + `.nt`) | `.nt` sizes are near fixed | 44 `.nt` | no link between the two | moderate |
 | TFMX | `TFMX-SONG ` and others | 2 (mdat + smpl) | mdat: walk; smpl: lower bound | mdat 69/74, smpl 53/74 | smpl found only via player variables | hard |
@@ -423,6 +423,11 @@ files.
   - `-insane` adds generated code but leaves both files byte-identical to a
     standard conversion.
   - `-micro` writes an `LSPm` music file.
+- **Other writers:** LSPX (github.com/dansalvato/lspx, MIT) converts OpenMPT
+  formats to LSP1 version 1.25. Its code table is padded with zeros rather
+  than unique dummy values. Apocalypso-invite's `apocalypso.lsmusic` comes
+  from a converter of that kind: it uses getpos markers 0-255, not MOD
+  positions.
 - **No PC player reads LSP,** and conversion back to MOD is not meaningful:
   it is a per-tick sound-chip register stream.
 - **The link between the files:** a 4-byte ID at music+04 is repeated at
@@ -459,7 +464,7 @@ files.
   B/C/D: idx=0; ext=0; b=rd(); while b==0 { idx+=0x100; ext=1; b=rd() }; idx+=b
   require idx < T; v = table[idx]
   A:   v==FFFF ends; v==F00F skips 1 byte (BPM)
-  B/C: escapes tested on every code; D: only when ext
+  B/C: escapes tested on every non-zero code; D: only when ext
        v==escRewind ends; v==escSetBPM or escGetPos skips 1 byte
   A:   q += popc(v>>8&15); words += popc(v>>4&15) + popc(v&15)
   BCD: q += popc(v>>4&15); words += popc(v&15) + voices with (v>>(8+2k))&2
@@ -483,30 +488,110 @@ files.
   - volume bytes ≤ 64;
   - instrument deltas land on valid entries.
 
-  Odd sample offsets and period 0 do occur, so don't reject them. **Every
-  LSP player contains `0C98 'LSP1'`**, so expect one rejected candidate per
-  copy of the player.
+  Odd sample offsets, repeat length 0 (micro, Planartunnel) and period 0 do
+  occur, so don't reject them. **Every LSP player contains `0C98 'LSP1'`**,
+  so expect one rejected candidate per copy of the player.
 - **In memory:** init adds the bank address B to each instrument's start
   and repeat. The exact changes by player version:
   - 1.04-1.06 also set bit 0 of the start offset;
   - from 1.10, 0A := FF, and sequence entries get the word-stream address
     added;
+  - the generated "insane" players leave the `.lsmusic` alone up to 1.10,
+    and from 1.11 only set 0A := FF (they relocate their own copy of the
+    instrument table);
+  - micro players relocate the instruments, with no flag and no guard;
   - ADPCM banks (from 1.30) are decoded in place.
 
   To undo:
   - B = min(pointer) − 4;
   - or search for the ID to find the bank, skipping hits preceded by
     `20 3C`, the insane code's immediate.
-- **Rip plan:**
-  - Save `N.lsmusic`, un-relocated if needed.
-  - Save `N.lsbank`, found via the ID (`LSP1`) or via the pointers (micro).
-  - Write two files from one finding.
 - **Test files:**
   - The repository's `Example/` at 15 git revisions (layouts A-D).
-  - Game and demo repos with MIT/GPL licences: Ozzyboshi/Planartunnel
-    (micro), nattfalk/ins-gerp24, danamini/aura-tunnel-amiga,
-    asimilon/AmigaDemoTemplate.
+  - Demo repositories (licences vary; only URLs are committed):
+    Ozzyboshi/Planartunnel (micro), nattfalk/ins-gerp24,
+    danamini/aura-tunnel-amiga, asimilon/AmigaDemoTemplate,
+    ericde45/mega_JAG (1.05) and 14 more, listed in `tests/newformats/LSP.txt`.
   - The pouet list 200 has about 69 productions.
+
+### Implementation (`src/formats/new/LSP.c`)
+
+- **Detection:** `LSP1` with 01 at 08, or `LSPm` with 01 at 04; that byte
+  already rejects the copies of the signature inside player code.
+- **Checks, in addition to the walk above:**
+  - flags high byte 00 or FF, and no bits above 2;
+  - bit 2 (ADPCM) only from version 1.30, with 1 to 31 sample counts;
+  - the escapes are distinct;
+  - the rewind escape is among the last 4 table entries, and from 1.11 its
+    index is 256 or more;
+  - from 1.11, T ≥ 258;
+  - W is even, and the loop offsets are inside their streams;
+  - the sequence table:
+    - on disk it starts with (0, W);
+    - it is monotonic;
+    - it stays inside the streams.
+  - the instrument pointers end within 2 MB (chip RAM);
+  - the ADPCM block:
+    - its sample sizes add up to the bank size;
+    - the in-place offset equals total minus packed size;
+    - only the top bits of the lossless mask are used.
+  - Micro:
+    - the 16 offsets are in order;
+    - the four command streams have equal length;
+    - every volume, period and instrument stream has exactly the length
+      its voice's command bits need;
+    - bits 2-0 of command bytes are 0;
+    - loop marks are only on voice 3: at most one "save" (10), and
+      "restore" (11) on the last frame;
+    - volumes are ≤ 64 and instrument numbers < n.
+  - The getpos parameter is not checked (see LSPX above).
+- **Restoring an initialised music** (saved as `restored`):
+
+| Layout | Seen as relocated when | B |
+|---|---|---|
+| C, D | flag byte FF (cleared on save) | min(pointer) − 4 if that is ≥ 0x400 and even, else 0 (an insane player) |
+| B | every start is odd | min(start − 1, repeat) − 4, if ≥ 0x400 and even |
+| A, micro | min(pointer) − 4 ≥ 0x400 and even | that |
+
+  Sequence entries lose the address of the word stream: their first entry
+  is (0, W) on disk.
+- **The bank:**
+  - **LSP1:** the first input position holding the music's ID wins. It must
+    not be inside the music, after `LSP1` (another copy of a music) or after
+    `20 3C`.
+  - **Otherwise,** for a relocated music: at B, as in a dump of memory from
+    address 0. For lack of an ID, every one-shot sample (repeat length 0
+    or 1) must start with two zero bytes there. LSPConvert clears them from
+    1.01 on; this holds for all 518 such entries in the test banks.
+  - **An unrelocated micro music** cannot find its bank; it is saved alone.
+  - **An ADPCM bank of an initialised music** has been decoded in place.
+    - It is packed again, nibble by nibble. Every decoded step is exactly
+      reachable, so this gives back the original file.
+    - Bytes that do not decode that way are saved as found, with a
+      message.
+- **Truncation:**
+  - A music cut inside its header (up to the word-stream size) is not
+    reported.
+  - A music cut in its streams is reported as truncated:
+    - its size is a lower bound when the byte stream is cut (one byte per
+      remaining frame plus the rewind);
+    - for micro, the size is exact once the command streams are complete.
+- **Limits:**
+  - **`-nosampleoptim`:** the bank size is a lower bound (unused trailing
+    samples are not visible), and an unused first sample makes
+    min(pointer) > 4. With the flag FF from an insane player, a first
+    offset ≥ 0x404 would then be taken for a relocation.
+  - **LSPX's experimental mixer mode:** it appends raw event bytes that no
+    standard player reads, so those files are rejected.
+  - **Version 1.04-1.05:** an odd original offset is not relocated by its
+    player (bit 0 is already set), so such a mixed table is not restored.
+  - **A bank whose ID is 0** is not searched for.
+- **Coverage** (`tests/newformats/LSP.txt`, 52 entries):
+  - 38 real files: the example at 15 revisions and 23 from demo
+    repositories, 4 of them micro;
+  - their 32 LSP1 banks are found and exact;
+  - 14 synthetic files: layouts A-D, ADPCM, micro 1.20 and 1.33, and 7 memory
+    images, made by `tests/newformats/files/LSP/make_synth.py`.
 
 ## Symphonie / Symphonie Pro
 
